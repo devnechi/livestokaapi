@@ -221,8 +221,8 @@
    
       <div class="row">
       <div class="col-md-12">
-        <h1>Breed Owners Registration Area</h1>
-        <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p>
+        <h1>Breeder Flock Farm Registration Area</h1>
+      
       
       <!--register-section -->
       <section id="Breeder_Reg">
@@ -234,13 +234,13 @@
             
               
                 <div class="form-group">
-                  <label for="formGroupExampleInput"><strong>Breed Description</strong></label>
+                  <label for="formGroupExampleInput"><strong>Description of the Farm</strong></label>
                    <hr>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                    <label for="first_name">First Name</label>
+                    <label for="first_name">Farm Name</label>
                       <input type="text" class="form-control" id="first_name" name="first_name" value="<?= isset($_POST['first_name']) ? $_POST['first_name'] : ''; ?>" placeholder="First Name" onkeyup='check();'>
                     </div>
                   </div>
