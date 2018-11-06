@@ -767,10 +767,10 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand"><a>Hatcher's Navigation</a>  </li>
                     <li><a href="createNewHatchBatch.php"> Create New Hatching Batch </li>
-                    <li><a href="#"> Update Post Hatched Data </a></li>
-                    <li><a href="#">Update Batches Inventory</a></li>
+                    <li><a href="updatePostHatchedData.php"> Update Post Hatched Data </a></li>
+                    <!-- <li><a href="#">Update Batches Inventory</a></li>
                     <li><a href="#">Source Raw Materials </a></li>
-                    <li><a href="#">Update Raw Material Information</a></li>
+                    <li><a href="#">Update Raw Material Information</a></li> -->
                     <li><a href="#">Enter Monthly Hatching Summary</a></li>
                     <li><a href="#">Statistics </a></li>
                     <li><a href="#">Reports</a></li>

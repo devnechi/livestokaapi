@@ -1,6 +1,6 @@
 
 <?php
-include("../../includes/layouts/hatchers_header_layout.php");
+include("../../includes/layouts/main_hatchery_header.php");
 
 
 ?>
@@ -17,79 +17,38 @@ include("../../includes/layouts/hatchers_header_layout.php");
                                     <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                                     <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
 
+                                    <form>
 
-                                <div class="container">
-                                <form>
-                                    <div class="form-group">
-                                      <label for="formGroupExampleInput">Current Date:</label>
-                                      <br />
-                                      <label for="formGroupExampleInput">Time:</label>
+                                          <div class="form-group">
+                                            <label for="formGroupExampleInput"><strong>Hatchery Description</strong></label>
+                                             <!-- <hr> -->
+                                          </div>
+                                            <div class="row">
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="lblcompany_name">Hatchery Name</label>
+                                                  <input type="text" class="form-control" id="companyname" name="hatchery_name" value="<?= isset($_POST['hatchery_name']) ? $_POST['hatchery_name'] : ''; ?>" placeholder="">
+                                                </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="formGroupExampleInput2">Type of Ownership</label>
+                                                   <select class="form-control" id="country" name="country" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>">
+                                                     <option>SELECT</option>
+                                                     <option>Sole Proprietorship (individual or family)</option>
+                                                     <option>Liability Company</option>
+                                                     <option>Non-Liability (NGO, Government, project etc)</option>
+                                                   </select>
 
-                                      <div class="form-group">
-                                        <label for="formGroupExampleInput">Hatching Process in Days.<small> the 21 - 23 days of hatching</small></label>
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="DAY 1: Setting of Eggs">
-                                      </div>
-                                    </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Hatchery Identification Number:</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                    </form>
 
-                                  <div class="form-group">
-                                    <label for="exampleFormControlTextarea1"> Hatchery Original Capacity </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput"> Type of Eggs on Setter</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput"> Number of Eggs on Setter </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Expected Breed to Hatch</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-
-                                  <!-- <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Product Texture</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>SELECT</option>
-                                      <option>Mash</option>
-                                      <option>Pellets</option>
-
-                                    </select>
-                                  </div> -->
-
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Starting Temperature</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Starting Humidity</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Breeder Flock Source</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-
-                                  <button type="submit" class="btn btn-primary btn-lg">Create New Batch</button>
-
-                                </form>
-
-
-                              </div>
-                          </div>
           </div>
         </div>
 
 
-          </body>
-          </html>
+        <?php
+                        include("../../includes/layouts/hatchery_main_footer.php");
+                         ?>
