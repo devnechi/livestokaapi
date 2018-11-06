@@ -188,25 +188,59 @@
              // receiving the post params
              $user_id = $_POST['user_id'];
              $hatchery_name = $_POST['hatchery_name'];
-             $year_established = $_POST['year_established'];
-             $incorporation_number = $_POST['cert_inco_number'];
-             $business_permit_number = $_POST['hatching_bus_permit'];
-             $premise_certificate_number = $_POST['premise_cert_num'];
-             $gmp_certificate_number = $_POST['gmp_cert_num'];
-             $hatcheries_owned = $_POST['hatcheries_owned'];
-             $association_affiliation = $_POST['association_affiliation'];
-             $country = $_POST['country'];
-             $region = $_POST['region'];
-             $district = $_POST['district'];
-             $address = $_POST['address'];
-             $pobox = $_POST['poboxnum'];
-             $websiteurl = $_POST['websiteurl'];
-             $contact_person = $_POST['contact_person'];
-             $total_hatchery_capacity = $_POST['total_hatchery_capacity'];
-             $total_incubation_capacity = $_POST['total_incubation_capacity'];
-             $num_breeds_hatched = $_POST['num_of_breeds_produced'];
-             $total_man_power = $_POST['total_man_power'];
-             $plant_manager = $_POST['plant_manager'];
+             $type_of_ownership = $_POST['type_of_ownership'];
+             $date_established = $_POST['date_established'];
+             $hatch_reg_number = $_POST['hatch_reg_number'];
+             //$owners_full_name = $_POST['owners_full_name'];
+             //$hatchery_affiliation[]
+             $hatchery_affiliation = $_POST['hatchery_affiliation'];
+             $hatchery_manager = $_POST['hatchery_manager'];
+             $hatchery_veterinarian = $_POST['hatchery_veterinarian'];
+             $vet_reg_number = $_POST['vet_reg_number'];
+
+             // hatching purposes
+             // $utility_chicks = $_POST['utility_chicks'];
+             // $grandparent_stock_chicks = $_POST['grandparent_stock_chicks'];
+             // $parent_stock_chicks = $_POST['parent_stock_chicks'];
+
+             //type of breed
+             // $broiler = $_POST['broiler'];
+             // $layers =  $_POST['layers'];
+             // $dual_purpose = $_POST['dual_purpose'];
+
+               // Breed
+              // $typeofbreeds = $_POST['typeofBreed'];
+
+             //type of poultry hacthing
+             // $hatching_fowls = $_POST['hatching_chicken'];
+             // $hatching_turkey = $_POST['hatching_turkey'];
+             // $hatching_ducks = $_POST['hatching_ducks'];
+             // $hatching_geese = $_POST['hatching_geese'];
+             // $hatching_guinea_fowls = $_POST['hatching_guinea_fowls'];
+             // $hatching_quails = $_POST['hatching_quails'];
+             // $hatching_ostrich = $_POST['hatching_ostrich'];
+
+             //source of eggs by the hatcher
+             // $imported_eggs = $_POST['imported_eggs'];
+             // $other_local_farms = $_POST['other_local_farms'];
+             // $out_growers = $_POST['out_growers'];
+             // $owns_breeder_farm = $_POST['owns_breeder_farm'];
+
+             //hatchery Capacity
+             $total_incubator_capacity = $_POST['total_incubator_capacity'];
+             $total_hatcher_capacity = $_POST['total_hatcher_capacity'];
+
+              //
+              $websiteurl = $_POST['websiteurl'];
+              $contact_person = $_POST['contact_person'];
+              $country = $_POST['country'];
+              $region = $_POST['region'];
+              $district = $_POST['district'];
+              $address = $_POST['address'];
+              $pobox = $_POST['pobox'];
+              $phonenumber = $_POST['phonenumber'];
+
+
 
 
              // check if user is already existed with the same email
@@ -217,11 +251,25 @@
                //  echo json_encode($response);
              } else {
                  // create a new user
-                 $hatchery = $db->registerNewHatchery($user_id, $hatchery_name, $year_established,
-                 $incorporation_number, $business_permit_number, $premise_certificate_number,
-                 $gmp_certificate_number, $hatcheries_owned, $association_affiliation, $country,
-                  $region, $district, $pobox, $websiteurl, $address, $contact_person, $total_hatchery_capacity,
-                   $total_incubation_capacity, $num_breeds_hatched, $total_man_power, $plant_manager);
+                 $hatchery = $db->registerNewHatchery($user_id,
+                   $hatchery_name,
+                   $type_of_ownership,
+                   $date_established,
+                   $hatch_reg_number,
+                   $hatchery_affiliation,
+                   $hatchery_manager,
+                   $hatchery_veterinarian,
+                   $vet_reg_number,
+                   $total_incubator_capacity,
+                   $total_hatcher_capacity,
+                   $contact_person,
+                   $country,
+                   $region,
+                   $district,
+                   $pobox,
+                   $websiteurl,
+                   $address,
+                   $phonenumber);
                  if ($hatchery) {
                      // user stored successfully
                         $response["error"] = false;
@@ -229,23 +277,23 @@
                         $response["hatchery"]["hatchery_id"] = $hatchery["hatchery_id"];
                         $response["hatchery"]["user_id"] = $hatchery["user_id"];
                         $response["hatchery"]["hatchery_name"] = $hatchery["hatchery_name"];
-                        $response["hatchery"]["year_established"] = $hatchery["year_established"];
-                        $response["hatchery"]["incorporation_number"] = $hatchery["incorporation_number"];
-                        $response["hatchery"]["business_permit_number"] = $hatchery["business_permit_number"];
-                        $response["hatchery"]["premise_certificate_number"] = $hatchery["premise_certificate_number"];
-                        $response["hatchery"]["gmp_certificate_number"] = $hatchery["gmp_certificate_number"];
-                        $response["hatchery"]["hatcheries_owned"] = $hatchery["hatcheries_owned"];
-                        $response["hatchery"]["association_affiliation"] = $hatchery["association_affiliation"];
+                        $response["hatchery"]["date_established"] = $hatchery["date_established"];
+                        $response["hatchery"]["type_of_ownership"] = $hatchery["type_of_ownership"];
+                        $response["hatchery"]["hatch_reg_number"] = $hatchery["hatch_reg_number"];
+                        $response["hatchery"]["hatchery_affiliation"] = $hatchery["hatchery_affiliation"];
+                        $response["hatchery"]["hatchery_manager"] = $hatchery["hatchery_manager"];
+                        $response["hatchery"]["hatchery_veterinarian"] = $hatchery["hatchery_veterinarian"];
+                        $response["hatchery"]["vet_reg_number"] = $hatchery["vet_reg_number"];
                         $response["hatchery"]["country"] = $hatchery["country"];
                         $response["hatchery"]["region"] = $hatchery["region"];
                         $response["hatchery"]["district"] = $hatchery["district"];
                         $response["hatchery"]["pobox"] = $hatchery["pobox"];
                         $response["hatchery"]["address"] = $hatchery["address"];
                         $response["hatchery"]["contact_person"] = $hatchery["contact_person"];
-                        $response["hatchery"]["total_hatchery_capacity"] = $hatchery["total_hatchery_capacity"];
-                        $response["hatchery"]["total_incubation_capacity"] = $hatchery["total_incubation_capacity"];
-                        $response["hatchery"]["total_man_power"] = $hatchery["total_man_power"];
-                        $response["hatchery"]["plantmanager"] = $hatchery["plantmanager"];
+                        $response["hatchery"]["total_incubator_capacity"] = $hatchery["total_incubator_capacity"];
+                        $response["hatchery"]["total_hatcher_capacity"] = $hatchery["total_hatcher_capacity"];
+                        $response["hatchery"]["websiteurl"] = $hatchery["websiteurl"];
+                        $response["hatchery"]["phone_number"] = $hatchery["phone_number"];
                         $response["hatchery"]["created_at"] = $hatchery["created_at"];
                         $response["hatchery"]["updated_at"] = $hatchery["updated_at"];
 

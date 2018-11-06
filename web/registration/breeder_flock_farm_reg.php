@@ -249,7 +249,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
 
-    <title>Livestoka | Hatchery Owners Registration </title>
+    <title>Livestoka | Breeder Flock farm Registration </title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -469,7 +469,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Hatchery Registration Area</h1>
+        <h1>Breeder Flock Farm Regitration</h1>
         <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
       </div>
       <!--register section -->
@@ -485,13 +485,13 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="formGroupExampleInput"><strong>Hatchery Description</strong></label>
+                  <label for="formGroupExampleInput"><strong>Farm Description</strong></label>
                    <hr>
                 </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="hatchery_name">Hatchery Name</label>
+                        <label for="farm_name">Farm Name</label>
                         <input type="text" class="form-control" id="hatchery_name" name="hatchery_name" value="<?= isset($_POST['hatchery_name']) ? $_POST['hatchery_name'] : ''; ?>" placeholder="">
                       </div>
                     </div>
@@ -555,7 +555,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="formGroupExampleInput"><strong>Hatchery Address and Location</strong></label>
+                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
                   <hr>
                   </div>
                   <div class="form-group">
@@ -598,13 +598,13 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="formGroupExampleInput2">Hatchery Manager:</label>
+                  <label for="formGroupExampleInput2">Farm Manager:</label>
                   <input type="text" class="form-control" id="hatchery_manager" name="hatchery_manager" value="<?= isset($_POST['hatchery_manager']) ? $_POST['hatchery_manager'] : ''; ?>" placeholder=" ">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="hatchery_veterinarian">Hatchery Veterinarian:</label>
+                      <label for="hatchery_veterinarian">Farm Veterinarian:</label>
                       <input type="text" class="form-control" id="hatchery_veterinarian" name="hatchery_veterinarian" value="<?= isset($_POST['hatchery_veterinarian']) ? $_POST['hatchery_veterinarian'] : ''; ?>" placeholder=" ">
                     </div>
                   </div>
@@ -633,12 +633,9 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-md-6">
-                            <p>Type of Hatching Activities.</p>
+                            <p>Type of Breeding Activities.</p>
                             <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;"> Utility Chicks
-                                  <input type="checkbox" checked="checked" name="utility_chicks" id="utility_chicks" value="utility_chicks">
-                                  <span class="checkmark"></span>
-                                </label>
+                               
                                 <label class="customcheck" style="font-size: 18px;"> Grandparent stock chicks
                                   <input type="checkbox" name="grandparent_stock_chicks" id="grandparent_stock_chicks" value="grandparent_stock_chicks">
                                   <span class="checkmark"></span>

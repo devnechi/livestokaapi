@@ -19,87 +19,85 @@ include("../../includes/layouts/hatchers_header_layout.php");
 
 
                                 <div class="container">
-                                <form>
-                                    <div class="form-group">
-                                      <label for="formGroupExampleInput">Current Date:</label>
-                                      <br />
-                                      <label for="formGroupExampleInput">Time:</label>
+                                  <form>
+                                      <div class="form-group col-md-6">
+                                        <label for="formGroupExampleInput">Current Date:</label>
+                                        <br />
+                                        <label for="formGroupExampleInput">Time:</label>
 
-                                      <div class="form-group">
-                                        <label for="formGroupExampleInput">Hatching Process in Days.<small> the 21 - 23 days of hatching</small></label>
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="DAY 1: Setting of Eggs">
+                                        <div class="form-group col-md-6">
+                                          <label for="formGroupExampleInput">Hatching Process in Days.<small> the 21 - 23 days of hatching</small></label>
+                                          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="DAY 1: Setting of Eggs">
+                                        </div>
                                       </div>
+
+                                    <div class="form-group col-md-6">
+                                      <label for="exampleFormControlSelect1">Select Created Batch</label>
+                                      <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>SELECT</option>
+                                        <option>batch 0023|breedA|daycreated|status</option>
+                                        <option>batch 0027|breedA|daycreated|status</option>
+                                        <option>batch 0028|breedB|daycreated|status</option>
+                                        <option>batch 0029|breedC|daycreated|status</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="formGroupExampleInput">Number of Eggs on Setter:</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                                     </div>
 
-                                  <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Select Created Batch</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>SELECT</option>
-                                      <option>batch 0023|breedA|daycreated|status</option>
-                                      <option>batch 0027|breedA|daycreated|status</option>
-                                      <option>batch 0028|breedB|daycreated|status</option>
-                                      <option>batch 0029|breedC|daycreated|status</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Number of Eggs on Setter:</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="exampleFormControlTextarea1"> DAY {for hatching process}</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
 
-                                  <div class="form-group">
-                                    <label for="exampleFormControlTextarea1"> DAY {for hatching process}</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="formGroupExampleInput"> Original Number of Eggs on Setter</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
 
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput"> Original Number of Eggs on Setter</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="formGroupExampleInput"> Number of Eggs Hatched. </label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
 
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput"> Number of Eggs Hatched. </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Number of Damaged Eggs</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="formGroupExampleInput">Number of Damaged Eggs</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
 
 
-                                  <!-- <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Product Texture</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>SELECT</option>
-                                      <option>Mash</option>
-                                      <option>Pellets</option>
+                                    <!-- <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Product Texture</label>
+                                      <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>SELECT</option>
+                                        <option>Mash</option>
+                                        <option>Pellets</option>
 
-                                    </select>
-                                  </div> -->
+                                      </select>
+                                    </div> -->
 
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Est. Weight of Hatched Chicks</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Final Temperature</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Final Humidity</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="formGroupExampleInput">Breeder Flock Source</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                                  </div>
-
-
-                                  <button type="submit" class="btn btn-primary btn-lg">Create New Batch</button>
-
-                                </form>
+                                    <div class="form-group">
+                                      <label for="formGroupExampleInput">Est. Weight of Hatched Chicks</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="formGroupExampleInput">Final Temperature</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="formGroupExampleInput">Final Humidity</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="formGroupExampleInput">Breeder Flock Source</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
 
 
+                                    <button type="submit" class="btn btn-primary btn-lg">Create New Batch</button>
+
+                                  </form>
                               </div>
                           </div>
           </div>
