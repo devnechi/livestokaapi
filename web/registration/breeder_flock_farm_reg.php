@@ -535,9 +535,9 @@
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
                 <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group ">
                 <div class="form-group multiple-form-group" data-max=6>
-                  <label for="formGroupExampleInput2">Hatchery Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
+                  <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
                     <input type="text" name="hatchery_affiliation[]" class="form-control">
                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
@@ -581,7 +581,7 @@
                     <textarea class="form-control" id="address" name="address" rows="3" value="<?= isset($_POST['address']) ? $_POST['address'] : ''; ?>"></textarea>
                   </div>
 
-              <div class="form-group col-md-6">
+              <div class="form-group ">
                       <div class="form-group multiple-form-group" data-max=6>
                         <label for="formGroupExampleInput2">Office Phone Number:</label>
                         <div class="form-group input-group">
@@ -597,21 +597,21 @@
                   <hr>
                 </div>
 
-                <div class="form-group col-md-6">
-                  <label for="formGroupExampleInput2">Farm Manager:</label>
+                <div class="form-group ">
+                  <label for="formGroupExampleInput2" class="control-label">Farm Manager:</label>
                   <input type="text" class="form-control" id="hatchery_manager" name="hatchery_manager" value="<?= isset($_POST['hatchery_manager']) ? $_POST['hatchery_manager'] : ''; ?>" placeholder=" ">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="hatchery_veterinarian">Farm Veterinarian:</label>
+                      <label for="hatchery_veterinarian" class="control-label">Farm Veterinarian:</label>
                       <input type="text" class="form-control" id="hatchery_veterinarian" name="hatchery_veterinarian" value="<?= isset($_POST['hatchery_veterinarian']) ? $_POST['hatchery_veterinarian'] : ''; ?>" placeholder=" ">
                     </div>
                   </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="lbl_vet_reg_number">Vet Reg Number (Individual or Corporate):</label>
+                        <label for="lbl_vet_reg_number" class="control-label">Vet Reg Number (Individual or Corporate):</label>
                         <input type="text" class="form-control" id="vet_reg_number" name="vet_reg_number" value="<?= isset($_POST['vet_reg_number']) ? $_POST['vet_reg_number'] : ''; ?>" placeholder=" ">
                       </div>
                     </div>
@@ -741,43 +741,70 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Source of hatching eggs <small>(*click to select)</small></label>
-                            <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;">Import
-                                  <input type="checkbox" checked="checked" name="imported_eggs" id="imported_eggs" value="import">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Own Breeder flock farm
-                                  <input type="checkbox" name="owns_breeder_farm" id="owns_breeder_farm" value="owns_breeder_farm">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Out-growers
-                                  <input type="checkbox" name="out_growers" id="out_growers" value="out-growers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Other local farms
-                                  <input type="checkbox" name="other_local_farms" id="other_local_farms" value="Other_local_farms">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
+                               <label for="formGroupExampleInput2">Local Source Parent Stock <small>(*click to select)</small></label>
+                               <div class="form-group multiple-form-group" data-max=6>
+                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
+                                   <div class="form-group input-group">
+                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                       </button></span>
+                                   </div>
+                               </div>
+                          </div>
+                          <div class="col-md-6">
+                               <label for="formGroupExampleInput2">Imported source parent stock <small>(*click to select)</small></label>
+                               <div class="form-group multiple-form-group" data-max=6>
+                                   <label for="formGroupExampleInput2">Country <small>(e.g.  USA, Great Britain, India)</small></label>
+                                   <div class="form-group input-group">
+                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                       </button></span>
+                                   </div>
+                               </div>
                           </div>
                           </div>
                         </div>
 
+ <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                               <label for="formGroupExampleInput2">Local Source Grand-Parent Stock <small>(*click to select)</small></label>
+                               <div class="form-group multiple-form-group" data-max=6>
+                                   <label for="formGroupExampleInput2">Region <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
+                                   <div class="form-group input-group">
+                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                       </button></span>
+                                   </div>
+                               </div>
+                          </div>
+                          <div class="col-md-6">
+                               <label for="formGroupExampleInput2">Imported source Grand-parent stock <small>(*click to select)</small></label>
+                               <div class="form-group multiple-form-group" data-max=6>
+                                   <label for="formGroupExampleInput2">Country <small>(e.g. USA, Great Britain, India)</small></label>
+                                   <div class="form-group input-group">
+                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                       </button></span>
+                                   </div>
+                               </div>
+                          </div>
+                          </div>
+                        </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="formGroupExampleInput"><strong>Hatchery Capacity</strong></label>
+                            <label for="formGroupExampleInput"><strong>Breeding Capacity</strong></label>
                             <hr>
                           </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
-                            <label for="lbl_total_incubator_capacity">Total Incubator Capacity</label>
+                            <label for="lbl_total_incubator_capacity">Maximum Flock Size</label>
                             <input type="text" class="form-control" id="total_incubator_capacity" name="total_incubator_capacity" value="<?= isset($_POST['total_incubator_capacity']) ? $_POST['total_incubator_capacity'] : ''; ?>" placeholder=" ">
                           </div>
                           <div class="form-group">
-                            <label for="lbltotal_hatcher_capacity">Total Hatcher Capacity</label>
+                            <label for="lbltotal_hatcher_capacity">Total Egg Produced per year</label>
                             <input type="text" class="form-control" id="total_hatcher_capacity" name="total_hatcher_capacity" value="<?= isset($_POST['total_hatcher_capacity']) ? $_POST['total_hatcher_capacity'] : ''; ?>" placeholder=" ">
                           </div>
                         </div>
