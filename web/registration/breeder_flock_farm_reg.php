@@ -469,7 +469,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Hatchery Registration Area</h1>
+        <h1>Breeder Flock Farm Regitration</h1>
         <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
       </div>
       <!--register section -->
