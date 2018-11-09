@@ -68,16 +68,18 @@ class DbOperation
         $uuid = uniqid('', true);
         $hash = $this->hashSSHA($password);
         $encrypted_password = $hash["encrypted"]; // encrypted password
-     $salt = $hash["salt"]; // salt
-
-     $stmt = $this->con->prepare("INSERT INTO lvusers_tb(user_unique_id, email, encrypted_password, usertype, salt, account_status, created_at) VALUES(?, ?, ?, ?, ?, ?, NOW())");
+        $salt = $hash["salt"]; // salt
+        $email_activation_key = md5($email . $first_name . $last_name);  //Activation Key
+        $stmt = $this->con->prepare("INSERT INTO lvusers_tb(user_unique_id, email, encrypted_password, usertype, salt, account_status, created_at) VALUES(?, ?, ?, ?, ?, ?, NOW())");
         $stmt->bind_param("ssssss", $uuid, $email, $encrypted_password, $usertype, $salt, $account_status);
 
         $result = $stmt->execute();
+        
         $stmt->close();
 
         // check for successful store
         if ($result) {
+            $stmt->sendEmail('Verify Your Email Address', $email, $first_name, $email_activation_key);
             $stmt = $this->con->prepare("SELECT * FROM lvusers_tb WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -93,6 +95,7 @@ class DbOperation
     }
 
 
+ 
     /*
     *add new manufacturer to the database
     */
@@ -591,9 +594,384 @@ INNER JOIN  raw_materials
     {
     }
 
+
+
+ /*
+    *REGISTRATION: type of user :
+    * reg user type - Breeder
+    */
+
+
+
+
+
+
+    public function registerBreederUser($owners_full_name, $email, $password, $usertype, $account_status)
+    {
+      registerUser(  $email, $password, $usertype, $account_status);
+    }
+
+    /*
+    *add new Breed Farm
+    */
+    public function registerNewBreedFarm(
+
+    $breedersId,
+    $user_id,
+    $breeder_farm_name,
+    $year_established,                
+    $reg_number,                
+    $owners_full_name,
+    $affiliation,
+    $country,
+    $region,
+    $district,
+    $pobox,
+    $websiteurl,
+    $address,
+    $contact_person,
+    $maximum_flock_size,
+    $total_peryear_capacity,
+    $vet_reg_number,  
+    $breed_veterinarian,
+    $type_of_ownership
+   
+) {
+        $htuid = uniqid('', true);
+
+        $stmt = $this->con->prepare("INSERT INTO `breeders_tbl`
+        (breedersId,
+            user_id,
+            breeder_farm_name,
+            year_established,
+            reg_number,
+            owners_full_name,
+            country,
+            region,
+            district,
+            pobox,
+            websiteurl,
+            address,
+            maximum_flock_size,
+            total_peryear_capacity,
+            vet_reg_number,
+            breed_veterinarian,
+            breed_manager,
+            type_of_ownership)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param(
+                "ssssssssssssssssssss",
+                $breedersid,
+                $user_id,
+                $breeder_farm_name,
+                $type_of_ownership,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,            
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address,
+                $maximum_flock_size,
+                $total_peryear_capacity,
+                $vet_reg_number,               
+                $breed_veterinarian,
+                $breed_manager,
+                $date_created
+            );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->con->prepare("SELECT * FROM breeders_tbl WHERE $user_id = ?");
+            $stmt->bind_param("s", $user_id);
+            $stmt->execute();
+            $hatchery = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $hatchery;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+/*
+    *REGISTRATION: type of user :
+    * reg user type - Dairy
+    */
+
+
+
+
+
+
+    public function registerDairyUser($owners_full_name, $email, $password, $usertype, $account_status)
+    {
+      registerUser(  $email, $password, $usertype, $account_status);
+    }
+
+    /*
+    *add new Dairy Farm
+    */
+    public function registerNewDairyFarm(
+
+    $dairysId,
+    $user_id,
+    $dairy_farm_name,
+    $year_established,                
+    $reg_number,                
+    $owners_full_name,
+    $affiliation,
+    $country,
+    $region,
+    $district,
+    $pobox,
+    $websiteurl,
+    $address
+   
+   
+    ) {
+        $htuid = uniqid('', true);
+
+        $stmt = $this->con->prepare("INSERT INTO `dairys_tbl`
+        (dairysId,
+            user_id,
+            dairy_farm_name,
+            year_established,
+            reg_number,
+            owners_full_name,
+            country,
+            region,
+            district,
+            pobox,
+            websiteurl,
+            address,
+            type_of_ownership)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param(
+                "ssssssssssssssssssss",
+                $dairysid,
+                $user_id,
+                $dairy_farm_name,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,            
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address,
+                $date_created
+            );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->con->prepare("SELECT * FROM dairys_tbl WHERE $user_id = ?");
+            $stmt->bind_param("s", $user_id);
+            $stmt->execute();
+            $hatchery = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $hatchery;
+        } else {
+            return false;
+        }
+    }
+
+    
+    /*
+        *REGISTRATION: type of user :
+        * reg user type - Trader
+        */
+    
+    
+    
+    
+    
+    
+        public function registerTraderUser($owners_full_name, $email, $password, $usertype, $account_status)
+        {
+          registerUser(  $email, $password, $usertype, $account_status);
+        }
+    
+        /*
+        *add new Trader Farm
+        */
+        public function registerNewTraderFirm(
+    
+        $tradersId,
+        $user_id,
+        $trader_firm_name,
+        $year_established,                
+        $reg_number,                
+        $owners_full_name,
+        $affiliation,
+        $country,
+        $region,
+        $district,
+        $pobox,
+        $websiteurl,
+        $address
+       
+       
+    ) {
+            $htuid = uniqid('', true);
+    
+            $stmt = $this->con->prepare("INSERT INTO `traders_tbl`
+            (tradersId,
+                user_id,
+                trader_firm_name,
+                year_established,
+                reg_number,
+                owners_full_name,
+                country,
+                region,
+                district,
+                pobox,
+                websiteurl,
+                address,
+                type_of_ownership)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            $stmt->bind_param(
+                    "ssssssssssssssssssss",
+                    $tradersid,
+                    $user_id,
+                    $trader_firm_name,
+                    $year_established,                
+                    $reg_number,                
+                    $owners_full_name,            
+                    $country,
+                    $region,
+                    $district,
+                    $pobox,
+                    $websiteurl,
+                    $address,
+                    $date_created
+                );
+            $result = $stmt->execute();
+            $stmt->close();
+    
+            // check for successful store
+            if ($result) {
+                $stmt = $this->con->prepare("SELECT * FROM traders_tbl WHERE $user_id = ?");
+                $stmt->bind_param("s", $user_id);
+                $stmt->execute();
+                $hatchery = $stmt->get_result()->fetch_assoc();
+                $stmt->close();
+    
+                return $hatchery;
+            } else {
+                return false;
+            }
+        }
+    
+
+/*
+    *REGISTRATION: type of user :
+    * reg user type - Processor
+    */
+
+
+
+
+
+
+    public function registerProcessorUser($owners_full_name, $email, $password, $usertype, $account_status)
+    {
+      registerUser(  $email, $password, $usertype, $account_status);
+    }
+
+    /*
+    *add new Processor Farm
+    */
+    public function registerNewProcessorFirm(
+
+    $ProcessorsId,
+    $user_id,
+    $Processor_firm_name,
+    $year_established,                
+    $reg_number,                
+    $owners_full_name,
+    $affiliation,
+    $country,
+    $region,
+    $district,
+    $pobox,
+    $websiteurl,
+    $address
+   
+   
+) {
+        $htuid = uniqid('', true);
+
+        $stmt = $this->con->prepare("INSERT INTO `Processors_tbl`
+        (ProcessorsId,
+            user_id,
+            Processor_firm_name,
+            year_established,
+            reg_number,
+            owners_full_name,
+            country,
+            region,
+            district,
+            pobox,
+            websiteurl,
+            address,
+            type_of_ownership)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param(
+                "ssssssssssssssssssss",
+                $Processorsid,
+                $user_id,
+                $Processor_firm_name,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,            
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address,
+                $date_created
+            );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->con->prepare("SELECT * FROM Processors_tbl WHERE $user_id = ?");
+            $stmt->bind_param("s", $user_id);
+            $stmt->execute();
+            $hatchery = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $hatchery;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+
     /*
     *REGISTRATION: type of user :
-    * reg user type -> Manufactures
+    * reg user type -> Hatchery
     */
 
     public function registerHatcheryUser($owners_full_name, $email, $password, $usertype, $account_status)

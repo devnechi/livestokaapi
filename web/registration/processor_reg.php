@@ -56,7 +56,7 @@
             $email = $_POST['contact_email'];
             $password = $_POST['password'];
             //TYPE OF PROCESSING ACTIVITIES
-            $usertype = "dairy ";
+            $usertype = "Processor ";
             $account_status = "pending approval";
             $phoneNumber = $_POST['phonenumbers'];
             $owners_full_name = $_POST['owners_full_name'];
@@ -67,8 +67,8 @@
             $reg_number = $_POST['reg_number'];
             $owners_full_name = $_POST['owners_full_name'];
      
-              // dairy
-             $typeofdairys = $_POST['typeofdairy'];
+              // processor
+             $typeofprocessors = $_POST['typeofprocessor'];
 
              //contact
              $websiteurl = $_POST['websiteurl'];
@@ -114,7 +114,7 @@
            </div>";
                 // echo json_encode($response);
                 } else {
-                    $user = $db->registerDairyFarmUser($fname, $lname, $email, $password, $usertype, $account_status);
+                    $user = $db->registerProcessorFarmUser($fname, $lname, $email, $password, $usertype, $account_status);
 
                     if ($user) {
                         $response["error"] = false;
@@ -136,9 +136,9 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $dairy = $db->registerNewDairy(
+                    $processor = $db->registerNewProcessor(
                 $user_id,
-                $dairy_farm_name,
+                $processor_farm_name,
                 $year_established,                
                 $reg_number,                
                 $owners_full_name,
@@ -152,25 +152,25 @@
                 
                 );
                     // register new manufacturer
-                    if ($dairy) {
+                    if ($processor) {
                         // user stored successfully
                         $response["error"] = false;
-                        $response["htuid"] = $dairy["dairy_unique_id"];
-                        $response["dairy"]["dairy_id"] = $dairy["dairy_id"];
-                        $response["dairy"]["user_id"] = $dairy["user_id"];
-                        $response["dairy"]["dairy_farm_name"] = $dairy["dairy_name"];
-                        $response["dairy"]["year_established"] = $dairy["year_established"];
-                        $response["dairy"]["reg_number"] = $dairy["reg_number"];
-                        $response["dairy"]["owner_full_name"] = $dairy["owner_full_name"];
-                        $response["dairy"]["country"] = $dairy["country"];
-                        $response["dairy"]["region"] = $dairy["region"];
-                        $response["dairy"]["district"] = $dairy["district"];
-                        $response["dairy"]["pobox"] = $dairy["pobox"];
-                        $response["dairy"]["address"] = $dairy["address"];
-                        $response["dairy"]["phone_number[]"] = $dairy["phone_number[]"];
+                        $response["htuid"] = $processor["processor_unique_id"];
+                        $response["processor"]["processor_id"] = $processor["processor_id"];
+                        $response["processor"]["user_id"] = $processor["user_id"];
+                        $response["processor"]["processor_farm_name"] = $processor["processor_name"];
+                        $response["processor"]["year_established"] = $processor["year_established"];
+                        $response["processor"]["reg_number"] = $processor["reg_number"];
+                        $response["processor"]["owner_full_name"] = $processor["owner_full_name"];
+                        $response["processor"]["country"] = $processor["country"];
+                        $response["processor"]["region"] = $processor["region"];
+                        $response["processor"]["district"] = $processor["district"];
+                        $response["processor"]["pobox"] = $processor["pobox"];
+                        $response["processor"]["address"] = $processor["address"];
+                        $response["processor"]["phone_number[]"] = $processor["phone_number[]"];
                        
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
-                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new dairy</a>.
+                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new processor</a>.
                 </div>";
                     }
                 }
@@ -196,7 +196,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
 
-    <title>Livestoka | dairy Owners Registration </title>
+    <title>Livestoka | processor Owners Registration </title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -219,7 +219,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Dairy Farm Registration Area</h1>
+        <h1>Processor Farm Registration Area</h1>
         <p class="lead"> Please fill all the required Fields.</p>
       </div>
       <!--register section -->
@@ -230,7 +230,7 @@
        <?php
         //echo form_errors($errors);
          ?>
-        <form action="dairy_reg.php" method="post">
+        <form action="processor_reg.php" method="post">
     <!-- company information -->
             <div class="card">
               <div class="card-body">
@@ -252,8 +252,8 @@
                       
                       
                     <div class="form-group">
-                    <label for="dairy_farm_name">First Name</label>
-                      <input type="text" class="form-control" id="dairy_farm_name" name="dairy_farm_name" value="<?= isset($_POST['dairy_farm_name']) ? $_POST['first_name'] : ''; ?>" placeholder="dairy_farm_name" onkeyup='check();'>
+                    <label for="processor_farm_name">First Name</label>
+                      <input type="text" class="form-control" id="processor_farm_name" name="processor_farm_name" value="<?= isset($_POST['processor_farm_name']) ? $_POST['first_name'] : ''; ?>" placeholder="processor_farm_name" onkeyup='check();'>
                     </div>
                   
                   
@@ -273,7 +273,7 @@
                       <!-- <span id='message'></span> -->
                      </div>
                         <div class="form-group">
-                          <label for="address"><strong>dairys Address and Location</strong></label>
+                          <label for="address"><strong>processors Address and Location</strong></label>
                         <hr>
                         </div>
                         <div class="form-group">
