@@ -260,7 +260,7 @@
             $hatch_reg_number = mysqli_real_escape_string($_POST['hatch_reg_number']);
             $owners_full_name = mysqli_real_escape_string($_POST['owners_full_name']);
             //$hatchery_affiliation[]
-            $hatchery_affiliation = mysqli_real_escape_string()$_POST['hatchery_affiliation']);
+            $hatchery_affiliation = mysqli_real_escape_string($_POST['hatchery_affiliation']);
             $hatchery_manager = mysqli_real_escape_string($_POST['hatchery_manager']);
             $hatchery_veterinarian = mysqli_real_escape_string($_POST['hatchery_veterinarian']);
             $vet_reg_number = mysqli_real_escape_string($_POST['vet_reg_number']);
@@ -620,6 +620,8 @@
                        $neweggsource = $db->regHatcheryEggSources($user_id, $hatchery_id, $egg_sources);
                      }
 
+                     // email verification link is sent here
+                     
 
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
                 <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new hatchery</a>.
