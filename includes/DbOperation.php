@@ -591,50 +591,17 @@ INNER JOIN  raw_materials
     {
     }
 
-    /*
-    *REGISTRATION: type of user :
-    * reg user type -> Manufactures
-    */
-
-    public function registerHatcheryUser($owners_full_name, $email, $password, $usertype, $account_status)
-    {
-        $uuid = uniqid('', true);
-        $hash = $this->hashSSHA($password);
-        $encrypted_password = $hash["encrypted"]; // encrypted password
-     $salt = $hash["salt"]; // salt
-
-     $stmt = $this->con->prepare("INSERT INTO lvusers_tb(user_unique_id, owners_full_name, email, encrypted_password, usertype, salt, account_status, created_at) VALUES(?, ?, ?, ?, ?, ?, ?, NOW())");
-        $stmt->bind_param("sssssss", $uuid, $owners_full_name, $email, $encrypted_password, $usertype, $salt, $account_status);
-
-        $result = $stmt->execute();
-        $stmt->close();
-
-        // check for successful store
-        if ($result) {
-            $stmt = $this->con->prepare("SELECT * FROM lvusers_tb WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $user = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-
-            return $user;
-        } else {
-            echo mysql_error();
-
-            return false;
-        }
-    }
 
     /*
     *add new hatchery
     */
     public function registerNewHatchery(
     $user_id,
+    $owners_full_name,
     $hatchery_name,
     $type_of_ownership,
     $date_established,
     $hatch_reg_number,
-    $hatchery_affiliation,
     $hatchery_manager,
     $hatchery_veterinarian,
     $vet_reg_number,
@@ -646,26 +613,25 @@ INNER JOIN  raw_materials
     $district,
     $pobox,
     $websiteurl,
-    $address,
-    $phonenumber
+    $address
 ) {
         $htuid = uniqid('', true);
 
         $stmt = $this->con->prepare("INSERT INTO hatcheries_tbl
-(hatchery_unique_id, user_id, hatchery_name, type_of_ownership, date_established,
-hatch_reg_number, hatchery_affiliation, hatchery_manager,
+(hatchery_unique_id, user_id, owners_full_name, hatchery_name, type_of_ownership, date_established,
+hatch_reg_number, hatchery_manager,
 hatchery_veterinarian, vet_reg_number, total_incubator_capacity, total_hatcher_capacity, contact_person, country,
-region, district, pobox, websiteurl, address, phone_number, created_at)
-VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+region, district, pobox, websiteurl, address, created_at)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         $stmt->bind_param(
-                "ssssssssssssssssssss",
+                "sssssssssssssssssss",
                 $htuid,
                 $user_id,
+                $owners_full_name,
                 $hatchery_name,
                 $type_of_ownership,
                 $date_established,
                 $hatch_reg_number,
-                $hatchery_affiliation,
                 $hatchery_manager,
                 $hatchery_veterinarian,
                 $vet_reg_number,
@@ -677,15 +643,14 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
                 $district,
                 $pobox,
                 $websiteurl,
-                $address,
-                $phone_number
+                $address
             );
         $result = $stmt->execute();
         $stmt->close();
 
         // check for successful store
         if ($result) {
-            $stmt = $this->con->prepare("SELECT * FROM hatcheries_tbl WHERE $user_id = ?");
+            $stmt = $this->con->prepare("SELECT * FROM hatcheries_tbl WHERE user_id = ?");
             $stmt->bind_param("s", $user_id);
             $stmt->execute();
             $hatchery = $stmt->get_result()->fetch_assoc();
@@ -697,6 +662,129 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         }
     }
 
+   /*
+   *insert multiple Affiliations
+   */
+    public function multipleAffiliations($user_id, $hatchery_id, $affiliation){
+      //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+      //mysql_query($sql1);
+      foreach($affiliation as $a => $B){
+      $affuid = uniqid('', true);
+      $stmt = $this->con->prepare("INSERT INTO affiliation (aff_unique_id, user_id,
+                                 hatchery_id, affiliation, created_at)
+                                 VALUES(?, ?, ?, ?, NOW())");
+      $stmt->bind_param("ssss", $affuid, $user_id,
+                                 $hatchery_id, $affiliation[$a]);
+      $result = $stmt->execute();
+      $stmt->close();
+
+      // if ($result){
+      //   echo "affiliation insert success";
+      // }
+    }
+      // check for successful store
+    }
+
+    /*
+    *insert multiple phonenumbers
+    */
+     public function multiplePhoneNumber($user_id, $hatchery_id, $phoneNumber){
+       foreach($phoneNumber as $a => $B){
+       $phnuid = uniqid('', true);
+       $stmt = $this->con->prepare("INSERT INTO phonenumbers (phonenum_unique_id, user_id,
+                                   hatchery_id, phonenumber, created_at)VALUES(?, ?, ?, ?, NOW())");
+       $stmt->bind_param("ssss", $phnuid, $user_id, $hatchery_id, $phoneNumber[$a]);
+       $result = $stmt->execute();
+       $stmt->close();
+     //   if ($result){
+     //     echo "phoneNumber insert success";
+     //   }
+      }
+       // check for successful store
+     }
+
+
+     /*
+     *insert multiple typeofBreed
+     */
+      public function multipleTypeOfBreedProduced($user_id, $hatchery_id, $typeofbreeds){
+        //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+        //mysql_query($sql1);
+        foreach($typeofbreeds as $a => $B){
+        $tpuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO hatchery_breeds (breed_unique_id, user_id,
+ hatchery_id, breed_title, created_at)VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $tpuid, $user_id, $hatchery_id, $typeofbreeds[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+
+         // if ($result){
+         //   echo "Breed Type insert success";
+         // }
+          }
+        // check for successful store
+      }
+
+
+
+      /*
+      *insert multiple hatchery products
+      */
+       public function multipleHatcheryProducts($user_id, $hatchery_id, $hatched_products){
+
+         $hpuid = uniqid('', true);
+         $stmt = $this->con->prepare("INSERT INTO hatchery_products (hatchery_product_unique_id, user_id,
+  hatchery_id, hatched_products, created_at)VALUES(?, ?, ?, ?, NOW())");
+         $stmt->bind_param("ssss", $hpuid, $user_id, $hatchery_id, $hatched_products);
+         $result = $stmt->execute();
+         $stmt->close();
+
+        //   }
+         // check for successful store
+       }
+
+       /*
+       *insert multiple hatchery breed purpose
+       */
+        public function multipleHatcheryBreedPurpose($user_id, $hatchery_id, $breed_purpose){
+          $hppuid = uniqid('', true);
+          $stmt = $this->con->prepare("INSERT INTO hatching_purpose (hatching_purpose_unique_id, user_id,
+  hatchery_id,  purpose, created_at)VALUES(?, ?, ?, ?, NOW())");
+          $stmt->bind_param("ssss", $hppuid, $user_id, $hatchery_id, $breed_purpose);
+          $result = $stmt->execute();
+          $stmt->close();
+
+         //   }
+          // check for successful store
+        }
+
+
+        /*
+        *insert multiple hatchery poultry types
+        */
+         public function regHatcheryPoultryTypes($user_id, $hatchery_id, $poultry_type){
+           $hptuid = uniqid('', true);
+           $stmt = $this->con->prepare("INSERT INTO hatching_poultry_types (poultry_types_unique_id, user_id,
+  hatchery_id,  hatchery_poultry_type, created_at)VALUES(?, ?, ?, ?, NOW())");
+           $stmt->bind_param("ssss", $hptuid, $user_id, $hatchery_id, $poultry_type);
+           $result = $stmt->execute();
+           $stmt->close();
+
+         }
+
+
+         /*
+         *insert multiple egg sources types
+         */
+          public function regHatcheryEggSources($user_id, $hatchery_id, $egg_sources){
+            $eguid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO hatchery_egg_sources (source_unique_id, user_id,
+  hatchery_id,  eggs_source, date_created)VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $eguid, $user_id, $hatchery_id, $egg_sources);
+            $result = $stmt->execute();
+            $stmt->close();
+
+          }
 
     /**
      * Check user is existed or not
@@ -704,13 +792,9 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     public function doesUserEmailExist($email)
     {
         $stmt = $this->con->prepare("SELECT email from lvusers_tb WHERE email = ?");
-
         $stmt->bind_param("s", $email);
-
         $stmt->execute();
-
         $stmt->store_result();
-
         if ($stmt->num_rows > 0) {
             // user existed
             $stmt->close();
@@ -729,11 +813,8 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     public function doesFeedManufactureExist($user_id)
     {
         $stmt = $this->con->prepare("SELECT user_id FROM feed_manufactures WHERE user_id = ?");
-
         $stmt->bind_param("s", $user_id);
-
         $stmt->execute();
-
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
@@ -755,11 +836,8 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     public function doesHatcheryUserExist($user_id)
     {
         $stmt = $this->con->prepare("SELECT user_id FROM hatcheries_tbl WHERE user_id = ?");
-
         $stmt->bind_param("s", $user_id);
-
         $stmt->execute();
-
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
@@ -795,7 +873,6 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     public function checkhashSSHA($salt, $password)
     {
         $hash = base64_encode(sha1($password . $salt, true) . $salt);
-
         return $hash;
     }
 
@@ -806,9 +883,7 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     public function attempt_login($email, $password)
     {
         $stmt = $this->con->prepare("SELECT * FROM lvusers_tb WHERE email = ?");
-
         $stmt->bind_param("s", $email);
-
         if ($stmt->execute()) {
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
