@@ -58,7 +58,7 @@
             //TYPE OF BREEDING ACTIVITIES
             $usertype = "Breed User";
             $account_status = "pending approval";
-            $phoneNumber = $_POST['phonenumbers'];
+            $phone_number = $_POST['phone_number'];
             $owners_full_name = $_POST['owners_full_name'];
 
 
@@ -492,7 +492,8 @@
        <?php
         //echo form_errors($errors);
          ?>
-        <form action="hatcher_reg.php" method="post">
+      
+        <form action="breeder_flock_farm_reg.php" method="post">
     <!-- company information -->
             <div class="card">
               <div class="card-body">
@@ -529,7 +530,7 @@
                     </div> -->
                     <label for="lblyear_established">Date of Establishment<small> (dd/mm/yy)</small></label>
                     <div class="form-group input-group datetimepicker">
-                        <input type="text" class="form-control"  id="date_established" placeholder="date established">
+                        <input type="text" class="form-control"  id="date_established" name="date_established" placeholder="date established">
                         <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                       </span>
