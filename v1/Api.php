@@ -191,7 +191,7 @@
              $type_of_ownership = $_POST['type_of_ownership'];
              $date_established = $_POST['date_established'];
              $hatch_reg_number = $_POST['hatch_reg_number'];
-             //$owners_full_name = $_POST['owners_full_name'];
+             $owners_full_name = $_POST['owners_full_name'];
              //$hatchery_affiliation[]
              $hatchery_affiliation = $_POST['hatchery_affiliation'];
              $hatchery_manager = $_POST['hatchery_manager'];
@@ -252,24 +252,25 @@
              } else {
                  // create a new user
                  $hatchery = $db->registerNewHatchery($user_id,
-                   $hatchery_name,
-                   $type_of_ownership,
-                   $date_established,
-                   $hatch_reg_number,
-                   $hatchery_affiliation,
-                   $hatchery_manager,
-                   $hatchery_veterinarian,
-                   $vet_reg_number,
-                   $total_incubator_capacity,
-                   $total_hatcher_capacity,
-                   $contact_person,
-                   $country,
-                   $region,
-                   $district,
-                   $pobox,
-                   $websiteurl,
-                   $address,
-                   $phonenumber);
+                     $owners_full_name,
+                     $hatchery_name,
+                     $type_of_ownership,
+                     $date_established,
+                     $hatch_reg_number,
+                     $hatchery_affiliation,
+                     $hatchery_manager,
+                     $hatchery_veterinarian,
+                     $vet_reg_number,
+                     $total_incubator_capacity,
+                     $total_hatcher_capacity,
+                     $contact_person,
+                     $country,
+                     $region,
+                     $district,
+                     $pobox,
+                     $websiteurl,
+                     $address,
+                     $phonenumber);
                  if ($hatchery) {
                      // user stored successfully
                         $response["error"] = false;
