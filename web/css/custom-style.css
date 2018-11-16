@@ -5,13 +5,9 @@ body {
     margin: 0%;
     font-family: 'Ubuntu Condensed';
 }
-
-<<<<<<< HEAD
 nav a {
     width: 55%;
 }
-=======
->>>>>>> d7a2c0080cdf713ed0c2cde706c731d5794d37a2
 .navbar {
     background-color: #74f5e3;
 }
@@ -54,13 +50,9 @@ nav a {
 .section-2 {
     margin-bottom: 7%;
 }
-<<<<<<< HEAD
 .padding {
     padding-bottom: 2rem;
 }
-=======
-
->>>>>>> d7a2c0080cdf713ed0c2cde706c731d5794d37a2
 .section-2 .heading-1 {
     margin-top: 5%;
 }
@@ -102,8 +94,8 @@ nav a {
     width: 100%;
 }
 .section-4 {
-    margin-bottom: 5%;
-    padding: 5%;
+    margin-bottom: 3%;
+    padding: 3%;
 }
 
 .section-4 .container i {

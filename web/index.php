@@ -290,7 +290,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Hatchery</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/hatchery.jpg">
                                 </div>
                             </div>
                         </div>
@@ -299,7 +299,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Breeders</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/breeders.jpg">
                                 </div>
                             </div>
                         </div>
@@ -308,7 +308,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Processors</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/processors.jpg">
                                 </div>
                             </div>
                         </div>
@@ -319,7 +319,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Feed Manufacturers</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/feeders.jpg">
                                 </div>
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                                 <i class="far  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Traders</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/traders.jpg">
                                 </div>
                             </div>
                         </div>
@@ -337,71 +337,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Farmers</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Features Section -->
-            <div class="section-4">
-                <h1 class="heading-1 text-center">Whom are we working with! </h1>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Hatchery</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Breeders</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Processors</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Feed Manufacturers</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="far  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Traders</h3>
-                                    <p class="m-2"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Farmers</h3>
-                                    <p class="m-2"></p>
+                                    <img src="images/dealers/farmers.jpg">
                                 </div>
                             </div>
                         </div>
