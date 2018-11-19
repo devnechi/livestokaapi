@@ -10,8 +10,12 @@
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
         <!-- Font-Awesome CSS -->
         <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css">
+        <!-- Select2 CSS -->
+        <link rel="stylesheet" href="vendor/select2/select2.min.css">
         <!-- Custom-Style CSS -->
         <link rel="stylesheet" href="css/custom-style.css">
+        <!-- Utils CSS -->
+        <link rel="stylesheet" href="css/util.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -200,7 +204,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Hatchery</h3>
-                                    <img src="images/dealers/hatchery.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/hatchery.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -209,7 +213,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Breeders</h3>
-                                    <img src="images/dealers/breeders.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/breeders.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -218,7 +222,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Processors</h3>
-                                    <img src="images/dealers/processors.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/processors.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -229,7 +233,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Feed Manufacturers</h3>
-                                    <img src="images/dealers/feeders.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/feeders.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -238,7 +242,7 @@
                                 <i class="far  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Traders</h3>
-                                    <img src="images/dealers/traders.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/traders.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -247,7 +251,7 @@
                                 <i class="fas  fa-3x m-2"></i>
                                 <div class="d-flex flex-column">
                                     <h3 class="m-2">Farmers</h3>
-                                    <img src="images/dealers/farmers.jpg" class="image-fluid img-responsive">
+                                    <img src="images/dealers/farmers.jpg" class="img-fluid img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -310,46 +314,6 @@
                     </section>
                 </div>
             </div>
-            <!-- Map Section -->
-            <div class="section-7">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                            <div id="contact-map"></div>
-                        </div>
-                        <div class="col-lg-offset-1 col-lg-5 col-md-offset-1 col-md-5 col-sm-6 col-xs-12 mt-5 mb-1">
-                            <div class="">
-                                <h3 class="title-bold">Contact Info</h3>
-                                <p>Please help us serve you better by sharing the following information.
-                                </p>
-                            </div>
-                            <div class="contact-section">
-                                <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
-                                <div class="contact-info">
-                                    <p>Kinondoni, Dar-es-salaam, Tanzania</p>
-                                </div>
-                            </div>
-                             <div class="contact-section">
-                                <div class="contact-icon"><i class="fa fa-phone"></i></div>
-                                <div class="contact-info">
-                                    <p>+255-687-859-500</p>
-                                </div>
-                            </div>
-                             <div class="contact-section">
-                                <div class="contact-icon"><i class="fa fa-envelope"></i></div>
-                                <div class="contact-info">
-                                    <p>dennis@livestoka.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row padding">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-center">
-                            Talk to you <a href="#contactus" target="_blank">soon, enjoy our products</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- Services About Us Section -->
             <div class="section-8" id="services">
                 <div class="container-fluid padding">
@@ -403,6 +367,75 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!--- Contact Us --->
+            <div class="row padding">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="bg-contact2">
+                        <div class="container-contact2">
+                            <div class="wrap-contact2">
+                                <form class="contact2-form validate-form">
+                                    <span class="contact2-form-title">Contact Us </span>
+
+                                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                                        <input class="input2" type="text" name="name"><span class="focus-input2" data-placeholder="NAME"></span>
+                                    </div>
+
+                                    <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                        <input class="input2" type="text" name="email"><span class="focus-input2" data-placeholder="EMAIL"></span>
+                                    </div>
+
+                                    <div class="wrap-input2 validate-input" data-validate = "Message is required">
+                                        <textarea class="input2" name="message"></textarea><span class="focus-input2" data-placeholder="MESSAGE"></span>
+                                    </div>
+
+                                    <div class="container-contact2-form-btn">
+                                        <div class="wrap-contact2-form-btn">
+                                            <div class="contact2-form-bgbtn"></div>
+                                            <button class="contact2-form-btn">Send Your Message </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-offset-1 col-lg-6 col-md-offset-1 col-md-6 col-sm-6 col-xs-12 mt-5 mb-1">
+                    <div class="">
+                        <h3 class="title-bold">Contact Info</h3>
+                        <p>Please help us serve you better by sharing the following information.
+                        </p>
+                    </div>
+                    <div class="contact-section">
+                        <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
+                        <div class="contact-info">
+                            <p>Kinondoni, Dar-es-salaam, Tanzania</p>
+                        </div>
+                    </div>
+                     <div class="contact-section">
+                        <div class="contact-icon"><i class="fa fa-phone"></i></div>
+                        <div class="contact-info">
+                            <p>+255-687-859-500</p>
+                        </div>
+                    </div>
+                     <div class="contact-section">
+                        <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+                        <div class="contact-info">
+                            <p>dennis@livestoka.com</p>
+                        </div>
+                    </div>
+                    <div class="row padding">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-center">
+                            Talk to you <a href="#contactus" target="_blank">soon, enjoy our products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Map Section -->
+            <div class="section-7 m-b-20">
+                <div class="container">
+                    <div id="contact-map"></div>
                 </div>
             </div>
         </main>
@@ -469,6 +502,8 @@
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <!-- Plugin JavaScript -->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Select2 JavaScript -->
+        <script src="vendor/select2/select2.min.js"></script>
         <!-- Custom scripts for this template -->
         <script src="js/custom-script.js"></script>
         <!-- Slick JS -->
