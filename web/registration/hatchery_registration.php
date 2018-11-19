@@ -480,7 +480,7 @@
        <?php
         //echo form_errors($errors);
          ?>
-        <form action="hatcher_reg.php" method="post">
+        <form action="hatchery_registration.php" method="post">
     <!-- company information -->
             <div class="card">
               <div class="card-body">

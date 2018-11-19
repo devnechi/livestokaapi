@@ -58,25 +58,23 @@
             //TYPE OF BREEDING ACTIVITIES
             $usertype = "Breed User";
             $account_status = "pending approval";
-            $phone_number = $_POST['phone_number'];
+            $phone_number[] = $_POST['phone_number'];
             $owners_full_name = $_POST['owners_full_name'];
 
 
             $farm_name = $_POST['farm_name'];
             $type_of_ownership = $_POST['type_of_ownership'];
             $date_established = $_POST['date_established'];
-            $hatch_reg_number = $_POST['hatch_reg_number'];
-            $owners_full_name = $_POST['owners_full_name'];
+            $breeder_reg_number = $_POST['breeder_reg_number'];
+          
             //$breed_affiliation[]
-            $affiliation = $_POST['breed_affiliation'];
-            $breed_manager = $_POST['breed_manager'];
+            $breeder_affiliation = $_POST['breeder_affiliation'];
+            $breeder_manager = $_POST['breeder_manager'];
             $breed_veterinarian = $_POST['breed_veterinarian'];
             $vet_reg_number = $_POST['vet_reg_number'];
 
-            // breeding purposes
-            
-            $grandparent_stock_chicks = $_POST['grandparent_stock_chicks'];
-            $parent_stock_chicks = $_POST['parent_stock_chicks'];
+           
+ 
 
             //type of breed
             $broiler = $_POST['broiler'];
@@ -84,7 +82,7 @@
             $dual_purpose = $_POST['dual_purpose'];
 
               // Breed
-             $typeofbreeds = $_POST['typeofBreed'];
+             $typeofbreed = $_POST['typeofbreed'];
 
             //type of poultry hacthing
             $breeding_fowls = $_POST['breeding_chicken'];
@@ -102,8 +100,8 @@
             $import_source_grandparent_stock = $_POST['import_source_grandparent_stock'];
 
             //breed Capacity
-            $total_incubator_capacity = $_POST['maximumu_flock_size'];
-            $total_hatcher_capacity = $_POST['total_breed_capacity'];
+            $maximum_flock_size = $_POST['maximum_flock_size'];
+            $total_peryear_capacity = $_POST['total_peryear_capacity'];
 
              //
              $websiteurl = $_POST['websiteurl'];
@@ -112,8 +110,7 @@
              $region = $_POST['region'];
              $district = $_POST['district'];
              $address = $_POST['address'];
-             $pobox = $_POST['pobox'];
-             $phonenumber = $_POST['phonenumber'];
+            
 
 
 
@@ -139,7 +136,7 @@
             }
 
             if (empty($errors)) {
-                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
+                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
                 if ($db->doesUserEmailExist($email)) {
                     // user already existed
                     // $response["error"] = true;
@@ -149,14 +146,12 @@
            </div>";
                 // echo json_encode($response);
                 } else {
-                    $user = $db->registerBreederFarmUser($fname, $lname, $email, $password, $usertype, $account_status);
+                    $user = $db->registerUser( $email, $password, $usertype, $account_status);
 
                     if ($user) {
                         $response["error"] = false;
                         $response["uid"] = $user["user_unique_id"];
                         $response["user"]["user_id"] = $user["user_id"];
-                        $response["user"]["first_name"] = $user["first_name"];
-                        $response["user"]["last_name"] = $user["last_name"];
                         $response["user"]["email"] = $user["email"];
                         $response["user"]["usertype"] = $user["usertype"];
                         $response["user"]["encrypted_password"] = $user["encrypted_password"];
@@ -171,43 +166,31 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $breed = $db->registerNewHatchery(
+                    $breed = $db->registerNewBreeder(
                 $user_id,
                 $breeder_farm_name,
                 $year_established,                
-                $reg_number,                
+                $breeder_reg_number,                
                 $owners_full_name,
-                $affiliation,
+                $breeder_affiliation,
                 $country,
                 $region,
                 $district,
-                $pobox,
                 $websiteurl,
                 $address,
                 $contact_person,
                 $maximum_flock_size,
                 $total_peryear_capacity,
-                $num_breeds_hatched,
+              
                 $vet_reg_number,
-                $local_source_parent_stock[],
-                $local_source_parent_stock[],
-                $local_source_parent_stock[],
-                $local_source_parent_stock[],
+              
                 $breed_veterinarian,
-                $breed_manager,
-                $typeofBreed[],
-                $breeding_chicken,
-                $breeding_turkey,
-                $breeding_ducks,
-                $breeding_quails,
-                $breeding_ostrich,
-                $broiler.
-                $layers, 
-                $dual_purpose,
-                $grandparent_stock_chicks,
-                $grandparent_stock_chicks
+                $breeder_manager,
+                $typeofbreed,   
+                $phone_number
+
                 );
-                    // register new manufacturer
+                    // register new breeder
                     if ($breed) {
                         // user stored successfully
                         $response["error"] = false;
@@ -216,26 +199,32 @@
                         $response["breed"]["user_id"] = $breed["user_id"];
                         $response["breed"]["breed_farm_name"] = $breed["breed_name"];
                         $response["breed"]["year_established"] = $breed["year_established"];
-                        $response["breed"]["reg_number"] = $breed["reg_number"];
+                        $response["breed"]["breeder_reg_number"] = $breed["breeder_reg_number"];
                         $response["breed"]["owner_full_name"] = $breed["owner_full_name"];
-                        $response["breed"]["affiliation"] = $breed["affiliation"];
+                        $response["breed"]["breeder-affiliation"] = $breed["breeder-affiliation"];
                         $response["breed"]["country"] = $breed["country"];
                         $response["breed"]["region"] = $breed["region"];
                         $response["breed"]["district"] = $breed["district"];
-                        $response["breed"]["pobox"] = $breed["pobox"];
                         $response["breed"]["address"] = $breed["address"];
-                        $response["breed"]["phone_number[]"] = $breed["phone_number[]"];
+                        $response["breed"]["phone_number"] = $breed["phone_number[]"];
                         $response["breed"]["maximum_flock_size"] = $breed["maximum_flock_size"];
                         $response["breed"]["total_peryear_capacity"] = $breed["total_peryear_capacity"];                  
-                        $response["breed"]["local_source_parent_stock[]"] = $breed["local_source_parent_stock[]"];
-                        $response["breed"]["imported_source_parent_stock[]"] = $breed["imported_source_parent_stock[]"];
-                        $response["breed"]["local_source_grandparent_stock[]"] = $breed["local_source_grandparent_stock[]"];
-                        $response["breed"]["imported_source_grandparent_stock[]"] = $breed["imported_source_grandparent_stock[]"];
-                        $response["breed"][" breed_manager"] = $breed["breed_manager"];
+                       
+                        $response["breed"][" breeder_manager"] = $breed["breeder_manager"];
                         $response["breed"]["breed_veterinarian"] = $breed["breed_veterinarian"];
                         $response["breed"]["vet_reg_number"] = $breed["vet_reg_number"];
-                      
+
+                        $response["breed"]["typeofbreed"] = $breed["typeofbreed"];
+                       
+                  
+
+
+
+
+
+
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
+
                 <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new breed</a>.
                 </div>";
                     }
@@ -539,20 +528,20 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="lblyear_established">Registration Number</label>
-                      <input type="text" class="form-control" id="reg_number" name="reg_number"  value="<?= isset($_POST['reg_number']) ? $_POST['reg_number'] : ''; ?>" placeholder="">
+                      <input type="text" class="form-control" id="breeder_reg_number" name="breeder_reg_number"  value="<?= isset($_POST['breeder_reg_number']) ? $_POST['breeder_reg_number'] : ''; ?>" placeholder="">
                     </div>
                   </div>
                 </div>
 
               <div class="form-group">
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
-                <input type="text" class="form-control" id="owner_full_name"  name="owner_full_name"  value="<?= isset($_POST['owner_full_name']) ? $_POST['owner_full_name'] : ''; ?>" placeholder="">
+                <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
               <div class="form-group ">
                 <div class="form-group multiple-form-group" data-max=6>
                   <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
-                    <input type="text" name="affiliation[]" class="form-control">
+                    <input type="text" name="breeder_affiliation[]" class="form-control">
                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                       </button></span>
                   </div>
@@ -583,11 +572,24 @@
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Region</label>
-                    <input type="text" class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <select  class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Dar es Salaam</option>
+                       <option>Arusha</option>
+                       <option>Dodoma</option>
+                       <option>Mwanza</option>
+                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="formGroupExampleInput2">District</label>
-                    <input type="text" class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <select  class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Ilala</option>
+                       <option>Kinondoni</option>
+                       <option>Temeke</option>
+                       <option>Ubungo</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">Address</label>
@@ -612,7 +614,7 @@
 
                 <div class="form-group ">
                   <label for="formGroupExampleInput2" class="control-label">Farm Manager:</label>
-                  <input type="text" class="form-control" id="farm_manager" name="farm_manager" value="<?= isset($_POST['farm_manager']) ? $_POST['farm_manager'] : ''; ?>" placeholder=" ">
+                  <input type="text" class="form-control" id="---_manager" name="breeder_manager" value="<?= isset($_POST['breeder_manager']) ? $_POST['breeder_manager'] : ''; ?>" placeholder=" ">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
@@ -643,24 +645,7 @@
                         <label for="lblestablishment_activities"><strong>Establishment Activities</strong></label>
                         <hr>
                       </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p>Type of Breeding Activities.</p>
-                            <div class="form-check">
-                               
-                                <label class="customcheck" style="font-size: 18px;"> Grandparent stock chicks
-                                  <input type="checkbox" name="grandparent_stock_chicks" id="grandparent_stock_chicks" value="grandparent_stock_chicks">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Parent stock chicks
-                                  <input type="checkbox" name="parent_stock_chicks" id="parent_stock_chicks" value="parent_stock_chicks">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
+
                     <div class="form-group">
                       <!-- <label for="formGroupExampleInput"><strong>Establishment Focus.</strong></label> -->
                       <hr>
@@ -688,9 +673,9 @@
                        <div class="col-md-6">
                          <div class="form-group col-md-6">
                                  <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
+                                   <label for="formGroupExampleInput2">Breed Type<small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                     <input type="text" name="typeofbreed[]" id="typeofbreed" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -758,7 +743,7 @@
                                <div class="form-group multiple-form-group" data-max=6>
                                    <label for="formGroupExampleInput2">Breed <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="local_source_parent_stock[]" id="typeofBreed" class="form-control">
+                                     <input type="text" name="local_source_parent_stock[]" id="local_source_parent_stock" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -769,7 +754,7 @@
                                <div class="form-group multiple-form-group" data-max=6>
                                    <label for="formGroupExampleInput2">Country <small>(e.g.  USA, Great Britain, India)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="imported_source_parent_stock[]" id="typeofBreed" class="form-control">
+                                     <input type="text" name="import_source_parent_stock[]" id="import_source_parent_stock" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -785,7 +770,7 @@
                                <div class="form-group multiple-form-group" data-max=6>
                                    <label for="formGroupExampleInput2">Region <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="local_source_grandparent_stock[]" id="typeofBreed" class="form-control">
+                                     <input type="text" name="local_source_grandparent_stock[]" id="local_source_grandparent_stock" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -796,7 +781,7 @@
                                <div class="form-group multiple-form-group" data-max=6>
                                    <label for="formGroupExampleInput2">Country <small>(e.g. USA, Great Britain, India)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="imported_source_grandparent_stock[]" id="typeofBreed" class="form-control">
+                                     <input type="text" name="import_source_grandparent_stock[]" id="import_source_grandparent_stock" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -814,11 +799,11 @@
                         <div class="col-md-9">
                           <div class="form-group">
                             <label for="lbl_total_incubator_capacity">Maximum Flock Size</label>
-                            <input type="text" class="form-control" id="total_incubator_capacity" name="maximum_flock_size" value="<?= isset($_POST['total_incubator_capacity']) ? $_POST['total_incubator_capacity'] : ''; ?>" placeholder=" ">
+                            <input type="text" class="form-control" id="maximum_flock_size" name="maximum_flock_size" value="<?= isset($_POST['maximum_flock_size']) ? $_POST['maximum_flock_size'] : ''; ?>" placeholder=" ">
                           </div>
                           <div class="form-group">
-                            <label for="lbltotal_hatcher_capacity">Total Egg Produced per year</label>
-                            <input type="text" class="form-control" id="total_peryear_capacity" name="total_hatcher_capacity" value="<?= isset($_POST['total_hatcher_capacity']) ? $_POST['total_hatcher_capacity'] : ''; ?>" placeholder=" ">
+                            <label for="lbltotal_hatcher_capacity">Total  Produced per year</label>
+                            <input type="text" class="form-control" id="total_peryear_capacity" name="total_peryear_capacity" value="<?= isset($_POST['total_peryear_capacity']) ? $_POST['total_peryear_capacity'] : ''; ?>" placeholder=" ">
                           </div>
                         </div>
                       </div>

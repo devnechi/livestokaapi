@@ -2,12 +2,13 @@
 
 
 <?php
+$app = new DbOperation();
     if (!empty($_GET['key']) && isset($_GET['key'])) {
  
  if ($id != '') {
 
      // activate user
-     $app->activateAccount($id);
+     $app->activateUserAccountByEmail($id);
 
      echo 'Your account is activated, please <a href="index.php">click here</a> to to login';
 
