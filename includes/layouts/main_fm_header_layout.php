@@ -5,7 +5,9 @@
 		$message = "<div class=\"alert alert-danger\" role=\"alert\">
 			<strong>Log in Again</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
 		</div>";
-          redirect_to("../../web/login_area.php");
+        //  redirect_to("../../web/login_area.php");
+        header('Location: ../../web/login_area.php');
+
   } else{
   	// code...
     //user session details
@@ -13,10 +15,12 @@
 		$logged_user_email = $_SESSION['user_log_email'];
 		$logged_user_usertype = $_SESSION['user_log_usertype'];
 			//
-		  if ($logged_user_usertype != "feed manufacturers") {
+		  if ($logged_user_usertype != "feed manufacturer") {
         // user is not of feed manufacturer type...
         //usertype is different
-				  redirect_to("../../web/log_out.php");
+				  // redirect_to("../login_area.php");
+          header('Location: ../../web/login_area.php');
+
 		  } else {
 		  	// logged in user is of feed manufacturer
 
@@ -36,7 +40,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Hatchery | Home Dashboard </title>
+        <title> Feed Manufacturer | Home Dashboard </title>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -617,6 +621,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 
 </style>
+
     </head>
     <body>
 
@@ -626,31 +631,40 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Hatchery dashboard </h3></h3>
+                    <h3>Feed Manufacturer dashboard </h3>
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>Navigation</p>
+                    <!-- <p>Navigation</p> -->
+
                     <li class="active">
-                        <a href="hatchers_dashboard.php" >Home Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <a href="updatePostHatchedData.php" >Post Hatch data</a>
+                      <li><a href="feed_manufacturer_dashboard.php">Dashboard </a></li>
                     </li>
                     <li>
-                        <a href="#">update account</a>
+                      <a href="update_monthly_summary.php">Update Monthly Data </a>
                     </li>
                     <li>
-                        <a href="#">Statistics</a>
+                        <a href="add_new_product.php">Add New Product</a>
+                    </li>
+
+                    <li>
+                        <a href="manage_products.php">View and Manage Products</a>
                     </li>
                     <li>
-                        <a href="#">History</a>
+                         <a href="add_raw_material.php">Add New Raw Material</a>
                     </li>
+                    <li>
+                        <a href="manage_raw_materials.php">View and Manage Raw Materials</a>
+                    </li>
+                    <li><a href="#">Statistics </a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Update account</a></li>
+
                     <li>
                         <a href="#">Geo-Mapping</a>
                     </li>
                     <li>
-                        <a href="#">logout</a>
+                        <a href="../../web/log_out.php">logout</a>
                     </li>
 
 

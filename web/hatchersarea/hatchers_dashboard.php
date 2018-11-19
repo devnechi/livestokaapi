@@ -17,7 +17,7 @@ require_once '../../includes/validations_functions.php';
 		$message = "<div class=\"alert alert-danger\" role=\"alert\">
 			<strong>Log in Again</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
 		</div>";
-          redirect_to("/mydroids/livestokaapi/web/login_area.php");
+    header('Location: ../../web/login_area.php');
   } else{
   	// code...
     //user session details
@@ -28,7 +28,7 @@ require_once '../../includes/validations_functions.php';
 		  if ($logged_user_usertype != "Hatchery User") {
         // user is not of feed manufacturer type...
         //usertype is different
-				  redirect_to("/mydroids/livestokaapi/web/login_area.php");
+        header('Location: ../../web/login_area.php');
 		  } else {
 		  	// logged in user is of feed manufacturer
 

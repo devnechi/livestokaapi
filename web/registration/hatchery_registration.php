@@ -1,15 +1,12 @@
 <?php
     //getting the dboperation class
+    require_once '../../includes/DbConnect.php';
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    //
-//     require 'vendor/phpmailer/phpmailer/src/Exception.php';
-// require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-// require 'vendor/phpmailer/phpmailer/src/SMTP.php';
     //function validating all the paramters are available
     //we will pass the required parameters to this function
     function isTheseParametersAvailable($params)
@@ -233,6 +230,7 @@
 
 
         if (isset($_POST["submit"])) {
+
             // receiving the post params
             // user businessDetails$account_status = "pending approval";
             // $fname = $_POST['first_name'];
@@ -245,47 +243,55 @@
 
 
             //user details
-            $email = mysqli_real_escape_string($_POST['contact_email']);
-            $password = mysqli_real_escape_string($_POST['password']);
+            $email = trim($_POST['contact_email']);
+            $password = trim($_POST['password']);
             //TYPE OF HATCHING ACTIVITIES
             $usertype = "Hatchery User";
             $account_status = "pending approval";
-            $phoneNumber = mysqli_real_escape_string($_POST['phonenumbers']);
-            $owners_full_name = mysqli_real_escape_string($_POST['owners_full_name']);
+            $phoneNumber = $_POST['phonenumbers'];
+            $owners_full_name = trim($_POST['owners_full_name']);
 
 
-            $hatchery_name = mysqli_real_escape_string($_POST['hatchery_name']);
-            $type_of_ownership = mysqli_real_escape_string($_POST['type_of_ownership']);
-            $date_established = mysqli_real_escape_string($_POST['date_established']);
-            $hatch_reg_number = mysqli_real_escape_string($_POST['hatch_reg_number']);
-            $owners_full_name = mysqli_real_escape_string($_POST['owners_full_name']);
+            $hatchery_name = trim($_POST['hatchery_name']);
+            $type_of_ownership = trim($_POST['type_of_ownership']);
+            $date_established = trim($_POST['date_established']);
+            $hatch_reg_number = trim($_POST['hatch_reg_number']);
+            $owners_full_name = trim($_POST['owners_full_name']);
             //$hatchery_affiliation[]
-            $hatchery_affiliation = mysqli_real_escape_string($_POST['hatchery_affiliation']);
-            $hatchery_manager = mysqli_real_escape_string($_POST['hatchery_manager']);
-            $hatchery_veterinarian = mysqli_real_escape_string($_POST['hatchery_veterinarian']);
-            $vet_reg_number = mysqli_real_escape_string($_POST['vet_reg_number']);
-           $typeofbreeds = mysqli_real_escape_string($_POST['typeofBreed']);
+            $hatchery_affiliation = $_POST['hatchery_affiliation'];
+            $hatchery_manager = trim($_POST['hatchery_manager']);
+            $hatchery_veterinarian = trim($_POST['hatchery_veterinarian']);
+            $vet_reg_number = trim($_POST['vet_reg_number']);
+           $typeofbreeds = $_POST['typeofBreed'];
 
 
+
+
+               // check if passwords match
+               if ($password !=  $_POST['confirm_password']) {
+                   $message = "<div class=\"alert alert-info\" role=\"alert\">
+           <strong>Match problem!</strong> <a href=\"#\" class=\"alert-link\">passwords don't match </a> and try submitting again.
+         </div>";
+               }
             // hatching purposes
             //$utility_chicks
             if(!isset($_REQUEST['utility_chicks'])){
                  $utility_chicks = "";
             } else {
-                 $utility_chicks = mysqli_real_escape_string($_POST['utility_chicks']);
+                 $utility_chicks = trim($_POST['utility_chicks']);
             }
 //           $utility_chicks = $_POST['utility_chicks'];
           //  $grandparent_stock_chicks = $_POST['grandparent_stock_chicks'];
           if(!isset($_REQUEST['grandparent_stock_chicks'])){
                $grandparent_stock_chicks = "";
           } else {
-               $grandparent_stock_chicks = mysqli_real_escape_string($_POST['grandparent_stock_chicks']);
+               $grandparent_stock_chicks = trim($_POST['grandparent_stock_chicks']);
           }
           //  $parent_stock_chicks = $_POST['parent_stock_chicks'];
           if(!isset($_REQUEST['parent_stock_chicks'])){
                $parent_stock_chicks = "";
           } else {
-               $parent_stock_chicks = mysqli_real_escape_string($_POST['parent_stock_chicks']);
+               $parent_stock_chicks = trim($_POST['parent_stock_chicks']);
           }
 
 
@@ -302,14 +308,14 @@
           if(!isset($_REQUEST['layers'])){
                $layers = "";
           } else {
-                $layers =  mysqli_real_escape_string($_POST['layers']);
+                $layers =  trim($_POST['layers']);
           }
 
           //    $dual_purpose = $_POST['dual_purpose'];
           if(!isset($_REQUEST['dual_purpose'])){
                $dual_purpose = "";
           } else {
-               $dual_purpose = mysqli_real_escape_string($_POST['dual_purpose']);
+               $dual_purpose = trim($_POST['dual_purpose']);
           }
 
 
@@ -318,49 +324,49 @@
           if(!isset($_REQUEST['hatching_chicken'])){
                $hatching_fowls = "";
           } else {
-               $hatching_fowls = mysqli_real_escape_string($_POST['broiler']);
+               $hatching_fowls = trim($_POST['broiler']);
           }
 
        //  $hatching_turkey = $_POST['hatching_turkey'];
           if(!isset($_REQUEST['hatching_turkey'])){
                $hatching_turkey = "";
           } else {
-                $hatching_turkey =  mysqli_real_escape_string($_POST['hatching_turkey']);
+                $hatching_turkey =  trim($_POST['hatching_turkey']);
           }
 
           //  $hatching_ducks = $_POST['hatching_ducks'];
           if(!isset($_REQUEST['hatching_ducks'])){
                $hatching_ducks = "";
           } else {
-               $hatching_ducks = mysqli_real_escape_string($_POST['hatching_ducks']);
+               $hatching_ducks = trim($_POST['hatching_ducks']);
           }
 
           //  $hatching_geese = $_POST['hatching_geese'];
           if(!isset($_REQUEST['hatching_geese'])){
                $hatching_geese = "";
           } else {
-               $hatching_geese = mysqli_real_escape_string($_POST['hatching_geese']);
+               $hatching_geese = trim($_POST['hatching_geese']);
           }
 
           //  $hatching_guinea_fowls = $_POST['hatching_guinea_fowls'];
           if(!isset($_REQUEST['hatching_guinea_fowls'])){
                $hatching_guinea_fowls = "";
           } else {
-               $hatching_guinea_fowls = mysqli_real_escape_string($_POST['hatching_guinea_fowls']);
+               $hatching_guinea_fowls = trim($_POST['hatching_guinea_fowls']);
           }
 
           //  $hatching_quails = $_POST['hatching_quails'];
           if(!isset($_REQUEST['hatching_quails'])){
                $hatching_quails = "";
           } else {
-               $hatching_quails = mysqli_real_escape_string($_POST['hatching_quails']);
+               $hatching_quails = trim($_POST['hatching_quails']);
           }
 
           //  $hatching_ostrich = $_POST['hatching_ostrich'];
           if(!isset($_REQUEST['hatching_ostrich'])){
                $hatching_ostrich = "";
           } else {
-               $hatching_ostrich = mysqli_real_escape_string($_POST['hatching_ostrich']);
+               $hatching_ostrich = trim($_POST['hatching_ostrich']);
           }
 
 
@@ -371,70 +377,75 @@
             if(!isset($_REQUEST['imported_eggs'])){
                  $imported_eggs = "";
             } else {
-                 $imported_eggs = mysqli_real_escape_string($_POST['imported_eggs']);
+                 $imported_eggs = trim($_POST['imported_eggs']);
             }
 
             //$other_local_farms = $_POST['other_local_farms'];
             if(!isset($_REQUEST['other_local_farms'])){
                  $other_local_farms = "";
             } else {
-                 $other_local_farms = mysqli_real_escape_string($_POST['other_local_farms']);
+                 $other_local_farms = trim($_POST['other_local_farms']);
             }
 
             //$out_growers = $_POST['out_growers'];
             if(!isset($_REQUEST['out_growers'])){
                  $out_growers = "";
             } else {
-                 $out_growers = mysqli_real_escape_string($_POST['out_growers']);
+                 $out_growers = trim($_POST['out_growers']);
             }
 
             //$owns_breeder_farm = $_POST['owns_breeder_farm'];
             if(!isset($_REQUEST['owns_breeder_farm'])){
                  $owns_breeder_farm = "";
             } else {
-                 $owns_breeder_farm = mysqli_real_escape_string($_POST['owns_breeder_farm']);
+                 $owns_breeder_farm = trim($_POST['owns_breeder_farm']);
             }
 
 
             //hatchery Capacity
-            $total_incubator_capacity = mysqli_real_escape_string($_POST['total_incubator_capacity']);
-            $total_hatcher_capacity = mysqli_real_escape_string($_POST['total_hatcher_capacity']);
+            $total_incubator_capacity = trim($_POST['total_incubator_capacity']);
+            $total_hatcher_capacity = trim($_POST['total_hatcher_capacity']);
 
              //
-             $websiteurl = mysqli_real_escape_string($_POST['websiteurl']);
-             $contact_person = mysqli_real_escape_string($_POST['contact_person']);
-             $country = mysqli_real_escape_string($_POST['country']);
-             $region = mysqli_real_escape_string($_POST['region']);
-             $district = mysqli_real_escape_string($_POST['district']);
-             $address = mysqli_real_escape_string($_POST['address']);
-             $pobox = mysqli_real_escape_string($_POST['pobox']);
+             $websiteurl = trim($_POST['websiteurl']);
+             $contact_person = trim($_POST['contact_person']);
+             $country = trim($_POST['country']);
+             $region = trim($_POST['region']);
+             $district = trim($_POST['district']);
+             $address = trim($_POST['address']);
+             $pobox = trim($_POST['pobox']);
             // $phonenumber = $_POST['phonenumbers'];
 
+            //validations
+            $fields_required= array("contact_email", "owners_full_name", "password", "hatchery_manager", "contact_person");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!has_presence($value)){
 
+                $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+                </div>";
 
+                 $errors[$field] = ucfirst($field) . " can't be blank";
 
-            //
-            // if (isset($_POST['concerned'])) {
-            //     $type_consern = $_POST['concerned'];
-            //
-            //     echo "You chose the following color(s): <br>";
-            //     foreach ($type_consern as $concerned) {
-            //         echo $concerned."<br />";
-            //     }
-            // } // end brace for if(isset
-            // else {
-            //     echo "You did not choose a color.";
-            // }
-
-
-
-
-            // check if passwords match
-            if ($password !=  $_POST['confirm_password']) {
-                $message = "<div class=\"alert alert-info\" role=\"alert\">
-        <strong>Match problem!</strong> <a href=\"#\" class=\"alert-link\">passwords don't match </a> and try submitting again.
-      </div>";
+              }
             }
+
+            //check if the values are numeric
+            $fields_required= array("vet_reg_number", "hatch_reg_number", "total_incubator_capacity", "total_hatcher_capacity");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!is_numeric($value)){
+
+                $message = "<div class=\"alert alert-info\" role=\"alert\">
+                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
+                </div>";
+
+                 $errors[$field] = ucfirst($field) . " should be numeric";
+
+              }
+            }
+
 
             if (empty($errors)) {
                 // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
@@ -621,7 +632,7 @@
                      }
 
                      // email verification link is sent here
-                     
+
 
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
                 <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new hatchery</a>.

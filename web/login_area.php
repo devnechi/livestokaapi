@@ -43,8 +43,8 @@ ob_start();
 if (isset($_POST['submit'])) {
     // process users entry on the form
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     //validations
     $fields_required= array("email", "password");
