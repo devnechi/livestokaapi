@@ -57,7 +57,7 @@ function logged_in() {
 //confirm user has logged in
 function confirm_logged_in() {
   if (!logged_in()) {
-    redirect_to("/mydroids/livestokaapi/web/login_area.php");
+    redirect_to("../../web/login_area.php");
   }
 }
 

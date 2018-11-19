@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-include("../../includes/layouts/manufacturers_header_layout.php");
+include("../../includes/layouts/main_fm_header_layout.php");
 require_once '../../includes/DbOperation.php';
 require_once '../../includes/validations_functions.php';
 ?>
@@ -16,7 +16,7 @@ require_once '../../includes/validations_functions.php';
 		$message = "<div class=\"alert alert-danger\" role=\"alert\">
 			<strong>Log in Again</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
 		</div>";
-          redirect_to("/mydroids/livestokaapi/web/login_area.php");
+    header('Location: ../../web/login_area.php');
   } else{
   	// code...
     //user session details
@@ -27,7 +27,7 @@ require_once '../../includes/validations_functions.php';
 		  if ($logged_user_usertype != "feed manufacturer") {
         // user is not of feed manufacturer type...
         //usertype is different
-				  redirect_to("/mydroids/livestokaapi/web/login_area.php");
+        header('Location: ../../web/login_area.php');
 		  } else {
 
         // logged in user is of feed manufacturer
@@ -512,5 +512,8 @@ $("#menu-toggle").click(function (e) {
 </script>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</body>
-</html>
+
+    <?php
+    include("../../includes/layouts/main_fm_footer_layout.php");
+
+    ?>

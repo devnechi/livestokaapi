@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-   include("../../includes/layouts/manufacturers_header_layout.php");
+include("../../includes/layouts/main_fm_header_layout.php");
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
     //getting the dboperation class
@@ -668,7 +668,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppsubmission'])) {
                        <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
                         <br />
-                        <div class="container">
+                        <div class="container-fluid">
                           <div class="row">
                              <div class="col-md-6">
                              <!-- * form post method -->
@@ -882,12 +882,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppsubmission'])) {
               </section>
              </div>
          </div>
-       </body>
+         <?php
+         include("../../includes/layouts/main_fm_footer_layout.php");
 
-           <script>
-               $("#datetimepicker").datetimepicker();
-           </script>
-           <link rel="stylesheet" type="text/css" href="../css/jquery.datetimepicker.css"/ >
-            <script src="../web/css/jquery.js"></script>
-            <script src="../web/css/jquery.datetimepicker.full.min.js"></script>
-       </html>
+         ?>
