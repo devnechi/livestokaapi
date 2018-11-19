@@ -27,7 +27,8 @@ $rmmessage = " ";
 		$message = "<div class=\"alert alert-danger\" role=\"alert\">
 			<strong>Log in Again</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
 		</div>";
-          redirect_to("/mydroids/livestokaapi/web/login_area.php");
+    header('Location: ../../web/login_area.php');
+
   } else{
   	// code...
     //user session details
@@ -38,7 +39,7 @@ $rmmessage = " ";
 		  if ($logged_user_usertype != "feed manufacturer") {
         // user is not of feed manufacturer type...
         //usertype is different
-				  redirect_to("/mydroids/livestokaapi/web/login_area.php");
+        header('Location: ../../web/login_area.php');
 		  } else {
 
                 // logged in user is of feed manufacturer
@@ -277,7 +278,7 @@ $rmmessage = " ";
 
                                  <br />
 
-                                <div class="container">
+                                <div class="container-fluid">
 
                                   <?php echo $message; ?>
                                   <?php echo form_errors($errors); ?>
@@ -384,5 +385,8 @@ $rmmessage = " ";
                </div>
               </div>
              </div>
-          </body>
-          </html>
+
+   <?php
+   include("../../includes/layouts/main_fm_footer_layout.php");
+
+   ?>

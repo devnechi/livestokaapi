@@ -13,8 +13,13 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/en-gb.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css"></script>
+            <link rel="stylesheet" type="text/css" href="../css/jquery.datetimepicker.css"/ >
+             <script src="../web/css/jquery.js"></script>
+             <script src="../web/css/jquery.datetimepicker.full.min.js"></script>
             <script src="../../web/js/moment.min.js"></script>
             <script src="../../web/js/bootstrap-datetimepicker.min.js"></script>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
             <script type="text/javascript">
                 $(document).ready(function () {
 
@@ -153,7 +158,8 @@
             }}
       </script>
 
-      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+      <script>
+          $("#datetimepicker").datetimepicker();
+      </script>
   </body>
 </html>

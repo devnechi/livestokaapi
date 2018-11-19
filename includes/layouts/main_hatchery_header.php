@@ -5,7 +5,9 @@
 		$message = "<div class=\"alert alert-danger\" role=\"alert\">
 			<strong>Log in Again</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
 		</div>";
-          redirect_to("../../web/login_area.php");
+        //  redirect_to("../../web/login_area.php");
+        header('Location: ../../web/login_area.php');
+
   } else{
   	// code...
     //user session details
@@ -16,7 +18,9 @@
 		  if ($logged_user_usertype != "Hatchery User") {
         // user is not of feed manufacturer type...
         //usertype is different
-				  redirect_to("../../web/login_area.php");
+				  // redirect_to("../login_area.php");
+          header('Location: ../../web/login_area.php');
+
 		  } else {
 		  	// logged in user is of feed manufacturer
 
@@ -615,7 +619,14 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
      border-radius: 3px;
 }
 
+.navdropdown{
+  background-color: #0488ae;
+}
 
+/* meant for the updateBatchData */
+.spcbelow{
+  padding-top: 50;
+}
 </style>
     </head>
     <body>
@@ -634,8 +645,15 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                     <li class="active">
                         <a href="hatchers_dashboard.php" >Home Dashboard</a>
                     </li>
-                    <li class="active">
-                        <a href="updatePostHatchedData.php" >Post Hatch data</a>
+                    <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Batch</a>
+                <div class="dropdown-menu navdropdown">
+                  <a class="dropdown-item" href="../../web/donor_area/dn_add_beneficiary.php">create new batch</a>
+                  <a class="dropdown-item" href="#">all created batches</a>
+                </div>
+              </li>
+                    <li>
+                        <a href="updateBatchData.php" >Update On-going batches</a>
                     </li>
                     <li>
                         <a href="#">update account</a>
@@ -650,7 +668,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                         <a href="#">Geo-Mapping</a>
                     </li>
                     <li>
-                        <a href="#">logout</a>
+                        <a href="../../web/log_out.php">logout</a>
                     </li>
 
 
