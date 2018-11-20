@@ -1,5 +1,6 @@
 <?php
 
+
 class DbOperation
 {
     //Database connection link
@@ -27,8 +28,23 @@ class DbOperation
     *REGISTRATION: activation :
     * user account activation
     */
-    public function activateUserAccount($user_id, $account_status)
+    public function activateUserAccount($user_id,$account_status)
     {
+    
+        $stmt = $this->con->prepare("UPDATE lvusers_tb SET account_status = ? WHERE user_id = ?");
+        $stmt->bind_param("si", $account_status, $user_id);
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+    public function activateUserAccountByEmail($user_id)
+    {
+        $account_status=1;
         $stmt = $this->con->prepare("UPDATE lvusers_tb SET account_status = ? WHERE user_id = ?");
         $stmt->bind_param("si", $account_status, $user_id);
         if ($stmt->execute()) {
@@ -56,13 +72,16 @@ class DbOperation
             return false;
         }
     }
+ 
 
 
-    /*
+ /*
     *REGISTRATION: type of user :
     * reg user type -> Manufactures
-    */
-
+    
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+*/
     public function registerUser($email, $password, $usertype, $account_status)
     {
         $uuid = uniqid('', true);
@@ -83,7 +102,7 @@ class DbOperation
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-
+            smtpmailer($email,$uuid );
             return $user;
         } else {
             echo mysql_error();
@@ -592,6 +611,330 @@ INNER JOIN  raw_materials
     }
 
 
+
+    /*
+    *add new breeder
+    */
+    public function registerNewBreeder(
+        $user_id,
+        $owners_full_name,
+        $farm_name,
+        $type_of_ownership,
+        $date_established,
+        $breeder_reg_number,
+        $breeder_manager,
+        $breeder_veterinarian,
+        $vet_reg_number,
+        $total_incubator_capacity,
+        $total_hatcher_capacity,
+        $country,
+        $region,
+        $district,
+        $pobox,
+        $websiteurl,
+        $address,
+        $breeding_chicken,
+        $breeding_turkey,
+        $breeding_ducks,
+        $breeding_quails,
+        $breeding_ostrich,
+        $breeding_guinea_fowls,
+        $broiler,
+        $layers,
+        $dual_purpose
+    ) {
+            $htuid = uniqid('', true);
+    
+            $stmt = $this->con->prepare("INSERT INTO breeders_tbl
+                (breeder_unique_id,
+                user_id,
+                owners_full_name, 
+                type_of_ownership,
+                    date_established,
+                breeder_reg_number,
+                breeder_manager,
+                breeding_chicken,
+                breeding_turkey,
+                breeding_ducks,
+                breeding_quails,
+                breeding_ostrich,
+                breeding_guinea_fowls,
+                broiler,
+                layers,
+                dual_purpose,
+                breeder_veterinarian,
+                vet_reg_number,
+                maximum_flock_size,
+                total_peryear_capacity, 
+                country,
+                region,
+                district,
+                websiteurl, 
+      address, created_at)
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW())");
+            $stmt->bind_param(
+                    "sssssssssssssssssss",
+                    $htuid,
+                    $user_id,
+                    $owners_full_name,
+                    $breeder_name,
+                    $type_of_ownership,
+                    $date_established,
+                    $hatch_reg_number,
+                    $breeder_manager,
+                    $breeder_veterinarian,
+                    $vet_reg_number,
+                    $maximum_flock_size,
+                    $total_peryear_capacity,
+                    $country,
+                    $region,
+                    $district,
+                    $pobox,
+                    $websiteurl,
+                    $address,
+                    $breeding_chicken,
+                    $breeding_turkey,
+                    $breeding_ducks,
+                    $breeding_quails,
+                    $breeding_ostrich,
+                    $breeding_guinea_fowls,
+                    $broiler,
+                    $layers,
+                    $dual_purpose
+                );
+            $result = $stmt->execute();
+            $stmt->close();
+    
+            // check for successful store
+            if ($result) {
+                $stmt = $this->con->prepare("SELECT * FROM breeder_tbl WHERE user_id = ?");
+                $stmt->bind_param("s", $user_id);
+                $stmt->execute();
+                $breeder = $stmt->get_result()->fetch_assoc();
+                $stmt->close();
+    
+                return $breeder;
+            } else {
+                return false;
+            }
+        }
+     /*
+       *insert multiple parent stock 
+       */
+      public function lsp_stock($user_id, $breeder_id,    $local_source_parent_stock){
+        //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+        //mysql_query($sql1);
+        foreach(   $local_source_parent_stock as $a => $B){
+        $affuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO lsp_stock (lsp_unique_id, user_id,
+                                    breeder_id, local_source_parent_stock, created_at)
+                                    VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $lsp_stockid, $user_id,
+                                    $breeder_id,    $local_source_parent_stock[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+    
+        // if ($result){
+        //   echo "affiliation insert success";
+        // }
+        }
+        // check for successful store
+        }
+/*
+       *insert multiple parent stock 
+       */
+      public function lsgp_stock($user_id, $breeder_id,    $local_source_grandparent_stock){
+        //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+        //mysql_query($sql1);
+        foreach(   $local_source_grandparent_stock as $a => $B){
+        $affuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO lsgp_stock (lsgp_unique_id, user_id,
+                                    breeder_id, local_source_grandparent_stock, created_at)
+                                    VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $lsgp_stockid, $user_id,
+                                    $breeder_id,    $local_source_grandparent_stock[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+    
+        // if ($result){
+        //   echo "affiliation insert success";
+        // }
+        }
+        // check for successful store
+        }
+/*
+       *insert multiple parent stock 
+       */
+      public function isp_stock($user_id, $breeder_id,    $import_source_parent_stock){
+        //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+        //mysql_query($sql1);
+        foreach(   $local_source_parent_stock as $a => $B){
+        $affuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO isp_stock (isp_unique_id, user_id,
+                                    breeder_id, import_source_parent_stock, created_at)
+                                    VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $isp_stockid, $user_id,
+                                    $breeder_id,    $import_source_parent_stock[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+    
+        // if ($result){
+        //   echo "affiliation insert success";
+        // }
+        }
+        // check for successful store
+        }
+/*
+       *insert multiple parent stock 
+       */
+      public function isgp_stock($user_id, $breeder_id,    $import_source_grandparent_stock){
+        //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+        //mysql_query($sql1);
+        foreach(   $local_source_parent_stock as $a => $B){
+        $affuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO isgp_stock (isgp_unique_id, user_id,
+                                    breeder_id, import_source_grandparent_stock, created_at)
+                                    VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $isgp_stockid, $user_id,
+                                    $breeder_id,    $import_source_grandparent_stock[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+    
+        // if ($result){
+
+        //   echo "affiliation insert success";
+        // }
+        }
+        // check for successful store
+        }
+
+       /*
+       *insert multiple Affiliations
+       */
+        public function Affiliations($user_id, $breeder_id, $affiliation){
+            //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+            //mysql_query($sql1);
+            foreach($affiliation as $a => $B){
+            $affuid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO affiliation (aff_unique_id, user_id,
+                                        breeder_id, affiliation, created_at)
+                                        VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $affuid, $user_id,
+                                        $breeder_id, $affiliation[$a]);
+            $result = $stmt->execute();
+            $stmt->close();
+        
+            // if ($result){
+            //   echo "affiliation insert success";
+            // }
+            }
+            // check for successful store
+            }
+    
+        /*
+        *insert multiple phonenumbers
+        */
+         public function PhoneNumbers($user_id, $breeder_id, $phone_Number){
+           foreach($phoneNumber as $a => $B){
+           $phnuid = uniqid('', true);
+           $stmt = $this->con->prepare("INSERT INTO phonenumbers (phonenum_unique_id, user_id,
+                                       breeder_id, phonenumber, created_at)VALUES(?, ?, ?, ?, NOW())");
+           $stmt->bind_param("ssss", $phnuid, $user_id, $breeder_id, $phoneNumber[$a]);
+           $result = $stmt->execute();
+           $stmt->close();
+         //   if ($result){
+         //     echo "phoneNumber insert success";
+         //   }
+          }
+           // check for successful store
+         }
+    
+    
+         /*
+         *insert multiple typeofBreed
+         */
+          public function TypeOfBreedProduced($user_id, $breeder_id, $typeofbreed){
+            //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+            //mysql_query($sql1);
+            foreach($typeofbreed as $a => $B){
+            $tpuid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO breeder_breeds (breed_unique_id, user_id,
+     breeder_id, breed_title, created_at)VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $tpuid, $user_id, $breeder_id, $typeofbreed[$a]);
+            $result = $stmt->execute();
+            $stmt->close();
+    
+             // if ($result){
+             //   echo "Breed Type insert success";
+             // }
+              }
+            // check for successful store
+          }
+    
+    
+    
+          /*
+          *insert multiple breeder products
+          */
+           public function breederProducts($user_id, $breeder_id, $hatched_products){
+    
+             $hpuid = uniqid('', true);
+             $stmt = $this->con->prepare("INSERT INTO breeder_products (breeder_product_unique_id, user_id,
+      breeder_id, breeder_products, created_at)VALUES(?, ?, ?, ?, NOW())");
+             $stmt->bind_param("ssss", $hpuid, $user_id, $breeder_id, $hatched_products);
+             $result = $stmt->execute();
+             $stmt->close();
+    
+            //   }
+             // check for successful store
+           }
+    
+           /*
+           *insert multiple breeder breed purpose
+           */
+            public function breederPurpose($user_id, $breeder_id, $breed_purpose){
+              $hppuid = uniqid('', true);
+              $stmt = $this->con->prepare("INSERT INTO hatching_purpose (hatching_purpose_unique_id, user_id,
+      breeder_id,  purpose, created_at)VALUES(?, ?, ?, ?, NOW())");
+              $stmt->bind_param("ssss", $hppuid, $user_id, $breeder_id, $breed_purpose);
+              $result = $stmt->execute();
+              $stmt->close();
+    
+             //   }
+              // check for successful store
+            }
+    
+    
+            /*
+            *insert multiple breeder poultry types
+            */
+             public function regbreederTypes($user_id, $breeder_id, $poultry_type){
+               $hptuid = uniqid('', true);
+               $stmt = $this->con->prepare("INSERT INTO hatching_poultry_types (poultry_types_unique_id, user_id,
+      breeder_id,  breeder_poultry_type, created_at)VALUES(?, ?, ?, ?, NOW())");
+               $stmt->bind_param("ssss", $hptuid, $user_id, $breeder_id, $poultry_type);
+               $result = $stmt->execute();
+               $stmt->close();
+    
+             }
+    
+    
+             /*
+             *insert multiple egg sources types
+             */
+              public function regbreederSources($user_id, $breeder_id, $egg_sources){
+                $eguid = uniqid('', true);
+                $stmt = $this->con->prepare("INSERT INTO breeder_egg_sources (source_unique_id, user_id,
+      breeder_id,  eggs_source, date_created)VALUES(?, ?, ?, ?, NOW())");
+                $stmt->bind_param("ssss", $eguid, $user_id, $breeder_id, $egg_sources);
+                $result = $stmt->execute();
+                $stmt->close();
+    
+              }
+
+
+
+
     /*
     *add new hatchery
     */
@@ -917,3 +1260,53 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         return false;
     }
 }
+function smtpmailer($to,$id) { 
+    global $error;
+    $mail = new PHPMailer();
+   define('GUSER', 'jacksonmorton5@gmail.com'); // GMail username
+   define('GPWD', 'semperkoda'); // GMail password
+   define('SMTPSERVER', 'localhost'); // sec. smtp server
+   $subject="Email Confirmation";
+   $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
+   $htmlStr = "";
+   $htmlStr .= "Hi " . $email . ",<br /><br />";
+
+   $htmlStr .= "Please click the button below to verify your subscription and verify your account <br /><br /><br />";
+   $htmlStr .= "<a href='{$verificationLink}' target='_blank' style='padding:1em; font-weight:bold; background-color:blue; color:#fff;'>VERIFY EMAIL</a><br /><br /><br />";
+
+   $htmlStr .= "Kind regards,<br />";
+   $htmlStr .= "<a href='http://livestoka.com/' target='_blank'>Industry and Data analytics platform</a><br />";
+
+
+   $body=$htmlStr;
+      // create a new object
+    $mail->IsSMTP(); // enable SMTP
+    $mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
+    $mail->SMTPAuth = true;  // authentication enabled
+    $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 465; 
+    $mail->Username = GUSER;  
+    $mail->Password = GPWD;           
+    $mail->SetFrom(GUSER, "MANAGER");
+    $mail->Subject = $subject;
+    $mail->Body = $body;
+    $mail->AddAddress($to);
+   // if( mail($recipient_email, $subject, $body, $headers) ){
+    if($mail->send()){
+
+        $message = "<div class=\"alert alert-success\" role=\"alert\">
+       <strong>Well done!</strong> You successfully registered check you emails<a href=\"#\" class=\"alert-link\">to activate your account</a>.
+        </div>";
+
+       } else{
+
+        $message = "<div class=\"alert alert-warning\" role=\"alert\">
+        <strong>Sorry!</strong> we cant seem to verify you account<a href=\"#\" class=\"alert-link\">click here to resend.</a>.
+       </div>";
+        echo "Mail error:" . $mail->ErrorInfo;
+
+        }
+           
+            }
+?>

@@ -108,34 +108,162 @@ $dataPointsTwoLines = array(
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header" data-background-color="orange">
-											<h4 class="title">Current User Details</h4>
-											<p class="category">As of Last Month February, 2018</p>
+											<h4 class="title">Quick Access</h4>
+											<p class="category">shortcut to app activities</p>
 									</div>
 									<div class="card-content table-responsive">
 											<!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
 											<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
 
-
-												 <h2> Welcome back, <small><?php echo $logged_user_email; ?></small></h2>
-
+<!--
+												 <h2> Welcome back, <small><?php //echo $logged_user_email; ?></small></h2>
+ -->
+                        <div class="row">
+                         <div class="col-md-6">
+                           <div class="form-group">
+                             <button type="button" onclick="location.href='new_batch.php';" class="btn btn-lg btn-warning" name="button">Create New Batch</button>
+                          </div>
+                          <div class="form-group" style="padding-bottom: 100px;">
+                            <button type="button" onclick="location.href='updateBatchData.php';" class="btn btn-lg btn-warning" name="button">Update On-going Batches</button>
+                         </div>
+                         </div>
+                        </div>
 
 										</div>
 									</div>
 									</div>
-									<div class="col-md-6">
-										<div class="card">
-											<div class="card-header" data-background-color="orange">
-													<h4 class="title">Recent industry updates and Trends</h4>
-													<p class="category">As of Last Month February, 2018</p>
-											</div>
-											<div class="card-content table-responsive">
-													<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-													<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-												</div>
-											</div>
-											</div>
-								</div>
+                  <!-- end of shortcuts -->
+                  <div class="col-lg-6 col-md-12">
+                      <div class="card">
+                          <div class="card-header" data-background-color="orange">
+                              <h4 class="title">Breeds Hatched By Hatchery</h4>
+                              <p class="category">As of Last Month February, 2018</p>
+                          </div>
+                          <div class="card-content table-responsive">
+                            <div class="form-group">
+                              <button type="button" onclick="location.href='updateBatchData.php';" class="btn btn-lg btn-warning" name="button">Add a new breed</button>
+                           </div>
+                              <table class="table table-hover">
+                                  <thead class="text-warning">
+                                      <tr>
+                                          <th>ID</th>
+                                          <th>Title</th>
+                                          <th>Type</th>
+                                          <th>Quantity</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>1</td>
+                                          <td>broiler starter</td>
+                                          <td>pellet</td>
+                                          <td>200 TONS</td>
+                                      </tr>
+                                      <tr>
+                                          <td>2</td>
+                                          <td>Broiler Finisher</td>
+                                          <td>mash</td>
+                                          <td>500 TONS</td>
+                                      </tr>
+                                      <tr>
+                                          <td>3</td>
+                                          <td>Growers</td>
+                                          <td>mash</td>
+                                          <td>200 TONS</td>
+                                      </tr>
+                                      <tr>
+                                          <td>4</td>
+                                          <td>layer</td>
+                                          <td>pellet</td>
+                                          <td>200 TONS</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
 
+								</div>
+               <!-- end of breed produced summary -->
+               <div class="row">
+                 <div class="col-md-6">
+                   <div class="card">
+                     <div class="card-header" data-background-color="orange">
+                         <h4 class="title">Industry Hatching Activities</h4>
+                         <p class="category">all hatching activities as of Dec, 2018</p>
+                     </div>
+                     <div class="card-content table-responsive">
+
+                        </div>
+                     </div>
+                 </div>
+                 <!-- end of the industry hatching activities -->
+
+                 <div class="col-md-6">
+                   <div class="card">
+                     <div class="card-header" data-background-color="orange">
+                         <h4 class="title">Industry Hatching Purposes</h4>
+                         <p class="category">most hatching purposes are as of Dec, 2018</p>
+                     </div>
+                     <div class="card-content table-responsive">
+
+                        </div>
+                     </div>
+                 </div>
+                 <!-- end of hatching purposes -->
+
+                  <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-header" data-background-color="orange">
+                          <h4 class="title">Industry Hatching Growth</h4>
+                          <p class="category">industry growth graph, 2018</p>
+                      </div>
+                      <div class="card-content table-responsive">
+
+                         </div>
+                      </div>
+                  </div>
+
+                 <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Hatching Breed Types</h4>
+                        <p class="category">Type of breed most produced as of Dec, 2018</p>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                       </div>
+                    </div>
+                    </div>
+               </div>
+               <!-- end of hatching breed specialisation -->
+
+               <div class="row">
+                 <div class="col-md-6">
+                   <div class="card">
+                     <div class="card-header" data-background-color="orange">
+                         <h4 class="title">Industry Poultry Types</h4>
+                         <p class="category">breakdown of poultry types, 2018</p>
+                     </div>
+                     <div class="card-content table-responsive">
+
+                        </div>
+                     </div>
+                 </div>
+                 <!-- end of the industry hatched poultry types -->
+
+                 <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Hatching egg source</h4>
+                        <p class="category">Breakdown of hatching egg sources, 2018</p>
+                    </div>
+                    <div class="card-content table-responsive">
+
+                       </div>
+                    </div>
+                    </div>
+               </div>
 
               <div class="row">
                 <div class="col-md-6">
@@ -146,9 +274,9 @@ $dataPointsTwoLines = array(
                         </div>
 
                         <div class="card-content table-responsive">
-                            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                            <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                             <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-
+ -->
 
                     <div id="chartContainerPie" style="height: 370px; width: 100%;"></div>
 
@@ -166,8 +294,8 @@ $dataPointsTwoLines = array(
                                           <p class="category">As of Last Month February, 2018</p>
                                        </div>
                                        <div class="card-content table-responsive">
-                                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                                        <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
 
 
                                    <div id="chartContainerTwoLines" style="height: 370px; width: 100%;"></div>
@@ -176,7 +304,7 @@ $dataPointsTwoLines = array(
 
                 </div>
             </div>
-        </div
+        </div>
         <div class="row">
 
             <div class="col-md-6">
@@ -186,8 +314,8 @@ $dataPointsTwoLines = array(
                       <p class="category">As of Last Month February, 2018</p>
                   </div>
                   <div class="card-content table-responsive">
-                      <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                      <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
 
 
                    <div id="chartContainerhist" style="height: 370px; width: 100%;"></div>
@@ -204,8 +332,8 @@ $dataPointsTwoLines = array(
                         <p class="category">As of Last Month February, 2018</p>
                     </div>
                     <div class="card-content table-responsive">
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
 
                     </div>
                 </div>
@@ -219,58 +347,25 @@ $dataPointsTwoLines = array(
                         <p class="category">As of Last Month February, 2018</p>
                     </div>
                     <div class="card-content table-responsive">
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
 
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Breeds Hatched By Hatchery</h4>
-                        <p class="category">As of Last Month February, 2018</p>
-                    </div>
-                    <div class="card-content table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>broiler starter</td>
-                                    <td>pellet</td>
-                                    <td>200 TONS</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Broiler Finisher</td>
-                                    <td>mash</td>
-                                    <td>500 TONS</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Growers</td>
-                                    <td>mash</td>
-                                    <td>200 TONS</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>layer</td>
-                                    <td>pellet</td>
-                                    <td>200 TONS</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header" data-background-color="orange">
+                    <h4 class="title">Hatchery Breeds Registered</h4>
+                    <p class="category">all breeds produced by the registered hatchery</p>
                 </div>
-            </div>
+                <div class="card-content table-responsive">
+
+                  </div>
+                </div>
+                </div>
+
         </div>
     </div>
 </div>
