@@ -646,9 +646,9 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                         <a href="hatchers_dashboard.php" >Home Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Batch</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hatch Batch</a>
                 <div class="dropdown-menu navdropdown">
-                  <a class="dropdown-item" href="../../web/donor_area/dn_add_beneficiary.php">create new batch</a>
+                  <a class="dropdown-item" href="../../web/hatchersarea/new_batch.php">create new batch</a>
                   <a class="dropdown-item" href="#">all created batches</a>
                 </div>
               </li>
@@ -656,16 +656,16 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                         <a href="updateBatchData.php" >Update On-going batches</a>
                     </li>
                     <li>
-                        <a href="#">update account</a>
+                        <a href="#">More Statistics</a>
                     </li>
                     <li>
-                        <a href="#">Statistics</a>
-                    </li>
-                    <li>
-                        <a href="#">History</a>
+                        <a href="#">Industry Reports</a>
                     </li>
                     <li>
                         <a href="#">Geo-Mapping</a>
+                    </li>
+                    <li>
+                        <a href="#">update account</a>
                     </li>
                     <li>
                         <a href="../../web/log_out.php">logout</a>
