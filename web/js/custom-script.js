@@ -1,48 +1,13 @@
-function initMap() {
-    var uluru = {
-        lat: 23.094197,
-        lng: 72.558148
-    };
-    var map = new google.maps.Map(document.getElementById('contact-map'), {
-        zoom: 14,
-        center: uluru,
-        scrollwheel: false
-    });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-        icon: 'https://easetemplate.com/free-website-templates/life-coach/images/map_marker.png'
-
-    });
-}
-
-$(document).ready(function(){
-    $('.customer-logos').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1500,
-        arrows: false,
-        dots: false,
-        pauseOnHover: false,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 3
-            }
-        }, {
-            breakpoint: 520,
-            settings: {
-                slidesToShow: 2
-            }
-        }]
-    });
-});
-
-
 (function ($) {
     "use strict";
 
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop()) {
+            $('#mainNav').addClass('black');
+        } else {
+            $('#mainNav').removeClass('black');
+        }
+    });
 
     /*==================================================================
     [ Focus Contact2 ]*/
@@ -107,6 +72,45 @@ $(document).ready(function(){
         $(thisAlert).removeClass('alert-validate');
     }
 
-
-
 })(jQuery);
+
+function initMap() {
+    var uluru = {
+        lat: 23.094197,
+        lng: 72.558148
+    };
+    var map = new google.maps.Map(document.getElementById('contact-map'), {
+        zoom: 14,
+        center: uluru,
+        scrollwheel: false
+    });
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+        icon: 'https://easetemplate.com/free-website-templates/life-coach/images/map_marker.png'
+
+    });
+}
+
+$(document).ready(function(){
+    $('.customer-logos').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 3
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 2
+            }
+        }]
+    });
+});

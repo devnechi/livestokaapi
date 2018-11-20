@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Livestoka | Home </title>
 
         <!-- Bootstrap CSS -->
@@ -16,6 +17,8 @@
         <link rel="stylesheet" href="css/custom-style.css">
         <!-- Utils CSS -->
         <link rel="stylesheet" href="css/util.css">
+        <!-- Magnific Pop-up CSS -->
+        <link rel="stylesheet" href="css/magnific-popup.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,8 +29,32 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-                <a href="" class="navbar-brand"><img src="images/logo.png" style="height: auto; width: 50%;"></a>
+            <!---
+            <div class="header-top-area black-bg hidden-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <ul class="top-right">
+                                <li><i class="fa fa-envelope"></i><span>no-reply@livestoka.com</span></li>
+                                <li><i class="fa fa-phone"></i><span>+255-687-859-500</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 hidden-xs">
+                            <div class="header-icon floatright">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-google-plus"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-dribbble"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            --->
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+                <a href="" class="navbar-brand"><img src="images/logo.png"></a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">Menu <span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse">
 
@@ -35,9 +62,9 @@
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active"><a href="#" class="nav-link">Home </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Abouts </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Services </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Contacts </a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">Abouts </a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Services </a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contacts </a></li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <button type="submit" class="btn menu-right-button">LOGIN</button>
@@ -58,6 +85,7 @@
             </nav>
         </header>
         <main>
+
             <!-- Carousel Section -->
             <div class="section-1">
                 <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
@@ -140,11 +168,11 @@
             </div>
             <!-- Goals Section -->
             <div class="section-3">
-                <div class="container-fluid padding">
-                    <div class="row padding">
+                <div class="container-fluid">
+                    <div class="row">
                         <!-- Carousel start -->
-                        <div class="col-md-6 padding">
-                            <div id="carousel-our-services" class="carousel slide" data-ride="carousel">
+                        <div class="col-md-6">
+                            <div id="carousel-our-services" class="carouselsrv slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carousel-our-services" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-our-services" data-slide-to="1"></li>
@@ -153,16 +181,16 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="images/goal/inv.jpg" alt="First slide" class="img-fluid">
+                                        <img src="images/goal/inv.jpg" alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/center.jpg" alt="Second slide" class="img-fluid">
+                                        <img src="images/goal/center.jpg" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/prop.jpg" alt="Third slide" class="img-fluid">
+                                        <img src="images/goal/prop.jpg" alt="Third slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/inv.jpg" alt="Third slide" class="img-fluid">
+                                        <img src="images/goal/inv.jpg" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
@@ -171,7 +199,7 @@
                                 </span></a>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-3">
                             <h3 class="text-center">What are Our Goal? <small>A data center</small></h3>
                             <p  class="text-center">
                               Create an interactive platform, data warehouse and  Data Center that would be used to manage industry data.
@@ -370,7 +398,7 @@
                 </div>
             </div>
             <!--- Contact Us --->
-            <div class="row padding">
+            <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="bg-contact2">
                         <div class="container-contact2">
@@ -425,7 +453,7 @@
                             <p>dennis@livestoka.com</p>
                         </div>
                     </div>
-                    <div class="row padding">
+                    <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-center">
                             Talk to you <a href="#contactus" target="_blank">soon, enjoy our products</a>
                         </div>
@@ -438,58 +466,59 @@
                     <div id="contact-map"></div>
                 </div>
             </div>
+
         </main>
         <section id="footer">
             <div class="container">
-              <div class="row text-center text-xs-center text-sm-left text-md-left">
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h5>Quick links</h5>
-                  <ul class="list-unstyled quick-links">
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Services</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Get Started</a></li>
-                  </ul>
+                <div class="row text-center text-xs-center text-sm-left text-md-left">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <h5>Quick links</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Services</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Get Started</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <h5>Partners List</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Feed Manufacturers</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Hatchery Owners</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Farmers</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Breeders</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Processors</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <h5>More Information</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Qualifications</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Policy and Copyrights</a></li>
+                            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Other</a></li>
+                            <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h5>Partners List</h5>
-                  <ul class="list-unstyled quick-links">
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Feed Manufacturers</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Hatchery Owners</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Farmers</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Breeders</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Processors</a></li>
-                  </ul>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                        <ul class="list-unstyled list-inline social text-center">
+                            <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-youtube"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fas fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h5>More Information</h5>
-                  <ul class="list-unstyled quick-links">
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Qualifications</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Policy and Copyrights</a></li>
-                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Other</a></li>
-                    <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
-                  </ul>
+                <div class="text-center">
+                    <p style="color: #231d1d;"><u><a href="https://www.nationaltransaction.com/">Livestoka Business System</a></u> is Developed and Maintained by Future Basics, LTD. Tanzania</p>
+                    <p style="color: #231d1d;" class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Livestoka</a></p>
                 </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                  <ul class="list-unstyled list-inline social text-center">
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-f"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-youtube"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fas fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="text-center">
-                  <p style="color: #231d1d;"><u><a href="https://www.nationaltransaction.com/">Livestoka Business System</a></u> is Developed and Maintained by Future Basics, LTD. Tanzania</p>
-                  <p style="color: #231d1d;" class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Livestoka</a></p></div>
-              </div>
             </div>
         </section>
 
@@ -500,12 +529,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <!-- Bootstrap JS -->
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Select2 JavaScript -->
+        <!-- Select2 JS -->
         <script src="vendor/select2/select2.min.js"></script>
         <!-- Custom scripts for this template -->
         <script src="js/custom-script.js"></script>
+        <!-- Magnific pop up script -->
+        <script src="js/jquery.magnific-popup.js"></script>
         <!-- Slick JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
         <!-- Tether -->

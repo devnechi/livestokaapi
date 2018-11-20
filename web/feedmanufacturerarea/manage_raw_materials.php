@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-   include("../../includes/layouts/manufacturers_header_layout.php");
+include("../../includes/layouts/main_fm_header_layout.php");
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
     //getting the dboperation class
@@ -399,5 +399,7 @@ $rmmessage = " ";
 
                          </div>
                      </div>
-                   </body>
-                   </html>
+                     <?php
+                     include("../../includes/layouts/main_fm_footer_layout.php");
+
+                     ?>

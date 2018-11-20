@@ -5,7 +5,7 @@
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-// 
+//
 //     require 'vendor/phpmailer/phpmailer/src/Exception.php';
 // require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 // require 'vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -47,30 +47,30 @@
      // receiving the post params
      //$user_id = $_POST['user_id'];
      $account_status = "pending approval";
-     $email = $_POST['email'];
-     $password = $_POST['password'];
+     $email = trim($_POST['email']);
+     $password = trim($_POST['password']);
 
      $usertype = "feed manufacturer";
-     $companyname = $_POST['companyname'];
-     $year_established = $_POST['year_established'];
-     $premise_cert_num = $_POST['premise_cert_num'];
-     $cert_of_incorporation_num = $_POST['cert_of_incorporation_num'];
-     $feedbussiness_permit_num = $_POST['feedbussiness_permit_num'];
-     $gmp_cert_num = $_POST['gmp_cert_num'];
-     $association_affiliation = $_POST['association_affiliation'];
-     $country = $_POST['country'];
-     $region = $_POST['region'];
-     $district = $_POST['district'];
-     $address = $_POST['address'];
-     $pobox = $_POST['pobox'];
-     $phonenumber = $_POST['phonenumber'];
-     $websiteurl = $_POST['websiteurl'];
-     $contact_person = $_POST['contact_person'];
-     $production_capacity = $_POST['production_capacity'];
-     $storage_capacity = $_POST['storage_capacity'];
-     $num_products_produced = $_POST['num_products_produced'];
-     $man_power = $_POST['man_power'];
-     $plant_manager = $_POST['plant_manager'];
+     $companyname = trim($_POST['companyname']);
+     $year_established = trim($_POST['year_established']);
+     $premise_cert_num = trim($_POST['premise_cert_num']);
+     $cert_of_incorporation_num = trim($_POST['cert_of_incorporation_num']);
+     $feedbussiness_permit_num = trim($_POST['feedbussiness_permit_num']);
+     $gmp_cert_num = trim($_POST['gmp_cert_num']);
+     $association_affiliation = trim($_POST['association_affiliation']);
+     $country = trim($_POST['country']);
+     $region = trim($_POST['region']);
+     $district = trim($_POST['district']);
+     $address = trim($_POST['address']);
+     $pobox = trim($_POST['pobox']);
+     $phonenumber = trim($_POST['phonenumber']);
+     $websiteurl = trim($_POST['websiteurl']);
+     $contact_person = $_POST['contact_person']);
+     $production_capacity = trim($_POST['production_capacity']);
+     $storage_capacity = trim($_POST['storage_capacity']);
+     $num_products_produced = trim($_POST['num_products_produced']);
+     $man_power = trim($_POST['man_power']);
+     $plant_manager = trim($_POST['plant_manager']);
 
 
   //validations
