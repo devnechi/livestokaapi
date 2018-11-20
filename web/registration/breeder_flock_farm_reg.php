@@ -1,15 +1,13 @@
 <?php
     //getting the dboperation class
+    require_once '../../includes/DbConnect.php';
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
+    include('../../includes/layouts/public_layout_header.php');
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    //
-//     require 'vendor/phpmailer/phpmailer/src/Exception.php';
-// require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-// require 'vendor/phpmailer/phpmailer/src/SMTP.php';
     //function validating all the paramters are available
     //we will pass the required parameters to this function
     function isTheseParametersAvailable($params)
@@ -46,97 +44,364 @@
         $errors = array();
         $message = " ";
 
+
+        
+
+                    //check if broiler is selected
+                    //$broiler
+
+                    if(!isset($_RESULTS['broiler']))
+                    {
+                         $broiler = false;
+                    } else {
+                         $broiler = mysqli_real_escape_string($_POST['broiler']);
+
+                         }
+
+                //     //check if layers is selected
+                //     //$layers
+
+
+                    if(!isset($_RESULTS['layers']))
+                    {
+                         $layers = false;
+                    } else {
+                         $layers = mysqli_real_escape_string($_POST['layers']);
+
+                         }
+
+                //     //check if dual_purpose is selected
+                //     //$dual_purpose
+                if(!isset($_RESULTS['dual_purpose']))
+                {
+                     $dual_purpose = false;
+                } else {
+                     $dual_purpose = mysqli_real_escape_string($_POST['dual_purpose']);
+
+                     }
+
+                //    //POULTRY TYPES
+                //    //check if breeding_chicken is selected
+                //    //breeding_chicken
+                if(!isset($_RESULTS['breeding_chicken']))
+                {
+                     $breeding_chicken = false;
+                } else {
+                     $breeding_chicken = mysqli_real_escape_string($_POST['breeding_chicken']);
+
+                     }
+
+
+                //    //check if breeding_chicken is selected
+                //    //breeding_chicken
+                if(!isset($_RESULTS['breeding_turkey']))
+                {
+                     $breeding_chicken = false;
+                } else {
+                     $breeding_chicken = mysqli_real_escape_string($_POST['breeding_turkey']);
+
+                     }
+
+
+                //    //check if breeding_ducks is selected
+                //    //breeding_ducks
+
+                if(!isset($_RESULTS['breeding_ducks']))
+                {
+                     $breeding_ducks = false;
+                } else {
+                     $breeding_ducks = mysqli_real_escape_string($_POST['breeding_ducks']);
+
+                     }
+
+                //    //check if breeding_geese is selected
+                //    //breeding_geese
+
+
+
+                if(!isset($_RESULTS['breeding_geese']))
+                {
+                     $breeding_geese = false;
+                } else {
+                     $breeding_geese = mysqli_real_escape_string($_POST['breeding_geese']);
+
+                     }
+
+                //    //check if breeding_guinea_fowls is selected
+                //    //breeding_guinea_fowls
+
+
+                if(!isset($_RESULTS['breeding_guinea_fowls']))
+                {
+                     $breeding_guinea_fowls = false;
+                } else {
+                     $breeding_guinea_fowls = mysqli_real_escape_string($_POST['breeding_guinea_fowls']);
+                     }
+
+                //    //check if breeding_quails is selected
+                //    //breeding_quails
+
+               if(!isset($_RESULTS['breeding_quails'])){
+               $breeding_quails = false;
+               }else{
+               $breeding_quails = mysqli_real_escape_string($_POST['breeding_quails']);
+               }
+
+                //     //check if breeding_ostrich is selected
+                //     //breeding_ostrich
+
+                if(!isset($_RESULTS['breeding_ostrich'])){
+                $breeding_ostrich = false;
+                }else{
+                $breeding_ostrich = mysqli_real_escape_string($_POST['breeding_ostrich']);
+                }
+
+                //     //CHECK SOURCE OF breedING eggs
+                //     //check if import_source_parent_stock is selected
+                //     //import_source_parent_stock
+                if(!isset($_RESULTS['import_source_parent_stock'])){
+                $import_source_parent_stock = false;
+                }else{
+                $import_source_parent_stock = mysqli_real_escape_string($_POST['import_source_parent_stock']);
+                }
+
+                //     //check if local_source_parent_stock is selected
+                //     //local_source_parent_stock
+
+                if(!isset($_RESULTS['local_source_parent_stock'])){
+                $local_source_parent_stock = false;
+                }else{
+                $local_source_parent_stock = mysqli_real_escape_string($_POST['local_source_parent_stock']);
+                }
+
+                //   //check if local_source_parent_stock is selected
+                //   //local_source_parent_stock
+
+                if(!isset($_RESULTS['local_source_parent_stock'])){
+                $local_source_parent_stock = false;
+                }else{
+                $local_source_parent_stock = mysqli_real_escape_string($_POST['local_source_parent_stock']);
+                }
+
+                //   //check if import_source_grandparent_stock is selected
+                //   //import_source_grandparent_stock
+                if(!isset($_RESULTS['import_source_grandparent_stock'])){
+                $import_source_grandparent_stock = false;
+                }else{
+                $import_source_grandparent_stock = mysqli_real_escape_string($_POST['import_source_grandparent_stock']);
+                }
+
+                // //check if local_source_grandparent_stock is selected
+                // //local_source_grandparent_stock
+                if(!isset($_RESULTS['local_source_grandparent_stock'])){
+                $local_source_grandparent_stock = false;
+                }else{
+                $local_source_grandparent_stock = mysqli_real_escape_string($_POST['local_source_grandparent_stock']);
+                }
+                // end of checkboxes check
+
+
         if (isset($_POST["submit"])) {
+
             // receiving the post params
             // user businessDetails$account_status = "pending approval";
             // $fname = $_POST['first_name'];
             //$lname = $_POST['last_name'];
+          //  print_r($_POST['grandparent_stock_chicks']);
+            //$grandparent_stock_chicks
+            // if (isset($_POST['grandparent_stock_chicks'])) {
+            //     $grandparent_stock_chicks = $_POST['grandparent_stock_chicks'];
+            // }
+
 
             //user details
-            $email = $_POST['contact_email'];
-            $password = $_POST['password'];
-            //TYPE OF BREEDING ACTIVITIES
-            $usertype = "Breed User";
+            $email = trim($_POST['contact_email']);
+            $password = trim($_POST['password']);
+            //TYPE OF breedING ACTIVITIES
+            $usertype = "breeder User";
             $account_status = "pending approval";
-            $phone_number[] = $_POST['phone_number'];
-            $owners_full_name = $_POST['owners_full_name'];
+            $phoneNumber = $_POST['phonenumbers'];
+            $owners_full_name = trim($_POST['owners_full_name']);
 
 
-            $farm_name = $_POST['farm_name'];
-            $type_of_ownership = $_POST['type_of_ownership'];
-            $date_established = $_POST['date_established'];
-            $breeder_reg_number = $_POST['breeder_reg_number'];
+            $farm_name = trim($_POST['farm_name']);
+            $type_of_ownership = trim($_POST['type_of_ownership']);
+            $date_established = trim($_POST['date_established']);
+            $breed_reg_number = trim($_POST['breed_reg_number']);
+            $owners_full_name = trim($_POST['owners_full_name']);
+            //$breeder_affiliation[]
           
-            //$breed_affiliation[]
-            $breeder_affiliation = $_POST['breeder_affiliation'];
-            $breeder_manager = $_POST['breeder_manager'];
-            $breed_veterinarian = $_POST['breed_veterinarian'];
-            $vet_reg_number = $_POST['vet_reg_number'];
+            $breeder_manager = trim($_POST['breeder_manager']);
+            $breeder_veterinarian = trim($_POST['breeder_veterinarian']);
+            $vet_reg_number = trim($_POST['vet_reg_number']);
+           $typeofbreeds = $_POST['typeofBreed'];
 
+
+
+
+               // check if passwords match
+               if ($password !=  $_POST['confirm_password']) {
+                   $message = "<div class=\"alert alert-info\" role=\"alert\">
+           <strong>Match problem!</strong> <a href=\"#\" class=\"alert-link\">passwords don't match </a> and try submitting again.
+         </div>";
+               }
+            // breeding purposes
            
- 
+
 
             //type of breed
-            $broiler = $_POST['broiler'];
-            $layers =  $_POST['layers'];
-            $dual_purpose = $_POST['dual_purpose'];
+          //  $broiler = $_POST['broiler'];
+          if(!isset($_REQUEST['broiler'])){
+               $broiler = "";
+          } else {
+               $broiler = $_POST['broiler'];
+          }
 
-              // Breed
-             $typeofbreed = $_POST['typeofbreed'];
+          //    $layers =  $_POST['layers'];
+          if(!isset($_REQUEST['layers'])){
+               $layers = "";
+          } else {
+                $layers =  trim($_POST['layers']);
+          }
+
+          //    $dual_purpose = $_POST['dual_purpose'];
+          if(!isset($_REQUEST['dual_purpose'])){
+               $dual_purpose = "";
+          } else {
+               $dual_purpose = trim($_POST['dual_purpose']);
+          }
+
 
             //type of poultry hacthing
-            $breeding_fowls = $_POST['breeding_chicken'];
-            $breeding_turkey = $_POST['breeding_turkey'];
-            $breeding_ducks = $_POST['breeding_ducks'];
-            $breeding_geese = $_POST['breeding_geese'];
-            $breeding_guinea_fowls = $_POST['breeding_guinea_fowls'];
-            $breeding_quails = $_POST['breeding_quails'];
-            $breeding_ostrich = $_POST['breeding_ostrich'];
+          //  $breeding_fowls = $_POST['breeding_chicken'];
+          if(!isset($_REQUEST['breeding_chicken'])){
+               $breeding_fowls = "";
+          } else {
+               $breeding_fowls = trim($_POST['broiler']);
+          }
 
-            //source of eggs by the hatcher
-            $local_source_parent_stock = $_POST['local_source_parent_stock'];
-            $import_source_parent_stock = $_POST['import_source_parent_stock'];
-            $local_source_grandparent_stock= $_POST['local_source_grandparent_stock'];
-            $import_source_grandparent_stock = $_POST['import_source_grandparent_stock'];
+       //  $breeding_turkey = $_POST['breeding_turkey'];
+          if(!isset($_REQUEST['breeding_turkey'])){
+               $breeding_turkey = "";
+          } else {
+                $breeding_turkey =  trim($_POST['breeding_turkey']);
+          }
 
-            //breed Capacity
-            $maximum_flock_size = $_POST['maximum_flock_size'];
-            $total_peryear_capacity = $_POST['total_peryear_capacity'];
+          //  $breeding_ducks = $_POST['breeding_ducks'];
+          if(!isset($_REQUEST['breeding_ducks'])){
+               $breeding_ducks = "";
+          } else {
+               $breeding_ducks = trim($_POST['breeding_ducks']);
+          }
+
+          //  $breeding_geese = $_POST['breeding_geese'];
+          if(!isset($_REQUEST['breeding_geese'])){
+               $breeding_geese = "";
+          } else {
+               $breeding_geese = trim($_POST['breeding_geese']);
+          }
+
+          //  $breeding_guinea_fowls = $_POST['breeding_guinea_fowls'];
+          if(!isset($_REQUEST['breeding_guinea_fowls'])){
+               $breeding_guinea_fowls = "";
+          } else {
+               $breeding_guinea_fowls = trim($_POST['breeding_guinea_fowls']);
+          }
+
+          //  $breeding_quails = $_POST['breeding_quails'];
+          if(!isset($_REQUEST['breeding_quails'])){
+               $breeding_quails = "";
+          } else {
+               $breeding_quails = trim($_POST['breeding_quails']);
+          }
+
+          //  $breeding_ostrich = $_POST['breeding_ostrich'];
+          if(!isset($_REQUEST['breeding_ostrich'])){
+               $breeding_ostrich = "";
+          } else {
+               $breeding_ostrich = trim($_POST['breeding_ostrich']);
+          }
+
+
+
+
+            //source of eggs by the breeder
+            //  $import_source_parent_stock = $_POST['import_source_parent_stock'];
+            if(!isset($_REQUEST['import_source_parent_stock'])){
+                 $import_source_parent_stock = "";
+            } else {
+                 $import_source_parent_stock = trim($_POST['import_source_parent_stock']);
+            }
+
+            //$local_source_grandparent_stock = $_POST['local_source_grandparent_stock'];
+            if(!isset($_REQUEST['local_source_grandparent_stock'])){
+                 $local_source_grandparent_stock = "";
+            } else {
+                 $local_source_grandparent_stock = trim($_POST['local_source_grandparent_stock']);
+            }
+
+            //$import_source_grandparent_stock = $_POST['import_source_grandparent_stock'];
+            if(!isset($_REQUEST['import_source_grandparent_stock'])){
+                 $import_source_grandparent_stock = "";
+            } else {
+                 $import_source_grandparent_stock = trim($_POST['import_source_grandparent_stock']);
+            }
+
+            //$local_source_parent_stock = $_POST['local_source_parent_stock'];
+            if(!isset($_REQUEST['local_source_parent_stock'])){
+                 $local_source_parent_stock = "";
+            } else {
+                 $local_source_parent_stock = trim($_POST['local_source_parent_stock']);
+            }
+
+
+            //breeder Capacity
+            $maximum_flock_size = trim($_POST['maximum_flock_size']);
+            $total_peryear_capacity = trim($_POST['total_peryear_capacity']);
 
              //
-             $websiteurl = $_POST['websiteurl'];
-             $contact_person = $_POST['contact_person'];
-             $country = $_POST['country'];
-             $region = $_POST['region'];
-             $district = $_POST['district'];
-             $address = $_POST['address'];
-            
+             $websiteurl = trim($_POST['websiteurl']);
+             $contact_person = trim($_POST['contact_person']);
+             $country = trim($_POST['country']);
+             $region = trim($_POST['region']);
+             $district = trim($_POST['district']);
+             $address = trim($_POST['address']);
+             $pobox = trim($_POST['pobox']);
+            // $phonenumber = $_POST['phonenumbers'];
 
+            //validations
+            $fields_required= array("contact_email", "owners_full_name", "password", "breeder_manager", "contact_person");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!has_presence($value)){
 
+                $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+                </div>";
 
+                 $errors[$field] = ucfirst($field) . " can't be blank";
 
-
-            if (isset($_POST['concerned'])) {
-                $type_consern = $_POST['concerned'];
-
-                echo "You chose the following color(s): <br>";
-                foreach ($type_consern as $concerned) {
-                    echo $concerned."<br />";
-                }
-            } // end brace for if(isset
-            else {
-                echo "You did not choose a color.";
+              }
             }
 
-            // check if passwords match
-            if ($password !=  $_POST['confirm_password']) {
+            //check if the values are numeric
+            $fields_required= array("vet_reg_number", "breed_reg_number", "maximum_flock_size", "total_peryear_capacity");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!is_numeric($value)){
+
                 $message = "<div class=\"alert alert-info\" role=\"alert\">
-        <strong>Match problem!</strong> <a href=\"#\" class=\"alert-link\">passwords don't match </a> and try submitting again.
-      </div>";
+                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
+                </div>";
+
+                 $errors[$field] = ucfirst($field) . " should be numeric";
+
+              }
             }
+
 
             if (empty($errors)) {
-                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
+                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
                 if ($db->doesUserEmailExist($email)) {
                     // user already existed
                     // $response["error"] = true;
@@ -146,7 +411,7 @@
            </div>";
                 // echo json_encode($response);
                 } else {
-                    $user = $db->registerUser( $email, $password, $usertype, $account_status);
+                    $user = $db->registerUser($email, $password, $usertype, $account_status);
 
                     if ($user) {
                         $response["error"] = false;
@@ -166,66 +431,164 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $breed = $db->registerNewBreeder(
-                $user_id,
-                $breeder_farm_name,
-                $year_established,                
-                $breeder_reg_number,                
-                $owners_full_name,
-                $breeder_affiliation,
-                $country,
-                $region,
-                $district,
-                $websiteurl,
-                $address,
-                $contact_person,
-                $maximum_flock_size,
-                $total_peryear_capacity,
-              
-                $vet_reg_number,
-              
-                $breed_veterinarian,
-                $breeder_manager,
-                $typeofbreed,   
-                $phone_number
-
-                );
-                    // register new breeder
-                    if ($breed) {
+                    $breeder = $db->registerNewbreeder($user_id,
+                        $owners_full_name,
+                        $farm_name,
+                        $type_of_ownership,
+                        $date_established,
+                        $breed_reg_number,
+                        $breeder_manager,
+                        $breeder_veterinarian,
+                        $vet_reg_number,
+                        $maximum_flock_size,
+                        $total_peryear_capacity,
+                        $contact_person,
+                        $country,
+                        $region,
+                        $district,
+                        $pobox,
+                        $websiteurl,
+                        $address);
+                    if ($breeder) {
                         // user stored successfully
-                        $response["error"] = false;
-                        $response["htuid"] = $breed["breed_unique_id"];
-                        $response["breed"]["breed_id"] = $breed["breed_id"];
-                        $response["breed"]["user_id"] = $breed["user_id"];
-                        $response["breed"]["breed_farm_name"] = $breed["breed_name"];
-                        $response["breed"]["year_established"] = $breed["year_established"];
-                        $response["breed"]["breeder_reg_number"] = $breed["breeder_reg_number"];
-                        $response["breed"]["owner_full_name"] = $breed["owner_full_name"];
-                        $response["breed"]["breeder-affiliation"] = $breed["breeder-affiliation"];
-                        $response["breed"]["country"] = $breed["country"];
-                        $response["breed"]["region"] = $breed["region"];
-                        $response["breed"]["district"] = $breed["district"];
-                        $response["breed"]["address"] = $breed["address"];
-                        $response["breed"]["phone_number"] = $breed["phone_number[]"];
-                        $response["breed"]["maximum_flock_size"] = $breed["maximum_flock_size"];
-                        $response["breed"]["total_peryear_capacity"] = $breed["total_peryear_capacity"];                  
-                       
-                        $response["breed"][" breeder_manager"] = $breed["breeder_manager"];
-                        $response["breed"]["breed_veterinarian"] = $breed["breed_veterinarian"];
-                        $response["breed"]["vet_reg_number"] = $breed["vet_reg_number"];
-
-                        $response["breed"]["typeofbreed"] = $breed["typeofbreed"];
-                       
-                  
+                           $response["error"] = false;
+                           $response["htuid"] = $breeder["breeder_unique_id"];
+                           $response["breeder"]["breeder_id"] = $breeder["breeder_id"];
+                           $response["breeder"]["user_id"] = $breeder["user_id"];
+                           $response["breeder"]["farm_name"] = $breeder["farm_name"];
+                           $response["breeder"]["date_established"] = $breeder["date_established"];
+                           $response["breeder"]["type_of_ownership"] = $breeder["type_of_ownership"];
+                           $response["breeder"]["breed_reg_number"] = $breeder["breed_reg_number"];
+                           $response["breeder"]["breeder_manager"] = $breeder["breeder_manager"];
+                           $response["breeder"]["breeder_veterinarian"] = $breeder["breeder_veterinarian"];
+                           $response["breeder"]["vet_reg_number"] = $breeder["vet_reg_number"];
+                           $response["breeder"]["country"] = $breeder["country"];
+                           $response["breeder"]["region"] = $breeder["region"];
+                           $response["breeder"]["district"] = $breeder["district"];
+                           $response["breeder"]["pobox"] = $breeder["pobox"];
+                           $response["breeder"]["address"] = $breeder["address"];
+                           $response["breeder"]["contact_person"] = $breeder["contact_person"];
+                           $response["breeder"]["maximum_flock_size"] = $breeder["maximum_flock_size"];
+                           $response["breeder"]["total_peryear_capacity"] = $breeder["total_peryear_capacity"];
+                           $response["breeder"]["websiteurl"] = $breeder["websiteurl"];
+                           $response["breeder"]["created_at"] = $breeder["created_at"];
+                           $response["breeder"]["updated_at"] = $breeder["updated_at"];
 
 
+                           $breeder_id = $breeder["breeder_id"];
+                          //insert the dynamic Fields
+                          //breeder Affiliation
+                          $affiliation = $_POST['affiliation'];
+
+                          $newaffiliation = $db->multipleAffiliations($user_id, $breeder_id, $affiliation);
+                          $newphonenumber = $db->multiplePhoneNumber($user_id, $breeder_id, $phoneNumber);
+                          $newtypeofbreed = $db->multipleTypeOfBreedProduced($user_id, $breeder_id, $typeofbreeds);
 
 
+
+                         // breeder activities/products
+                         //$utility_chicks
+                         if(!empty($utility_chicks)){
+                           $breeded_products = $utility_chicks;
+                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                         }
+                          //insert $grandparent_stock_chicks
+                         if(!empty($grandparent_stock_chicks)){
+                           $breeded_products = $grandparent_stock_chicks;
+                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                         }
+
+                         if(!empty($parent_stock_chicks)){
+                           $breeded_products = $parent_stock_chicks;
+                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                         }
+
+                     // breeder breeding purposes
+                     //$utility_chicks
+                     if(!empty($broiler)){
+                       $breed_purpose = $broiler;
+                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                     }
+                      //insert $grandparent_stock_chicks
+                     if(!empty($layers)){
+                       $breed_purpose = $layers;
+                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                     }
+
+                     if(!empty($dual_purpose)){
+                       $breed_purpose = $dual_purpose;
+                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                     }
+
+                     // breeding poultry TYPES
+                     //what do you breed
+                     if(!empty($breeding_fowls)){
+                       $poultry_type = $breeding_fowls;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+                      //insert $breeding_turkey
+                     if(!empty($breeding_turkey)){
+                       $poultry_type = $breeding_turkey;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+                         // insert $breeding_ducks
+                     if(!empty($breeding_ducks)){
+                       $poultry_type = $breeding_ducks;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+
+                     //$utility_chicks
+                     if(!empty($breeding_geese)){
+                       $poultry_type = $breeding_geese;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+                      //insert $breeding_guinea_fowls
+                     if(!empty($breeding_guinea_fowls)){
+                       $poultry_type = $breeding_guinea_fowls;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+
+                     // insert $breeding_quails
+                     if(!empty($breeding_quails)){
+                       $poultry_type = $breeding_quails;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+                     // insert $breeding_ostrich
+                     if(!empty($breeding_ostrich)){
+                       $poultry_type = $dual_purpose;
+                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                     }
+
+
+                     // breeding eggs sources
+                     //$import_source_parent_stock
+                     if(!empty($import_source_parent_stock)){
+                       $egg_sources = $import_source_parent_stock;
+                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                     }
+                      //insert $local_source_grandparent_stock
+                     if(!empty($local_source_grandparent_stock)){
+                       $egg_sources = $local_source_grandparent_stock;
+                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                     }
+
+                      //insert $import_source_grandparent_stock
+                     if(!empty($import_source_grandparent_stock)){
+                       $egg_sources = $import_source_grandparent_stock;
+                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                     }
+
+                      // insert $local_source_parent_stock
+                     if(!empty($local_source_parent_stock)){
+                       $egg_sources = $local_source_parent_stock;
+                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                     }
+
+                     // email verification link is sent here
 
 
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
-
-                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new breed</a>.
+                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new breeder</a>.
                 </div>";
                     }
                 }
@@ -239,9 +602,7 @@
 
 
     ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -250,7 +611,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
 
-    <title>Livestoka | Breeder Flock farm Registration </title>
+    <title>Livestoka | breeder Owners Registration </title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -460,8 +821,7 @@
     font-size: 12px;
 }
     </style>
-  </head>
-  <body>
+  </head><body>
 
     <nav class="navbar navbar-default navbar-static-top">
       <a href="../index.php" class="navbar-brand">Back To Livestoka</a>
@@ -470,26 +830,22 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Breeder Flock Farm Regitration</h1>
+        <h1>breeder Registration Area</h1>
         <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
       </div>
       <!--register section -->
       <section id="manufacturersReg">
         <!-- <form action="feed_manufacture_registry.php" method="post"> -->
 
-   <?php //echo $message;?>
+      <?php echo $message;?>
        <?php
-        //echo form_errors($errors);
+      //  echo form_errors($errors);
          ?>
-      
         <form action="breeder_flock_farm_reg.php" method="post">
     <!-- company information -->
             <div class="card">
               <div class="card-body">
-                <div class="form-group">
-                  <label for="formGroupExampleInput"><strong>Farm Description</strong></label>
-                   <hr>
-                </div>
+               
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -501,10 +857,10 @@
                       <div class="form-group">
                         <label for="formGroupExampleInput2">Type of Ownership</label>
                          <select class="form-control" id="type_of_ownership" name="type_of_ownership" value="<?= isset($_POST['type_of_ownership']) ? $_POST['type_of_ownership'] : ''; ?>">
-                           <option>SELECT</option>
-                           <option>Sole Proprietorship (individual or family)</option>
-                           <option>Liability Company</option>
-                           <option>Non-Liability (NGO, Government, project etc)</option>
+                           <option >SELECT</option>
+                           <option value="Sole">Sole Proprietorship (individual or family)</option>
+                           <option value="liabilityco">Liability Company</option>
+                           <option value="noneliabilityco">Non-Liability (NGO, Government, project etc)</option>
                          </select>
 
                       </div>
@@ -519,7 +875,7 @@
                     </div> -->
                     <label for="lblyear_established">Date of Establishment<small> (dd/mm/yy)</small></label>
                     <div class="form-group input-group datetimepicker">
-                        <input type="text" class="form-control"  id="date_established" name="date_established" placeholder="date established">
+                        <input type="text" class="form-control"  id="date_established" name="date_established" value="<?= isset($_POST['date_established']) ? $_POST['date_established'] : ''; ?>">
                         <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                       </span>
@@ -527,8 +883,8 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="lblyear_established">Registration Number</label>
-                      <input type="text" class="form-control" id="breeder_reg_number" name="breeder_reg_number"  value="<?= isset($_POST['breeder_reg_number']) ? $_POST['breeder_reg_number'] : ''; ?>" placeholder="">
+                      <label for="breed_reg_number">Registration Number</label>
+                      <input type="text" class="form-control " id="breed_reg_number" name="breed_reg_number"  value="<?= isset($_POST['breed_reg_number']) ? $_POST['breed_reg_number'] : ''; ?>" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -537,11 +893,11 @@
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
                 <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
-              <div class="form-group ">
+              <div class="form-group col-md-6">
                 <div class="form-group multiple-form-group" data-max=6>
-                  <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
+                  <label for="formGroupExampleInput2">breeder Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
-                    <input type="text" name="breeder_affiliation[]" class="form-control">
+                    <input type="text" name="affiliation[]" class="form-control">
                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                       </button></span>
                   </div>
@@ -557,7 +913,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
+                    <label for="formGroupExampleInput"><strong>breeder Address and Location</strong></label>
                   <hr>
                   </div>
                   <div class="form-group">
@@ -572,21 +928,20 @@
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Region</label>
-                    <select  class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
                     <option>SELECT</option>
                        <option>Dar es Salaam</option>
+                       <option>Mwanza</option>
                        <option>Arusha</option>
                        <option>Dodoma</option>
-                       <option>Mwanza</option>
                      </select>
                   </div>
-
                   <div class="form-group">
                     <label for="formGroupExampleInput2">District</label>
-                    <select  class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
                     <option>SELECT</option>
-                       <option>Ilala</option>
                        <option>Kinondoni</option>
+                       <option>Ilala</option>
                        <option>Temeke</option>
                        <option>Ubungo</option>
                      </select>
@@ -596,11 +951,15 @@
                     <textarea class="form-control" id="address" name="address" rows="3" value="<?= isset($_POST['address']) ? $_POST['address'] : ''; ?>"></textarea>
                   </div>
 
-              <div class="form-group ">
+                  <div class="form-group">
+                    <label for="exampleTextarea">P.O.Box</label>
+                    <input type="text" class="form-control" id="pobox" name="pobox" value="<?= isset($_POST['pobox']) ? $_POST['pobox'] : ''; ?>" placeholder="">
+                  </div>
+              <div class="form-group col-md-6">
                       <div class="form-group multiple-form-group" data-max=6>
                         <label for="formGroupExampleInput2">Office Phone Number:</label>
                         <div class="form-group input-group">
-                          <input type="text" name="phone_number[]" class="form-control">
+                          <input type="text" class="form-control" name="phonenumbers[]" id="phonenumbers" value="<?= isset($_POST['pobox']) ? $_POST['pobox'] : ''; ?>" >
                             <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                             </button></span>
                         </div>
@@ -612,21 +971,21 @@
                   <hr>
                 </div>
 
-                <div class="form-group ">
-                  <label for="formGroupExampleInput2" class="control-label">Farm Manager:</label>
-                  <input type="text" class="form-control" id="---_manager" name="breeder_manager" value="<?= isset($_POST['breeder_manager']) ? $_POST['breeder_manager'] : ''; ?>" placeholder=" ">
+                <div class="form-group col-md-6">
+                  <label for="formGroupExampleInput2">breeder Manager:</label>
+                  <input type="text" class="form-control" id="breeder_manager" name="breeder_manager" value="<?= isset($_POST['breeder_manager']) ? $_POST['breeder_manager'] : ''; ?>" placeholder=" ">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="breed_veterinarian" class="control-label">Farm Veterinarian:</label>
-                      <input type="text" class="form-control" id="breed_veterinarian" name="breed_veterinarian" value="<?= isset($_POST['breed_veterinarian']) ? $_POST['breed_veterinarian'] : ''; ?>" placeholder=" ">
+                      <label for="breeder_veterinarian">breeder Veterinarian:</label>
+                      <input type="text" class="form-control" id="breeder_veterinarian" name="breeder_veterinarian" value="<?= isset($_POST['breeder_veterinarian']) ? $_POST['breeder_veterinarian'] : ''; ?>" placeholder=" ">
                     </div>
                   </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="lbl_vet_reg_number" class="control-label">Vet Reg Number (Individual or Corporate):</label>
+                        <label for="lbl_vet_reg_number">Vet Reg Number (Individual or Corporate):</label>
                         <input type="text" class="form-control" id="vet_reg_number" name="vet_reg_number" value="<?= isset($_POST['vet_reg_number']) ? $_POST['vet_reg_number'] : ''; ?>" placeholder=" ">
                       </div>
                     </div>
@@ -645,7 +1004,27 @@
                         <label for="lblestablishment_activities"><strong>Establishment Activities</strong></label>
                         <hr>
                       </div>
-
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p>Type of breeding Activities.</p>
+                            <div class="form-check">
+                                <label class="customcheck" style="font-size: 18px;"> Utility Chicks
+                                  <input type="checkbox" checked="checked" name="utility_chicks" value="Utility Chicks">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="customcheck" style="font-size: 18px;"> Grandparent stock chicks
+                                  <input type="checkbox" name="grandparent_stock_chicks" value="Grandparent Stock Chicks">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="customcheck" style="font-size: 18px;"> Parent stock chicks
+                                  <input type="checkbox" name="parent_stock_chicks" value="Parent Stock Chicks">
+                                  <span class="checkmark"></span>
+                                </label>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
                     <div class="form-group">
                       <!-- <label for="formGroupExampleInput"><strong>Establishment Focus.</strong></label> -->
                       <hr>
@@ -673,9 +1052,9 @@
                        <div class="col-md-6">
                          <div class="form-group col-md-6">
                                  <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Breed Type<small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
+                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
                                    <div class="form-group input-group">
-                                     <input type="text" name="typeofbreed[]" id="typeofbreed" class="form-control">
+                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control" >
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                                        </button></span>
                                    </div>
@@ -719,8 +1098,8 @@
                             <span class="checkmark"></span>
                           </label>
                           </div>
-
                         </div>
+
                         <div class="col-md-6">
                           <div class="form-check">
                           <label class="customcheck" style="font-size: 18px;">Quails
@@ -739,70 +1118,43 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Local Source Parent Stock <small>(*click to select)</small></label>
-                               <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
-                                   <div class="form-group input-group">
-                                     <input type="text" name="local_source_parent_stock[]" id="local_source_parent_stock" class="form-control">
-                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                       </button></span>
-                                   </div>
-                               </div>
-                          </div>
-                          <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Imported source parent stock <small>(*click to select)</small></label>
-                               <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Country <small>(e.g.  USA, Great Britain, India)</small></label>
-                                   <div class="form-group input-group">
-                                     <input type="text" name="import_source_parent_stock[]" id="import_source_parent_stock" class="form-control">
-                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                       </button></span>
-                                   </div>
-                               </div>
+                               <label for="formGroupExampleInput2">Source of breeding eggs <small>(*click to select)</small></label>
+                            <div class="form-check">
+                                <label class="customcheck" style="font-size: 18px;">Import source parent stock
+                                  <input type="checkbox" checked="checked" name="import_source_parent_stock" id="import_source_parent_stock" class="add" value="import">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="customcheck" style="font-size: 18px;"> Local source parent stock
+                                  <input type="checkbox" name="local_source_parent_stock" id="local_source_parent_stock" class="add" value="local_source_parent_stock">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="customcheck" style="font-size: 18px;">Import source grandparent stock
+                                  <input type="checkbox" name="import_source_grandparent_stock" id="import_source_grandparent_stock" class="add" value="">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="customcheck" style="font-size: 18px;">Local source grandparent stock
+                                  <input type="checkbox" name="local_source_grandparent_stock" id="local_source_grandparent_stock" class="add" value="">
+                                  <span class="checkmark"></span>
+                                </label>
+                            </div>
                           </div>
                           </div>
                         </div>
 
- <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Local Source Grand-Parent Stock <small>(*click to select)</small></label>
-                               <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Region <small>(e.g. Dar es Salaam, Arusha, Mbeya)</small></label>
-                                   <div class="form-group input-group">
-                                     <input type="text" name="local_source_grandparent_stock[]" id="local_source_grandparent_stock" class="form-control">
-                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                       </button></span>
-                                   </div>
-                               </div>
-                          </div>
-                          <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Imported source Grand-parent stock <small>(*click to select)</small></label>
-                               <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Country <small>(e.g. USA, Great Britain, India)</small></label>
-                                   <div class="form-group input-group">
-                                     <input type="text" name="import_source_grandparent_stock[]" id="import_source_grandparent_stock" class="form-control">
-                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                       </button></span>
-                                   </div>
-                               </div>
-                          </div>
-                          </div>
-                        </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="formGroupExampleInput"><strong>Breeding Capacity</strong></label>
+                            <label for="formGroupExampleInput"><strong>breeder Capacity</strong></label>
                             <hr>
                           </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
-                            <label for="lbl_total_incubator_capacity">Maximum Flock Size</label>
+                            <label for="lbl_maximum_flock_size">Maximum Flock Size</label>
                             <input type="text" class="form-control" id="maximum_flock_size" name="maximum_flock_size" value="<?= isset($_POST['maximum_flock_size']) ? $_POST['maximum_flock_size'] : ''; ?>" placeholder=" ">
                           </div>
                           <div class="form-group">
-                            <label for="lbltotal_hatcher_capacity">Total  Produced per year</label>
+                            <label for="lbltotal_peryear_capacity">Total Per Year Capacity</label>
                             <input type="text" class="form-control" id="total_peryear_capacity" name="total_peryear_capacity" value="<?= isset($_POST['total_peryear_capacity']) ? $_POST['total_peryear_capacity'] : ''; ?>" placeholder=" ">
                           </div>
                         </div>
@@ -862,6 +1214,7 @@
 
     <!--scripts -->
     <!-- jQuery first, then Bootstrap JS. -->
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -965,7 +1318,7 @@
 
             var $formGroup = $(this).closest('.form-group');
             var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-            var $formGroupClone = $formGroup.clone();
+            var $formGroupClone =  $formGroup.clone();
 
             $(this)
                 .toggleClass('btn-default btn-add btn-danger btn-remove')
@@ -998,12 +1351,39 @@
             return $form.find('.form-group').length;
         };
 
+ $(function () {
+
+var addFormGroup1 = function (event) {
+    event.preventDefault();
+
+    var $formGroup = $(this).closest('.form-group');
+    
+    var $formGroupClone =
+    "<div class="form-group">'+'
+                    <label for="exampleTextarea">'+'specify'+'</label>'+'
+                    '+' <input type="text" class="form-control" id="pobox" name="pobox" value="<?= isset($_POST['pobox']) ? $_POST['pobox'] : ''; ?>" placeholder="">
+                  </div>";
+    $(this)
+        .toggleClass('btn-default btn-add btn-danger btn-remove')
+        .html('–');
+
+    $formGroupClone.find('input').val('');
+    $formGroupClone.insertAfter($formGroup);
+
+    var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+    if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
+        $lastFormGroupLast.find('.btn-add').attr('disabled', true);
+    }
+};
         $(document).on('click', '.btn-add', addFormGroup);
         $(document).on('click', '.btn-remove', removeFormGroup);
-
+        $(document).on('click', '.add', addFormGroup1);
     });
 })(jQuery);
 </script>
+<?php
+include('../../includes/layouts/public_ly_footer.php');
+?>
 <script>
 $(document).ready(function (){
 	$('.datetimepicker').datetimepicker();

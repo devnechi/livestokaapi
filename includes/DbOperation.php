@@ -1,5 +1,5 @@
 <?php
-include('../../web/vendor/autoload.php');
+
 
 class DbOperation
 {
@@ -1264,7 +1264,7 @@ function smtpmailer($to,$id) {
     global $error;
     $mail = new PHPMailer();
    define('GUSER', 'jacksonmorton5@gmail.com'); // GMail username
-   define('GPWD', '*********'); // GMail password
+   define('GPWD', 'semperkoda'); // GMail password
    define('SMTPSERVER', 'localhost'); // sec. smtp server
    $subject="Email Confirmation";
    $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
