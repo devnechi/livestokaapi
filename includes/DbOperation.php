@@ -1254,10 +1254,10 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 
     function smtpmailer($to,$id) {
         global $error;
-        $mail = new PHPMailer\PHPMailer\PHPMailer();;
-       define('GUSER', 'kijanamwizi@gmail.com'); // GMail username
-       define('GPWD', 'starada2dogs'); // GMail password
-       define('SMTPSERVER', 'localhost'); // sec. smtp server
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+       define('GUSER', ''); // GMail username
+       define('GPWD', ''); // GMail password
+       define('SMTPSERVER', ''); // sec. smtp server
        $subject="Email Confirmation";
        $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
        $htmlStr = "";
@@ -1289,12 +1289,12 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
    $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
    $mail->SMTPAuth = true;                             // Enable SMTP authentication
    $mail->Username =  $to;    //'kijanamwizi@gmail.com';           // SMTP username
-   $mail->Password = 'starada2dogs';                       // SMTP password
+   $mail->Password = '';                       // SMTP password
    $mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
    $mail->Port = 587;                                  // TCP port to connect, tls=587, ssl=465
    $mail->From = 'info@livestoka.com';
    $mail->FromName = 'Please Verify Account';
-   $mail->addAddress('denniskilawilla@gmail.com', 'dennis michael');     // Add a recipient
+   $mail->addAddress($to);     // Add a recipient
    $mail->addReplyTo('info@livestoka.com', 'future basics');
    $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
    $mail->isHTML(false);                                  // Set email format to HTML

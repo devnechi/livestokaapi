@@ -705,12 +705,12 @@
         <!-- <form action="dairy_farm_registration.php" method="post"> -->
             <div class="container">
               <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
                       <div class="card">
-                        <div class="card-header" data-background-color="orange">
+                        <!-- <div class="card-header" data-background-color="orange">
                           <h4>Dairy Type</h4>
                             <p class="category">deals with dairy and milk products</p>
-                        </div>
+                        </div> -->
                         <div class="card-content table-responsive">
                                <div class="row">
                                  <div class="col-xs-3">
@@ -719,7 +719,7 @@
                                       <h3>Dairy Breeding Farm</h3>
                                    </div>
                                  </div>
-                                 <div class="col-xs-3">
+                                 <!-- <div class="col-xs-3">
                                    <div class="card-content table-responsive">
                                      <img src="../images/dealers/hatchery.jpg">
                                       <h3>Dairy Farm</h3>
@@ -730,10 +730,10 @@
                                      <img src="../images/dealers/hatchery.jpg">
                                       <h3>Milk Collection Center</h3>
                                    </div>
-                                 </div>
+                                 </div> -->
                                </div>
 
-                               <div class="row">
+                               <!-- <div class="row">
                                  <div class="col-xs-3">
                                    <div class="card-content table-responsive">
                                       <img src="../images/dealers/hatchery.jpg">
@@ -752,7 +752,7 @@
                                       <h3>Milk Trader</h3>
                                    </div>
                                  </div>
-                               </div>
+                               </div> -->
                            </div>
                         </div>
                     </div>

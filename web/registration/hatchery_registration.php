@@ -633,18 +633,18 @@
                      }
 
                      // email verification link is sent here
-       //               $to = $user["email"];
-       //               $id = $user_id;
-       //                $verify_email= $db->smtpmailer($to,$id);
-       //                if($verify_email){
-       //                  $message = "<div class=\"alert alert-success\" role=\"alert\">
-       //          <strong>Well done!</strong> You successfully registered a new hatchery <a href=\"#\" class=\"alert-link\"> check you emails to verify this account</a>.
-       //          </div>";
-       //        } else {
-       //          $message = "<div class=\"alert alert-info\" role=\"alert\">
-       //   <strong>Email Error!</strong> <a href=\"#\" class=\"alert-link\">unable</a> to send you a verification email.
-       // </div>";
-       //        }
+                     $to = $user["email"];
+                     $id = $user_id;
+                      $verify_email= $db->smtpmailer($to,$id);
+                      if($verify_email){
+                        $message = "<div class=\"alert alert-success\" role=\"alert\">
+                <strong>Well done!</strong> You successfully registered a new hatchery <a href=\"#\" class=\"alert-link\"> check you emails to verify this account</a>.
+                </div>";
+              } else {
+                $message = "<div class=\"alert alert-info\" role=\"alert\">
+         <strong>Email Error!</strong> <a href=\"#\" class=\"alert-link\">unable</a> to send you a verification email.
+       </div>";
+              }
        $message = "<div class=\"alert alert-success\" role=\"alert\">
  <strong>Well done!</strong> You successfully registered a new hatchery <a href=\"#\" class=\"alert-link\"> check you emails to verify this account</a>.
  </div>";
