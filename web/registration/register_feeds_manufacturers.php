@@ -303,6 +303,10 @@
     <!-- Custom styles for this template -->
     <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
+
     <style>
     .card {
          border: transparent;

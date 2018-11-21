@@ -3,7 +3,7 @@
     require_once '../../includes/DbConnect.php';
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
-    include('../../includes/layouts/public_layout_header.php');
+    // include('../../includes/layouts/public_layout_header.php');
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -45,7 +45,7 @@
         $message = " ";
 
 
-        
+
 
                     //check if broiler is selected
                     //$broiler
@@ -230,7 +230,7 @@
             $breed_reg_number = trim($_POST['breed_reg_number']);
             $owners_full_name = trim($_POST['owners_full_name']);
             //$breeder_affiliation[]
-          
+
             $breeder_manager = trim($_POST['breeder_manager']);
             $breeder_veterinarian = trim($_POST['breeder_veterinarian']);
             $vet_reg_number = trim($_POST['vet_reg_number']);
@@ -246,7 +246,7 @@
          </div>";
                }
             // breeding purposes
-           
+
 
 
             //type of breed
@@ -602,226 +602,229 @@
 
 
     ?>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
+        <title>Livestoka | Breeder Flock Farms Registration </title>
 
-    <title>Livestoka | breeder Owners Registration </title>
+        <!-- Bootstrap core CSS -->
+        <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../web/css/style2.css">
-    <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
+        <!-- Custom styles for this template -->
+        <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../web/css/style2.css">
+        <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
 
 
-    <style>
-    .card {
-         border: transparent;
+        <style>
+        .card {
+             border: transparent;
+        }
+
+        /* The customcheck */
+    .customcheck {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
-    /* The customcheck */
-.customcheck {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+    /* Hide the browser's default checkbox */
+    .customcheck input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
 
-/* Hide the browser's default checkbox */
-.customcheck input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 5px;
+    }
 
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 5px;
-}
+    /* On mouse-over, add a grey background color */
+    .customcheck:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
 
-/* On mouse-over, add a grey background color */
-.customcheck:hover input ~ .checkmark {
-    background-color: #ccc;
-}
+    /* When the checkbox is checked, add a blue background */
+    .customcheck input:checked ~ .checkmark {
+        background-color: #02cf32;
+        border-radius: 5px;
+    }
 
-/* When the checkbox is checked, add a blue background */
-.customcheck input:checked ~ .checkmark {
-    background-color: #02cf32;
-    border-radius: 5px;
-}
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
+    /* Show the checkmark when checked */
+    .customcheck input:checked ~ .checkmark:after {
+        display: block;
+    }
 
-/* Show the checkmark when checked */
-.customcheck input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.customcheck .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
+    /* Style the checkmark/indicator */
+    .customcheck .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
 
 
-@import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css')
+    @import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css')
 
-.funkyradio div {
-  clear: both;
-  overflow: hidden;
-}
+    .funkyradio div {
+      clear: both;
+      overflow: hidden;
+    }
 
-.funkyradio label {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4;
-  font-weight: normal;
-}
+    .funkyradio label {
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid #D1D3D4;
+      font-weight: normal;
+    }
 
-.funkyradio input[type="radio"]:empty,
-.funkyradio input[type="checkbox"]:empty {
-  display: none;
-}
+    .funkyradio input[type="radio"]:empty,
+    .funkyradio input[type="checkbox"]:empty {
+      display: none;
+    }
 
-.funkyradio input[type="radio"]:empty ~ label,
-.funkyradio input[type="checkbox"]:empty ~ label {
-  position: relative;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 2em;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+    .funkyradio input[type="radio"]:empty ~ label,
+    .funkyradio input[type="checkbox"]:empty ~ label {
+      position: relative;
+      line-height: 2.5em;
+      text-indent: 3.25em;
+      margin-top: 2em;
+      cursor: pointer;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    }
 
-.funkyradio input[type="radio"]:empty ~ label:before,
-.funkyradio input[type="checkbox"]:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #D1D3D4;
-  border-radius: 3px 0 0 3px;
-}
+    .funkyradio input[type="radio"]:empty ~ label:before,
+    .funkyradio input[type="checkbox"]:empty ~ label:before {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 2.5em;
+      background: #D1D3D4;
+      border-radius: 3px 0 0 3px;
+    }
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-  color: #888;
-}
+    .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+    .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+      color: #888;
+    }
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2;
-}
+    .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+    .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+      content: '\2714';
+      text-indent: .9em;
+      color: #C2C2C2;
+    }
 
-.funkyradio input[type="radio"]:checked ~ label,
-.funkyradio input[type="checkbox"]:checked ~ label {
-  color: #777;
-}
+    .funkyradio input[type="radio"]:checked ~ label,
+    .funkyradio input[type="checkbox"]:checked ~ label {
+      color: #777;
+    }
 
-.funkyradio input[type="radio"]:checked ~ label:before,
-.funkyradio input[type="checkbox"]:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #333;
-  background-color: #ccc;
-}
+    .funkyradio input[type="radio"]:checked ~ label:before,
+    .funkyradio input[type="checkbox"]:checked ~ label:before {
+      content: '\2714';
+      text-indent: .9em;
+      color: #333;
+      background-color: #ccc;
+    }
 
-.funkyradio input[type="radio"]:focus ~ label:before,
-.funkyradio input[type="checkbox"]:focus ~ label:before {
-  box-shadow: 0 0 0 3px #999;
-}
+    .funkyradio input[type="radio"]:focus ~ label:before,
+    .funkyradio input[type="checkbox"]:focus ~ label:before {
+      box-shadow: 0 0 0 3px #999;
+    }
 
-.funkyradio-default input[type="radio"]:checked ~ label:before,
-.funkyradio-default input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #ccc;
-}
+    .funkyradio-default input[type="radio"]:checked ~ label:before,
+    .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+      color: #333;
+      background-color: #ccc;
+    }
 
-.funkyradio-primary input[type="radio"]:checked ~ label:before,
-.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #337ab7;
-}
+    .funkyradio-primary input[type="radio"]:checked ~ label:before,
+    .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+      color: #fff;
+      background-color: #337ab7;
+    }
 
-.funkyradio-success input[type="radio"]:checked ~ label:before,
-.funkyradio-success input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5cb85c;
-}
+    .funkyradio-success input[type="radio"]:checked ~ label:before,
+    .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+      color: #fff;
+      background-color: #5cb85c;
+    }
 
-.funkyradio-danger input[type="radio"]:checked ~ label:before,
-.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #d9534f;
-}
+    .funkyradio-danger input[type="radio"]:checked ~ label:before,
+    .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+      color: #fff;
+      background-color: #d9534f;
+    }
 
-.funkyradio-warning input[type="radio"]:checked ~ label:before,
-.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #f0ad4e;
-}
+    .funkyradio-warning input[type="radio"]:checked ~ label:before,
+    .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+      color: #fff;
+      background-color: #f0ad4e;
+    }
 
-.funkyradio-info input[type="radio"]:checked ~ label:before,
-.funkyradio-info input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5bc0de;
-}
-.entry:not(:first-of-type)
-{
-    margin-top: 10px;
-}
+    .funkyradio-info input[type="radio"]:checked ~ label:before,
+    .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+      color: #fff;
+      background-color: #5bc0de;
+    }
+    .entry:not(:first-of-type)
+    {
+        margin-top: 10px;
+    }
 
-.glyphicon
-{
-    font-size: 12px;
-}
-    </style>
-  </head><body>
+    .glyphicon
+    {
+        font-size: 12px;
+    }
+        </style>
+      </head>
+  <body>
 
     <nav class="navbar navbar-default navbar-static-top">
       <a href="../index.php" class="navbar-brand">Back To Livestoka</a>
@@ -830,7 +833,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>breeder Registration Area</h1>
+        <h1>Breeder Flock Farm Registration Area</h1>
         <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
       </div>
       <!--register section -->
@@ -845,7 +848,7 @@
     <!-- company information -->
             <div class="card">
               <div class="card-body">
-               
+
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -1214,7 +1217,7 @@
 
     <!--scripts -->
     <!-- jQuery first, then Bootstrap JS. -->
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -1357,7 +1360,7 @@ var addFormGroup1 = function (event) {
     event.preventDefault();
 
     var $formGroup = $(this).closest('.form-group');
-    
+
     var $formGroupClone =
     "<div class="form-group">'+'
                     <label for="exampleTextarea">'+'specify'+'</label>'+'
