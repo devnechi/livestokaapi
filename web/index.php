@@ -28,62 +28,36 @@
         <![endif]-->
     </head>
     <body>
-        <header>
-            <!---
-            <div class="header-top-area black-bg hidden-xs">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <ul class="top-right">
-                                <li><i class="fa fa-envelope"></i><span>no-reply@livestoka.com</span></li>
-                                <li><i class="fa fa-phone"></i><span>+255-687-859-500</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 col-sm-6 hidden-xs">
-                            <div class="header-icon floatright">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-google-plus"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
-                            </div>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <a href="" class="navbar-brand"><img src="images/logo.png"></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">Menu <span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse">
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a href="#" class="nav-link">Home </a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">Abouts </a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Services </a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contacts </a></li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <button type="submit" class="btn menu-right-button">LOGIN</button>
+                </form>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register As </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Processors</a>
+                            <a class="dropdown-item" href="#">Hatchery</a>
+                            <a class="dropdown-item" href="#">Breeders</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item disabled" href="#">Administrator</a>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-            --->
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-                <a href="" class="navbar-brand"><img src="images/logo.png"></a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">Menu <span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse">
-
-                </div>
-                <div class="collapse navbar-collapse" id="navbarMenu">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><a href="#" class="nav-link">Home </a></li>
-                        <li class="nav-item"><a href="#about" class="nav-link">Abouts </a></li>
-                        <li class="nav-item"><a href="#services" class="nav-link">Services </a></li>
-                        <li class="nav-item"><a href="#contact" class="nav-link">Contacts </a></li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <button type="submit" class="btn menu-right-button">LOGIN</button>
-                    </form>
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register As </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Processors</a>
-                                <a class="dropdown-item" href="#">Hatchery</a>
-                                <a class="dropdown-item" href="#">Breeders</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item disabled" href="#">Administrator</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </nav>
-        </header>
+        </nav>
         <main>
 
             <!-- Carousel Section -->
@@ -117,7 +91,6 @@
             <div class="section-2">
               <div class="container-fluid text-center">
                   <h1 class="heading-1">Data Management and Industry Insights </h1>
-                  <h1 class="heading-2"></h1>
                   <p class="paragraph-1">With the platform all stakeholders in the business will have access to a wide market and  inclusive business community</p>
               </div>
             </div>
@@ -166,6 +139,57 @@
                     </div>
                 </div>
             </div>
+            <!-- Services About Us Section -->
+            <div class="section-8" id="services">
+                <div class="container-fluid padding">
+                    <div class="row">
+                        <!-- About Us -->
+                        <div class="col-md-6">
+                            <h3 class="text-center">About Us. <small>Who are we?</small></h3>
+                            <p  class="text-center">
+                            We are creative tech heads who like to write code, program softwares and develop information systems that might help someone, community or business improve its productivity.
+                            We hope with our vast knowledge in technology and development of various technology products we have something to contribute in the industry to elevate it to its full potential.
+                            What we want
+                            to archive as a technology company,
+                            is to support the agricultural industry increase market awareness and increase productivity,
+                            with the use of current technologies to make better industry decisions.
+                            we are a team of developers, engineers and analysts who want leverage their technology expertise
+                            and work with agricultural
+                            industry stakeholders, In data collection, data analysis, and management.
+                            </p>
+                        </div>
+                        <!-- Carousel start -->
+                        <div class="col-md-6">
+                            <div id="carousel-our-services" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-our-services" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-our-services" data-slide-to="1"></li>
+                                    <li data-target="#carousel-our-services" data-slide-to="2"></li>
+                                    <li data-target="#carousel-our-services" data-slide-to="3"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="images/about/dev.jpg" alt="First slide" style="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/about/cod.jpg" alt="Second slide" style="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/about/stat.png" alt="Third slide" style="">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/about/dev.jpg" alt="Third slide" style="">
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                                href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                                </span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Goals Section -->
             <div class="section-3">
                 <div class="container-fluid">
@@ -181,16 +205,16 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="images/goal/inv.jpg" alt="First slide">
+                                        <img src="images/goal/inv.jpg" alt="First slide" class="img-fluid">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/center.jpg" alt="Second slide">
+                                        <img src="images/goal/center.jpg" alt="Second slide" class="img-fluid">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/prop.jpg" alt="Third slide">
+                                        <img src="images/goal/prop.jpg" alt="Third slide" class="img-fluid">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/goal/inv.jpg" alt="Third slide">
+                                        <img src="images/goal/inv.jpg" alt="Third slide" class="img-fluid">
                                     </div>
                                 </div>
                                 <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
@@ -225,77 +249,71 @@
             <!-- Features Section -->
             <div class="section-4">
                 <h1 class="heading-1 text-center">Whom are we working with! </h1>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Hatchery</h3>
-                                    <img src="images/dealers/hatchery.jpg" class="img-fluid img-responsive">
+                <div class="container-fluid padding">
+                    <div class="row padding">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/hatchery.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Hatchery </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Breeders</h3>
-                                    <img src="images/dealers/breeders.jpg" class="img-fluid img-responsive">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/breeders.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Breeders </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Processors</h3>
-                                    <img src="images/dealers/processors.jpg" class="img-fluid img-responsive">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/processors.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Processors </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Feed Manufacturers</h3>
-                                    <img src="images/dealers/feeders.jpg" class="img-fluid img-responsive">
+                    <div class="row padding">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/feeders.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Feed Manufacturers </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="far  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Traders</h3>
-                                    <img src="images/dealers/traders.jpg" class="img-fluid img-responsive">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/traders.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Traders </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-row">
-                                <i class="fas  fa-3x m-2"></i>
-                                <div class="d-flex flex-column">
-                                    <h3 class="m-2">Farmers</h3>
-                                    <img src="images/dealers/farmers.jpg" class="img-fluid img-responsive">
+                        <div class="col-md-4 padding">
+                            <div class="card">
+                                <img src="images/dealers/farmers.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h4 class="card-title">Farmers </h4>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Heading Section -->
-            <div class="section-5">
-              <div class="container text-center">
-                  <h1 class="heading-1">Make Strategic Business Decisions with </h1>
-                  <h1 class="heading-2">Improve productivity leveraging our Platform Tools.</h1>
-                  <p class="paragraph-1"></p>
-              </div>
-            </div>
             <!-- Vision Section -->
             <div class="container-fluid padding">
+                <h1 class="heading-1 text-center">Make Strategic Business Decisions with </h1>
+                <h1 class="heading-2 text-center">Improve productivity leveraging our Platform Tools.</h1>
                 <div class="row padding">
                     <div class="col-md-4 padding">
                         <div class="card">
@@ -340,61 +358,6 @@
                         <div class="slide"><img src="images/partners/tpda.png" style="max-height:90px;"></div>
                         <div class="slide"><img src="images/partners/wb.jpg" style="max-height:90px;"></div>
                     </section>
-                </div>
-            </div>
-            <!-- Services About Us Section -->
-            <div class="section-8" id="services">
-                <div class="container-fluid padding">
-                    <div class="row">
-                        <!-- Carousel start -->
-                        <div class="col-md-6">
-                            <div id="carousel-our-services" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel-our-services" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-our-services" data-slide-to="1"></li>
-                                    <li data-target="#carousel-our-services" data-slide-to="2"></li>
-                                    <li data-target="#carousel-our-services" data-slide-to="3"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="images/about/dev.jpg" alt="First slide" style="">
-
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="images/about/cod.jpg" alt="Second slide" style="">
-
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="images/about/stat.png" alt="Third slide" style="">
-
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="images/about/dev.jpg" alt="Third slide" style="">
-
-                                    </div>
-                                </div>
-                                <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                                href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                                </span></a>
-                            </div>
-                        </div>
-                        <!-- About Us -->
-                        <div class="col-md-6 mt-3">
-                            <h3 class="text-center">About Us. <small>Who are we?</small></h3>
-                            <p  class="text-center">
-                            We are creative tech heads who like to write code, program softwares and develop information systems that might help someone, community or business improve its productivity.
-                            We hope with our vast knowledge in technology and development of various technology products we have something to contribute in the industry to elevate it to its full potential.
-                            What we want
-                            to archive as a technology company,
-                            is to support the agricultural industry increase market awareness and increase productivity,
-                            with the use of current technologies to make better industry decisions.
-                            we are a team of developers, engineers and analysts who want leverage their technology expertise
-                            and work with agricultural
-                            industry stakeholders, In data collection, data analysis, and management.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!--- Contact Us --->

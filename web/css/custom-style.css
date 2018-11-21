@@ -155,7 +155,6 @@ nav a {
 
 .section-4 .heading-1 {
     margin-bottom: 5%;
-    font-family: 'Titan One';
     text-transform: uppercase;
     font-size: 2rem;
 }
@@ -747,7 +746,6 @@ textarea.input2 + .focus-input2::after {
   }
   .section-4 .heading-1 {
       margin-bottom: 5%;
-      font-family: 'Titan One';
       text-transform: uppercase;
       font-size: 1.9rem;
   }
@@ -860,7 +858,6 @@ textarea.input2 + .focus-input2::after {
     }
     .section-4 .heading-1 {
         margin-bottom: 5%;
-        font-family: 'Titan One';
         text-transform: uppercase;
         font-size: 1.9rem;
     }
