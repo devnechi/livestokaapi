@@ -5,55 +5,7 @@ body {
     margin: 0%;
     font-family: 'Ubuntu Condensed';
 }
-/*** .black-bg { background: #171717 !important; }
-.header-top-area{}
-.header-icon {
-    margin-top: 5px;
-}
-.header-icon a {
-    color: #ffffff;
-    float: left;
-    font-size: 14px;
-    height: 30px;
-    line-height: 30px;
-    margin-left: 15px;
-    text-align: center;
-    transition: all 0.3s ease 0s;
-}
-.header-icon a:hover {
-    color:#3452ff;
-}
-.top-right{}
-.top-right li {
-    border-right: 1px solid #444444;
-    color: #eeeeee;
-    display: inline-block;
-    line-height: 40px;
-    padding: 0 10px;
-}
-.top-right li:last-child {
-    border:0
-}
-.top-right li:first-child {
-    padding-left:0
-}
-.top-right li i {
-    margin-right: 5px;
-}.top-right li i {
-    margin-right: 5px;
-}
-.top-right li span {
-    font-size: 13px;
-    font-weight: 400;
-}
-.top-right li a {
-    color: #eeeeee;
-    font-size: 13px;
-    font-weight: 400;
-}
-.floatright {
-    float:right
-} ***/
+
 nav a {
     width: 55%;
 }

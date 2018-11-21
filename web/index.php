@@ -495,7 +495,7 @@
         <!-- Select2 JS -->
         <script src="vendor/select2/select2.min.js"></script>
         <!-- Custom scripts for this template -->
-        <script src="js/custom-script.js"></script>
+        <script src="js/scripts.js"></script>
         <!-- Magnific pop up script -->
         <script src="js/jquery.magnific-popup.js"></script>
         <!-- Slick JS -->
