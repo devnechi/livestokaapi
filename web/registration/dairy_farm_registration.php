@@ -2,7 +2,7 @@
     //getting the dboperation class
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
-
+    include('../../includes/layouts/public_layout_header.php');
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -535,7 +535,7 @@
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
                 <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group ">
                 <div class="form-group multiple-form-group" data-max=6>
                   <label for="formGroupExampleInput2">Hatchery Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
@@ -550,16 +550,18 @@
             <!-- end of company information -->
               <!-- <hr> -->
             <br />
+            <div class="form-group">
+                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
+                
+                  </div>
+                  <hr>
             <!-- company information -->
             <div class="container">
               <div class="card">
                 <div class="card-body">
+                  
                   <div class="form-group">
-                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
-                  <hr>
-                  </div>
-                  <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country" class="control-label">Country</label>
                      <select class="form-control" id="country" name="country" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>">
                        <option>SELECT</option>
                        <option>Tanzania</option>
@@ -570,11 +572,23 @@
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Region</label>
-                    <input type="text" class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Dar es Salaam</option>
+                       <option>Mwanza</option>
+                       <option>Arusha</option>
+                       <option>Dodoma</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">District</label>
-                    <input type="text" class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Kinondoni</option>
+                       <option>Ilala</option>
+                       <option>Temeke</option>
+                       <option>Ubungo</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">Address</label>
@@ -648,29 +662,8 @@
                           </div>
                           </div>
                         </div>
-                    <div class="form-group">
-                      <!-- <label for="formGroupExampleInput"><strong>Establishment Focus.</strong></label> -->
-                      <hr>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-6">
-                             <label for="formGroupExampleInput2">Breeding Purpose.<small>(*click to select)</small></label>
-                            <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;">Broilers
-                                  <input type="checkbox" checked="checked" name="broiler" id="broiler" value="broilers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Layers
-                                  <input type="checkbox" name="layers" id="layers" value="layers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Dual purpose
-                                  <input type="checkbox" name="dual_purpose" id="dual_purpose" value="dual purpose">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
+                    
+                   
 
                        <div class="col-md-6">
                          <div class="form-group col-md-6">
@@ -687,82 +680,15 @@
                          	</div>
                          </div>
                        </div>
-                      </div>
-                    </div>
+                      
+                    
                     <hr>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-6">
-                             <label for="formGroupExampleInput2">Poultry Type(s) <small>(*click to select)</small></label>
-                          <div class="form-check">
-                              <label class="customcheck" style="font-size: 18px;"> Cows
-                                <input type="checkbox" checked="checked" name="hatching_chicken" id="hatching_chicken" value="chicken">
-                                <span class="checkmark"></span>
-                              </label>
-                              <label class="customcheck" style="font-size: 18px;"> Goats
-                                <input type="checkbox" name="hatching_turkey" id="hatching_turkey" value="turkey">
-                                <span class="checkmark"></span>
-                              </label>
-                              <label class="customcheck" style="font-size: 18px;">Sheep
-                                <input type="checkbox" name="hatching_ducks" id="hatching_ducks" value="ducks">
-                                <span class="checkmark"></span>
-                              </label>
-                          </div>
-                        </div>
+                  
+                    
 
-                        <div class="col-md-6">
-                          <div class="form-check" style="padding-top: 26px;">
-                          <label class="customcheck" style="font-size: 18px;">Geese
-                            <input type="checkbox" name="hatching_geese" id="hatching_geese" value="geese">
-                            <span class="checkmark"></span>
-                          </label>
-                          <label class="customcheck" style="font-size: 18px;">Guinea fowls
-                            <input type="checkbox" name="hatching_guinea_fowls" id="hatching_guinea_fowls" value="guinea_fowls">
-                            <span class="checkmark"></span>
-                          </label>
-                          </div>
-
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-check">
-                          <label class="customcheck" style="font-size: 18px;">Quails
-                            <input type="checkbox" name="hatching_quails" id="hatching_quails" value="quails">
-                            <span class="checkmark"></span>
-                          </label>
-                          <label class="customcheck" style="font-size: 18px;">Ostrich
-                            <input type="checkbox" name="hatching_ostrich" id="hatching_ostrich" value="ostrich">
-                            <span class="checkmark"></span>
-                          </label>
-                          </div>
-                        </div>
-
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Source of hatching eggs <small>(*click to select)</small></label>
-                            <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;">Import
-                                  <input type="checkbox" checked="checked" name="imported_eggs" id="imported_eggs" value="import">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Own Breeder flock farm
-                                  <input type="checkbox" name="owns_breeder_farm" id="owns_breeder_farm" value="owns_breeder_farm">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Out-growers
-                                  <input type="checkbox" name="out_growers" id="out_growers" value="out-growers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Other local farms
-                                  <input type="checkbox" name="other_local_farms" id="other_local_farms" value="Other_local_farms">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
+                        
+                     
+                     
 
                       <div class="row">
                         <div class="col-md-6">
@@ -977,11 +903,33 @@
         $(document).on('click', '.btn-remove', removeFormGroup);
 
     });
-})(jQuery);
+})
+
+$(document).ready(function(){
+function addtextbox()
+{
+  var html= '<div class="form-group">
+                    <label  class="control-label" for="formGroupExampleInput2">District</label>
+                    <input type="text" class="form-control" id="district" name="district" value=""
+                  </div>';
+
+$(html).appendTo((this).closest($(".add")));
+  
+}
+$(".add").click(addtexbox);
+
+});
+
+(jQuery);
 </script>
+<?php
+include('../../includes/layouts/public_ly_footer.php');
+?>
 <script>
 $(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
+	$('.datetimepicker').datetimepicker({
+    format:'L'
+  });
 
 });
 </script>

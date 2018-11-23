@@ -1386,7 +1386,9 @@ include('../../includes/layouts/public_ly_footer.php');
 ?>
 <script>
 $(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
+	$('.datetimepicker').datetimepicker({
+    format:'L'
+  });
 
 });
 </script>
