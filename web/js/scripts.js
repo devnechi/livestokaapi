@@ -2,8 +2,6 @@ $(function(){
 $('a[title]').tooltip();
 });
 
-
-
 // Activate Next Step
 
 $(document).ready(function() {

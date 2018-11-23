@@ -466,10 +466,9 @@ body {
 
 /*** ScrollToTop ***/
 a.back-to-top {
-    display: none;
     position: fixed;
-    bottom: 18px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
     text-decoration: none;
 }
 a.back-to-top i {
@@ -479,7 +478,7 @@ a.back-to-top i {
     height: 40px;
     line-height: 40px;
     color: #fff;
-    background: #blue;
+    background: #00b4d9;
     border-radius: 2px;
     text-align: center;
     transition: all 0.2s ease-in-out;
