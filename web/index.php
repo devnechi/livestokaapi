@@ -30,23 +30,24 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><a href="#" class="nav-link">Home </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Abouts </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Services </a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Contacts </a></li>
+                        <li class="nav-item active"><a href="#" class="nav-link">home </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">abouts </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">services </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">contacts </a></li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <button type="submit" class="btn menu-right-button">LOGIN</button>
+                        <button type="submit" class="btn menu-right-button">login</button>
                     </form>
                     <form class="form-inline my-2 my-lg-0">
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register As </button>
+                            <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">register as </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Processors</a>
-                                <a class="dropdown-item" href="#">Hatchery</a>
-                                <a class="dropdown-item" href="#">Breeders</a>
+                                <a class="dropdown-item" href="registration/breeder_flock_farm_reg.php">Breeder Flock Farm</a>
+                                <a class="dropdown-item" href="registration/hatchery_registration.php">Hatchery</a>
+                                <a class="dropdown-item" href="registration/register_feeds_manufacturers.php">Feed Manufacturers</a>
+                                <a class="dropdown-item" href="registration/select_type_of_dairy.php">Dairy</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item disabled" href="#">Administrator</a>
+                                <a class="dropdown-item disabled" href="#">Association</a>
                             </div>
                         </div>
                     </form>
