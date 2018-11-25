@@ -1,9 +1,4 @@
 <?php
-// require 'path/to/PHPMailer/src/Exception.php';
-// require 'path/to/PHPMailer/src/PHPMailer.php';
-// require 'path/to/PHPMailer/src/SMTP.php';
-//Load Composer's autoloader
-//require 'vendor/autoload.php';
 
 
 class DbOperation
@@ -35,7 +30,7 @@ class DbOperation
     */
     public function activateUserAccount($user_id,$account_status)
     {
-
+    
         $stmt = $this->con->prepare("UPDATE lvusers_tb SET account_status = ? WHERE user_id = ?");
         $stmt->bind_param("si", $account_status, $user_id);
         if ($stmt->execute()) {
@@ -77,13 +72,13 @@ class DbOperation
             return false;
         }
     }
-
+ 
 
 
  /*
     *REGISTRATION: type of user :
     * reg user type -> Manufactures
-
+    
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 */
@@ -107,7 +102,7 @@ class DbOperation
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-          //  smtpmailer($email, $uuid);
+            smtpmailer($email,$uuid );
             return $user;
         } else {
             echo mysql_error();
@@ -649,13 +644,13 @@ INNER JOIN  raw_materials
         $dual_purpose
     ) {
             $htuid = uniqid('', true);
-
+    
             $stmt = $this->con->prepare("INSERT INTO breeders_tbl
                 (breeder_unique_id,
                 user_id,
-                owners_full_name,
+                owners_full_name, 
                 type_of_ownership,
-                date_established,
+                    date_established,
                 breeder_reg_number,
                 breeder_manager,
                 breeding_chicken,
@@ -670,11 +665,11 @@ INNER JOIN  raw_materials
                 breeder_veterinarian,
                 vet_reg_number,
                 maximum_flock_size,
-                total_peryear_capacity,
+                total_peryear_capacity, 
                 country,
                 region,
                 district,
-                websiteurl,
+                websiteurl, 
       address, created_at)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW())");
             $stmt->bind_param(
@@ -709,7 +704,7 @@ INNER JOIN  raw_materials
                 );
             $result = $stmt->execute();
             $stmt->close();
-
+    
             // check for successful store
             if ($result) {
                 $stmt = $this->con->prepare("SELECT * FROM breeder_tbl WHERE user_id = ?");
@@ -717,14 +712,14 @@ INNER JOIN  raw_materials
                 $stmt->execute();
                 $breeder = $stmt->get_result()->fetch_assoc();
                 $stmt->close();
-
+    
                 return $breeder;
             } else {
                 return false;
             }
         }
      /*
-       *insert multiple parent stock
+       *insert multiple parent stock 
        */
       public function lsp_stock($user_id, $breeder_id,    $local_source_parent_stock){
         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
@@ -738,7 +733,7 @@ INNER JOIN  raw_materials
                                     $breeder_id,    $local_source_parent_stock[$a]);
         $result = $stmt->execute();
         $stmt->close();
-
+    
         // if ($result){
         //   echo "affiliation insert success";
         // }
@@ -746,7 +741,7 @@ INNER JOIN  raw_materials
         // check for successful store
         }
 /*
-       *insert multiple parent stock
+       *insert multiple parent stock 
        */
       public function lsgp_stock($user_id, $breeder_id,    $local_source_grandparent_stock){
         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
@@ -760,7 +755,7 @@ INNER JOIN  raw_materials
                                     $breeder_id,    $local_source_grandparent_stock[$a]);
         $result = $stmt->execute();
         $stmt->close();
-
+    
         // if ($result){
         //   echo "affiliation insert success";
         // }
@@ -768,7 +763,7 @@ INNER JOIN  raw_materials
         // check for successful store
         }
 /*
-       *insert multiple parent stock
+       *insert multiple parent stock 
        */
       public function isp_stock($user_id, $breeder_id,    $import_source_parent_stock){
         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
@@ -782,7 +777,7 @@ INNER JOIN  raw_materials
                                     $breeder_id,    $import_source_parent_stock[$a]);
         $result = $stmt->execute();
         $stmt->close();
-
+    
         // if ($result){
         //   echo "affiliation insert success";
         // }
@@ -790,7 +785,7 @@ INNER JOIN  raw_materials
         // check for successful store
         }
 /*
-       *insert multiple parent stock
+       *insert multiple parent stock 
        */
       public function isgp_stock($user_id, $breeder_id,    $import_source_grandparent_stock){
         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
@@ -804,7 +799,7 @@ INNER JOIN  raw_materials
                                     $breeder_id,    $import_source_grandparent_stock[$a]);
         $result = $stmt->execute();
         $stmt->close();
-
+    
         // if ($result){
 
         //   echo "affiliation insert success";
@@ -828,14 +823,14 @@ INNER JOIN  raw_materials
                                         $breeder_id, $affiliation[$a]);
             $result = $stmt->execute();
             $stmt->close();
-
+        
             // if ($result){
             //   echo "affiliation insert success";
             // }
             }
             // check for successful store
             }
-
+    
         /*
         *insert multiple phonenumbers
         */
@@ -853,8 +848,8 @@ INNER JOIN  raw_materials
           }
            // check for successful store
          }
-
-
+    
+    
          /*
          *insert multiple typeofBreed
          */
@@ -868,32 +863,32 @@ INNER JOIN  raw_materials
             $stmt->bind_param("ssss", $tpuid, $user_id, $breeder_id, $typeofbreed[$a]);
             $result = $stmt->execute();
             $stmt->close();
-
+    
              // if ($result){
              //   echo "Breed Type insert success";
              // }
               }
             // check for successful store
           }
-
-
-
+    
+    
+    
           /*
           *insert multiple breeder products
           */
            public function breederProducts($user_id, $breeder_id, $hatched_products){
-
+    
              $hpuid = uniqid('', true);
              $stmt = $this->con->prepare("INSERT INTO breeder_products (breeder_product_unique_id, user_id,
       breeder_id, breeder_products, created_at)VALUES(?, ?, ?, ?, NOW())");
              $stmt->bind_param("ssss", $hpuid, $user_id, $breeder_id, $hatched_products);
              $result = $stmt->execute();
              $stmt->close();
-
+    
             //   }
              // check for successful store
            }
-
+    
            /*
            *insert multiple breeder breed purpose
            */
@@ -904,12 +899,12 @@ INNER JOIN  raw_materials
               $stmt->bind_param("ssss", $hppuid, $user_id, $breeder_id, $breed_purpose);
               $result = $stmt->execute();
               $stmt->close();
-
+    
              //   }
               // check for successful store
             }
-
-
+    
+    
             /*
             *insert multiple breeder poultry types
             */
@@ -920,10 +915,10 @@ INNER JOIN  raw_materials
                $stmt->bind_param("ssss", $hptuid, $user_id, $breeder_id, $poultry_type);
                $result = $stmt->execute();
                $stmt->close();
-
+    
              }
-
-
+    
+    
              /*
              *insert multiple egg sources types
              */
@@ -934,7 +929,7 @@ INNER JOIN  raw_materials
                 $stmt->bind_param("ssss", $eguid, $user_id, $breeder_id, $egg_sources);
                 $result = $stmt->execute();
                 $stmt->close();
-
+    
               }
 
 
@@ -1250,75 +1245,6 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         }
     }
 
-
-
-    function smtpmailer($to,$id) {
-        global $error;
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-       define('GUSER', ''); // GMail username
-       define('GPWD', ''); // GMail password
-       define('SMTPSERVER', ''); // sec. smtp server
-       $subject="Email Confirmation";
-       $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
-       $htmlStr = "";
-       $htmlStr .= "Hi " . $to . ",<br /><br />";
-
-       $htmlStr .= "Please click the button below to verify your subscription and verify your account <br /><br /><br />";
-       $htmlStr .= "<a href='{$verificationLink}' target='_blank' style='padding:1em; font-weight:bold; background-color:blue; color:#fff;'>VERIFY EMAIL</a><br /><br /><br />";
-
-       $htmlStr .= "Kind regards,<br />";
-       $htmlStr .= "<a href='http://livestoka.com/' target='_blank'>Industry and Data analytics platform</a><br />";
-
-
-       $body=$htmlStr;
-          // create a new object
-        //$mail->IsSMTP(); // enable SMTP
-        // $mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
-        // $mail->SMTPAuth = true;  // authentication enabled
-        // $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-        // $mail->Host = 'smtp.gmail.com';
-        // $mail->Port = 465;
-        // $mail->Username = GUSER;
-        // $mail->Password = GPWD;
-        // $mail->SetFrom(GUSER, "MANAGER");
-        // $mail->Subject = $subject;
-        // $mail->Body = $body;
-        // $mail->AddAddress($to);
-        $mail->SMTPDebug = 4;                               // Enable verbose debug output
-   $mail->isSMTP();                                    // Set mailer to use SMTP
-   $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
-   $mail->SMTPAuth = true;                             // Enable SMTP authentication
-   $mail->Username =  $to;    //'kijanamwizi@gmail.com';           // SMTP username
-   $mail->Password = '';                       // SMTP password
-   $mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
-   $mail->Port = 587;                                  // TCP port to connect, tls=587, ssl=465
-   $mail->From = 'info@livestoka.com';
-   $mail->FromName = 'Please Verify Account';
-   $mail->addAddress($to);     // Add a recipient
-   $mail->addReplyTo('info@livestoka.com', 'future basics');
-   $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-   $mail->isHTML(false);                                  // Set email format to HTML
-   $mail->Subject = $subject;
-   $mail->Body    = $body;
-   $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-       // if( mail($recipient_email, $subject, $body, $headers) ){
-        if($mail->send()){
-
-            $message = "<div class=\"alert alert-success\" role=\"alert\">
-           <strong>Well done!</strong> You successfully registered check you emails<a href=\"#\" class=\"alert-link\">to activate your account</a>.
-            </div>";
-
-           } else{
-
-            $message = "<div class=\"alert alert-warning\" role=\"alert\">
-            <strong>Sorry!</strong> we cant seem to verify you account<a href=\"#\" class=\"alert-link\">click here to resend.</a>.
-           </div>";
-            echo "Mail error:" . $mail->ErrorInfo;
-
-            }
-
-                }
-
     /*
 * The delete operation
 * When this method is called record is deleted for the given id
@@ -1334,4 +1260,53 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         return false;
     }
 }
+function smtpmailer($to,$id) { 
+    global $error;
+    $mail = new PHPMailer();
+   define('GUSER', 'jacksonmorton5@gmail.com'); // GMail username
+   define('GPWD', 'semperkoda'); // GMail password
+   define('SMTPSERVER', 'localhost'); // sec. smtp server
+   $subject="Email Confirmation";
+   $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
+   $htmlStr = "";
+   $htmlStr .= "Hi " . $email . ",<br /><br />";
+
+   $htmlStr .= "Please click the button below to verify your subscription and verify your account <br /><br /><br />";
+   $htmlStr .= "<a href='{$verificationLink}' target='_blank' style='padding:1em; font-weight:bold; background-color:blue; color:#fff;'>VERIFY EMAIL</a><br /><br /><br />";
+
+   $htmlStr .= "Kind regards,<br />";
+   $htmlStr .= "<a href='http://livestoka.com/' target='_blank'>Industry and Data analytics platform</a><br />";
+
+
+   $body=$htmlStr;
+      // create a new object
+    $mail->IsSMTP(); // enable SMTP
+    $mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
+    $mail->SMTPAuth = true;  // authentication enabled
+    $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 465; 
+    $mail->Username = GUSER;  
+    $mail->Password = GPWD;           
+    $mail->SetFrom(GUSER, "MANAGER");
+    $mail->Subject = $subject;
+    $mail->Body = $body;
+    $mail->AddAddress($to);
+   // if( mail($recipient_email, $subject, $body, $headers) ){
+    if($mail->send()){
+
+        $message = "<div class=\"alert alert-success\" role=\"alert\">
+       <strong>Well done!</strong> You successfully registered check you emails<a href=\"#\" class=\"alert-link\">to activate your account</a>.
+        </div>";
+
+       } else{
+
+        $message = "<div class=\"alert alert-warning\" role=\"alert\">
+        <strong>Sorry!</strong> we cant seem to verify you account<a href=\"#\" class=\"alert-link\">click here to resend.</a>.
+       </div>";
+        echo "Mail error:" . $mail->ErrorInfo;
+
+        }
+           
+            }
 ?>
