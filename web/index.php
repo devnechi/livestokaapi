@@ -401,7 +401,6 @@
                     </section>
                 </div>
             </div>
-=======
                   <div class="row justify-content-center text-center">
                       <div class="col-md-4">
                           <div class="card">
