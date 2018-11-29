@@ -91,7 +91,7 @@
             <!-- Card Section -->
             <div class="container-fluid">
                 <h1 class="heading-1">Data Management and Industry Insights </h1>
-                <p class="paragraph-1">With the platform all stakeholders in the business will have access to a wide market and  inclusive business community</p>
+                <p class="paragraph-1 text-center">With the platform all stakeholders in the business will have access to a wide market and  inclusive business community</p>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card">
@@ -99,7 +99,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Business Intelligence </h4>
                                 <p class="card-text">assists members and industry staleholders to track productivity.</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Data Management </h4>
                                 <p class="card-text">Record keeping, information management and data processing</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Industry Reports </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Real Time Data </h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -239,6 +239,72 @@
             </div>
             <!-- Who are we working -->
             <div class="container-fluid" style="background-color:#f4f4f4;padding-top:2%;padding-bottom:2%;">
+                <h1 class="heading-1">Who we work with</h1>
+                <p class="paragraph-1 text-center">With the platform all stakeholders in the business will have access to a wide market and  inclusive business community</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="images/dealers/hatchery.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Business Intelligence </h4>
+                                <p class="card-text">assists members and industry staleholders to track productivity.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/breeders.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Data Management </h4>
+                                <p class="card-text">Record keeping, information management and data processing</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/feeders.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Industry Reports </h4>
+                                <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Real Time Data </h4>
+                                <p class="card-text">industry stakeholderes will always have access to real time data.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Real Time Data </h4>
+                                <p class="card-text">industry stakeholderes will always have access to real time data.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Real Time Data </h4>
+                                <p class="card-text">industry stakeholderes will always have access to real time data.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="container-fluid" style="background-color:#f4f4f4;padding-top:2%;padding-bottom:2%;">
                 <h1 class="heading-1 text-center">Whom are we working with! </h1>
                 <div class="row">
                     <div class="col-md-4">
@@ -328,7 +394,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Card Section -->
             <div class="container-fluid padding">
                 <h1 class="heading-1">Make Strategic Business Decisions with Improve productivity leveraging our Platform Tools.</h1>
@@ -339,7 +405,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Reporting System </h4>
                                 <p class="card-text">Our reporting systems are based on real time data that's being given or supplied by customers</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -349,7 +415,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Data Visualizer </h4>
                                 <p class="card-text">Our platform offers feautures and tools that illustrate trends while visualising data</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -358,8 +424,8 @@
                             <img src="images/ft/pie.png" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">Our Analysis System </h4>
-                                <p class="card-text">Analysis and detailed reports from our analytics system</p>
-                                <a href="#" class="btn btn-outline-read-more">Read More</a>
+                                <p class="card-text">Ensures users have the right information and data that enables businesses to make the right decisions</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -368,13 +434,13 @@
             <!-- Partners Section -->
             <div class="container-fluid" style="background-color:#74f5e3;padding-bottom:5%;">
                 <h2 class="heading-1">Our Partners</h2>
-                <hr>
+                <!-- <hr> -->
                 <section class="customer-logos slider">
                     <div class="slide"><img src="images/partners/tcpa.png" style="max-height:90px;"></div>
                     <div class="slide"><img src="images/partners/tfma.png" style="max-height:90px;"></div>
                     <div class="slide"><img src="images/partners/tpda.png" style="max-height:90px;"></div>
                 </section>
-                <hr>
+                <!-- <hr> -->
             </div>
             <!-- Contact Section -->
             <div class="section-padding" id="contact">
@@ -433,8 +499,8 @@
                                             <div class="contact-icon">
                                                 <i class="fa fa-envelope"></i>
                                             </div>
-                                            <p><a href="mailto:no-reply@livestoka.com">dennis@livestoka.com</a></p>
-                                            <p><a href="mailto:dennis@gmail.com">dennis@gmail.com</a></p>
+                                            <p><a href="mailto:no-reply@livestoka.com">info@livestoka.com</a></p>
+                                            <!-- <p><a href="mailto:dennis@gmail.com">dennis@gmail.com</a></p> -->
                                         </div>
                                         <div class="single-contact">
                                             <div class="contact-icon">
