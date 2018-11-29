@@ -266,4 +266,37 @@ function drawCurveTypes() {
                     });
                 });
       </script>
+       <script>
+    $(document).ready(function(){
+        $('#register').on('change', function() {
+          if ( this.value == '1')
+          {
+         
+            var url= "../../web/registration/dairy_farm_registration.php"; 
+              window.location = url;
+          } else if (this.value == '2') {
+            var url= "../../web/registration/beef_cattle_farm.php"; 
+              window.location = url;
+          }
+          else if (this.value == '3') {
+            var url= "../../web/registration/meat_processor.php"; 
+              window.location = url;
+          }
+          else if (this.value == '4') {
+            var url= "../../web/registration/traders.php"; 
+              window.location = url;
+          }
+          else
+          {
+              $("#pnl_cso").hide();
+               $("#pnl_consultant").hide();
+               $("#pnl_reseacher").hide();
+          }
+        });
+        console.log("hellow");
+       
+    });
+    </script>
   
+  </body>
+</html>

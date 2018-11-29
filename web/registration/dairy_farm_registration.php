@@ -503,7 +503,7 @@
                   </div>
                 </div>
               </div>
-              </div>
+              
             </div>
             <!-- end of company information -->
               <!-- <hr> -->
@@ -596,8 +596,8 @@
                 <br />
                 <!-- company information -->
               
-                <div class="card">
-                  <div class="card-body">
+               
+                  
                       <div class="form-group">
                         <label for="lblestablishment_activities"><strong>Establishment Activities</strong></label>
                         <hr>
@@ -605,10 +605,10 @@
       
                    
 
-                       <div class="col-md-6">
-                         <div class="form-group col-md-6">
+                       
+                         <div class="form-group  ">
                                  <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
+                                   <label for="formGroupExampleInput2" class="control-label">Breed <small>(e.g. haifer local hybrid)</small></label>
                                    <div class="form-group input-group">
                                      <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
@@ -616,13 +616,11 @@
                                    </div>
                                </div>
                              </div>
-                           </div>
-                         	</div>
-                         </div>
-                      
+                           
+                         
                       
                     
-                    <hr>
+                    
                   
                     
 
@@ -630,14 +628,9 @@
                      
                      
 
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="formGroupExampleInput"><strong>Hatchery Capacity</strong></label>
-                            <hr>
-                          </div>
-                        </div>
-                        <div class="col-md-9">
+                      
+                        
+                        
                           <div class="form-group">
                             <label for="total_farm_capacity">Total litre produced per day </label>
                             <input type="text" class="form-control" id="total_litre_perday" name="total_litre_perday" value="<?= isset($_POST['total_litre_perday']) ? $_POST['total_litre_perday'] : ''; ?>" placeholder=" ">
@@ -646,18 +639,18 @@
                             <label for="lblmaximum_flock_size">Flock size</label>
                             <input type="text" class="form-control" id="maximum_flock_size" name="maximum_flock_size" value="<?= isset($_POST['maximum_flock_size']) ? $_POST['maximum_flock_size'] : ''; ?>" placeholder=" ">
                           </div>
-                        </div>
-                      </div>
+                        
+                    
 
 
 
-                  <div class="row">
-                    <div class="col-md-12">
+                  
+                  
                       <div class="form-group">
                         <label for="lbl_contacts_title"><strong>Contacts</strong></label>
                         <hr>
-                      </div>
-                    </div>
+                     
+                   
 
                     <div class="form-group col-md-6">
                       <label for="formGroupExampleInput2">website</label>
@@ -666,35 +659,35 @@
                     <div class="form-group col-md-6">
                       <label for="lbl_contact_person">contact person</label>
                       <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?= isset($_POST['contact_person']) ? $_POST['contact_person'] : ''; ?>" placeholder=" ">
-                    </div>
-                     <div class="form-group col-md-6">
+                    </div></div>
+                     <div class="form-group ">
                        <label for="lbl_contact_email">Contact email</label>
                        <input type="email" class="form-control" id="contact_email" name="contact_email" value="<?= isset($_POST['contact_email']) ? $_POST['contact_email'] : ''; ?>" placeholder=" ">
                      </div>
-                   </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
+                   
+                     <div class="">
+                      
+                        <div class="form-group col-md-6">
                         <label for="exampleInputPassword1">Password</label>
                           <input type="password" class="form-control" id="password" name="password" value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
+                      
+                     
+                        <div class="form-group col-md-6">
                          <label for="exampleInputConfirmPassword2">Confirm Password</label>
                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                            <span id='message'></span>
                          </div>
                       </div>
-                    </div>
+                   
                       <div class="form-group">
                       <button type="submit"  name="submit" class="btn btn-primary btn-lg" value="Submit">Register</button>
-                          </div>
+                          </div></div>
                        </form>
-                  </div>
-                </div>
+                  
+               
                 <hr>
-               </div>
+              
       </section>
 
       <!--end of registeration section -->

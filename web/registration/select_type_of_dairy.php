@@ -285,9 +285,23 @@ nav a{
   </div><!-- /.container-fluid -->
 </nav>
 <div class="carousel fade-carousel carousel-fade slide" style="top:0%;" data-ride="carousel" data-interval="8000" id="bs-carousel">
-  <!-- Overlay 
-  <div class="overlay"> 
-                     </div>-->
+   
+  <div class="overlay">   <div class="hero">        
+        <hgroup>
+            <h1>Get Started</h1>        
+            <h3>Get start by registering  your  field</h3>
+        </hgroup>
+        <span > <select class=" btn btn-hero btn-lg "  id="register" >
+                    <option>Register As</option>
+                    <option value="1">Milk processor Unit</option>
+                       <option value="2">Beef Cattle Farm</option>
+                     <option value="3">Meat Processor</option>
+                       <option value="4">Cattle Traders</option>
+                     
+                     
+                     </select></span>
+      </div>
+                     </div>
 
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -302,113 +316,39 @@ nav a{
   <div class="carousel-inner">
     <div class="item slides active">
       <div class="slide-1"></div>
-      <div class="hero">
-        <hgroup>
-        <h1>Get Started</h1>        
-            <h3>Get start by registering  your  field</h3>
-        </hgroup><span > <select class=" btn btn-hero btn-lg "  id="register" name="register">
-        <option>Register As</option>
-                    <option value="../../web/registration/meat_processor.php">Milk processor Unit</option>
-                       <option value="../../web/registration/meat_processor.php">Beef Cattle Farm</option>
-                     <option value="../../web/registration/meat_processor.php">Meat Processor</option>
-                       <option value="../../web/registration/traders.php">Cattle Traders</option>
-                     
-                     </select></span>
-       
-      </div>
+    
     </div>
     <div class="item slides">
       <div class="slide-2"></div>
-      <div class="hero">        
-        <hgroup>
-        <h1>Get Started</h1>        
-            <h3>Get start by registering  your  field</h3>
-        </hgroup>       
-        
-        <span > <select class=" btn btn-hero btn-lg "  id="register" name="register">
-        <option>Register As</option>
-        <option value="../../web/registration/meat_processor.php">Milk processor Unit</option>
-                       <option value="../../web/registration/meat_processor.php">Beef Cattle Farm</option>
-                     <option value="../../web/registration/meat_processor.php">Meat Processor</option>
-                       <option value="../../web/registration/traders.php">Cattle Traders</option>
-                     
-                     
-                     </select></span>
-      </div>
+
     </div>
     <div class="item slides">
       <div class="slide-3"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Get Started</h1>        
-            <h3>Get start by registering  your  field</h3>
-        </hgroup>
-        <span > <select class=" btn btn-hero btn-lg "  id="register" name="register">
-                    <option>Register As</option>
-                    <option value="../../web/registration/meat_processor.php">Milk processor Unit</option>
-                       <option value="../../web/registration/meat_processor.php">Beef Cattle Farm</option>
-                     <option value="../../web/registration/meat_processor.php">Meat Processor</option>
-                       <option value="../../web/registration/traders.php">Cattle Traders</option>
-                     
-                     
-                     </select></span>
-      </div>
+    
     </div>
     <div class="item slides">
       <div class="slide-4"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Get Started</h1>        
-            <h3>Get start by registering  your  field</h3>
-        </hgroup>
-        <span > <select class=" btn btn-hero btn-lg "  onchange="location=this.value;" id="register" name="register">
-                    <option>Register As</option>
-                    <option value="../../web/registration/dairy_farm_registration.php">Milk processor Unit</option>
-                       <option value="../../web/registration/beef_cattle_farm.php">Beef Cattle Farm</option>
-                     <option value="../../web/registration/meat_processor.php">Meat Processor</option>
-                       <option value="../../web/registration/traders.php">Cattle Traders</option>
-                     
-                     
-                     </select></span>
-      </div>
+      
     </div>
     <div class="item slides">
       <div class="slide-5"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Get Started</h1>        
-            <h3>Get start by registering  your  field</h3>
-        </hgroup>
-        <span > <select class=" btn btn-hero btn-lg "  id="register" name="register">
-                    <option>Register As</option>
-                    <option value="../../web/registration/meat_processor.php">Milk processor Unit</option>
-                       <option value="../../web/registration/meat_processor.php">Beef Cattle Farm</option>
-                     <option value="../../web/registration/meat_processor.php">Meat Processor</option>
-                       <option value="../../web/registration/traders.php">Cattle Traders</option>
-                     
-                     
-                     </select></span>
-      </div>
+      
     </div>
   </div> 
 </div>
 
+ <!-- <script>
 
+$("#register").on('change', function() {
+  window.location=$(this).val()
+  //set isopen to opposite so next  time  when use clicked select  box
+  //it wont trigger this event
+
+
+});
+</script> -->
+ 
 
 <?php
 
 include('../../includes/layouts/public_ly_footer.php');?>
-<script>
-
-$("select").click(function(){
-var open=$(this).data("isopen");
-if(open){
-
-  window.location.href=$(this).val()
-  //set isopen to opposite so next  time  when use clicked select  box
-  //it wont trigger this event
-  $(this).data("isopen",!open);
-}
-
-});
-</script>
