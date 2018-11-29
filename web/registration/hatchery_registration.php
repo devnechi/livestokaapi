@@ -4,6 +4,8 @@
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
     include('../../includes/layouts/public_layout_header.php');
+    include '../../web/vendor/autoload.php';
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -632,11 +634,22 @@
                      }
 
                      // email verification link is sent here
-
-
+                     $to = $user["email"];
+                     $id = $user_id;
+                      $verify_email= $db->smtpmailer($to,$id);
+                      if($verify_email){
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
-                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new hatchery</a>.
+                <strong>Well done!</strong> You successfully registered a new hatchery <a href=\"#\" class=\"alert-link\"> check you emails to verify this account</a>.
                 </div>";
+              } else {
+                $message = "<div class=\"alert alert-info\" role=\"alert\">
+         <strong>Email Error!</strong> <a href=\"#\" class=\"alert-link\">unable</a> to send you a verification email.
+       </div>";
+              }
+       $message = "<div class=\"alert alert-success\" role=\"alert\">
+ <strong>Well done!</strong> You successfully registered a new hatchery <a href=\"#\" class=\"alert-link\"> check you emails to verify this account</a>.
+ </div>";
+
                     }
                 }
             } else {

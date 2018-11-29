@@ -65,7 +65,7 @@
      $pobox = trim($_POST['pobox']);
      $phonenumber = trim($_POST['phonenumber']);
      $websiteurl = trim($_POST['websiteurl']);
-     $contact_person = $_POST['contact_person']);
+     $contact_person = $_POST['contact_person'];
      $production_capacity = trim($_POST['production_capacity']);
      $storage_capacity = trim($_POST['storage_capacity']);
      $num_products_produced = trim($_POST['num_products_produced']);
@@ -302,6 +302,10 @@
 
     <!-- Custom styles for this template -->
     <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
 
     <style>
     .card {
