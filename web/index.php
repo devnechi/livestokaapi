@@ -238,15 +238,17 @@
                 </div>
             </div>
             <!-- Who are we working -->
-            <div class="container-fluid" style="background-color:#f4f4f4;padding-top:2%;padding-bottom:2%;">
+            <section id="whoweworkwith" style="background-color:#74f5e3;padding-bottom:5%;">
+            <div class="container-fluid">
                 <h1 class="heading-1">Who we work with</h1>
-                <p class="paragraph-1 text-center">With the platform all stakeholders in the business will have access to a wide market and  inclusive business community</p>
+                <p class="paragraph-1 text-center">agriculture stackeholders who benefit from our platform tools</p>
+                <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="card">
                             <img src="images/dealers/hatchery.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Business Intelligence </h4>
+                                <h4 class="card-title">Hatchery Owners </h4>
                                 <p class="card-text">assists members and industry staleholders to track productivity.</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
@@ -256,7 +258,7 @@
                         <div class="card">
                             <img src="images/dealers/breeders.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Data Management </h4>
+                                <h4 class="card-title"> Breeder Flock Farms </h4>
                                 <p class="card-text">Record keeping, information management and data processing</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
@@ -266,7 +268,7 @@
                         <div class="card">
                             <img src="images/dealers/feeders.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Industry Reports </h4>
+                                <h4 class="card-title">Feed Manufactures </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
@@ -276,7 +278,7 @@
                         <div class="card">
                             <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Real Time Data </h4>
+                                <h4 class="card-title"> Dairy producers</h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
@@ -286,8 +288,28 @@
                         <div class="card">
                             <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Real Time Data </h4>
+                                <h4 class="card-title">Beef Processors </h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/feeders.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">  </h4>
+                                <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
+                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/dealers/feeders.jpg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Feed Manufactures </h4>
+                                <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
@@ -296,14 +318,16 @@
                         <div class="card">
                             <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h4 class="card-title">Real Time Data </h4>
+                                <h4 class="card-title">Reasearchers </h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
                                 <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
                 </div>
+              </div>
             </div>
+          </section>
             <!-- <div class="container-fluid" style="background-color:#f4f4f4;padding-top:2%;padding-bottom:2%;">
                 <h1 class="heading-1 text-center">Whom are we working with! </h1>
                 <div class="row">
@@ -396,10 +420,11 @@
                 </div>
             </div> -->
             <!-- Card Section -->
-            <div class="container-fluid padding">
+            <section>
+            <div class="container">
                 <h1 class="heading-1">Make Strategic Business Decisions with Improve productivity leveraging our Platform Tools.</h1>
-                <div class="row padding">
-                    <div class="col-md-4 padding">
+                <div class="row">
+                    <div class="col-md-4">
                         <div class="card">
                             <img src="images/ft/cube.png" alt="" class="card-img-top">
                             <div class="card-body">
@@ -409,7 +434,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 padding">
+                    <div class="col-md-4">
                         <div class="card">
                             <img src="images/ft/data.png" alt="" class="card-img-top">
                             <div class="card-body">
@@ -419,7 +444,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 padding">
+                    <div class="col-md-4">
                         <div class="card">
                             <img src="images/ft/pie.png" alt="" class="card-img-top">
                             <div class="card-body">
@@ -431,15 +456,16 @@
                     </div>
                 </div>
             </div>
+          </section>
             <!-- Partners Section -->
             <!-- <div class="container-fluid" style="background-color:#74f5e3;padding-bottom:5%;">
                 <h2 class="heading-1">Our Partners</h2>
                 <!-- <hr> -->
-                <section class="customer-logos slider">
+                <!-- <section class="customer-logos slider">
                     <div class="slide"><img src="images/partners/tcpa.png" style="max-height:90px;"></div>
                     <div class="slide"><img src="images/partners/tfma.png" style="max-height:90px;"></div>
                     <div class="slide"><img src="images/partners/tpda.png" style="max-height:90px;"></div>
-                </section>
+                </section> -->
                 <!-- <hr> -->
             </div> -->
             <!-- Contact Section -->
