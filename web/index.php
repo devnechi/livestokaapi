@@ -432,7 +432,7 @@
                 </div>
             </div>
             <!-- Partners Section -->
-            <div class="container-fluid" style="background-color:#74f5e3;padding-bottom:5%;">
+            <!-- <div class="container-fluid" style="background-color:#74f5e3;padding-bottom:5%;">
                 <h2 class="heading-1">Our Partners</h2>
                 <!-- <hr> -->
                 <section class="customer-logos slider">
@@ -441,7 +441,7 @@
                     <div class="slide"><img src="images/partners/tpda.png" style="max-height:90px;"></div>
                 </section>
                 <!-- <hr> -->
-            </div>
+            </div> -->
             <!-- Contact Section -->
             <div class="section-padding" id="contact">
                 <div class="contact-form">
