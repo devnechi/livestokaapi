@@ -65,7 +65,11 @@
      $pobox = trim($_POST['pobox']);
      $phonenumber = trim($_POST['phonenumber']);
      $websiteurl = trim($_POST['websiteurl']);
+<<<<<<< HEAD
+     $contact_person = $_POST['contact_person'];
+=======
      $contact_person = trim($_POST['contact_person']);
+>>>>>>> 8551d076b3db7c31eb5b07a3fdd8f2c4a670c1d3
      $production_capacity = trim($_POST['production_capacity']);
      $storage_capacity = trim($_POST['storage_capacity']);
      $num_products_produced = trim($_POST['num_products_produced']);

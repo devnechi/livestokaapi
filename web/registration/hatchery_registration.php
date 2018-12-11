@@ -3,6 +3,7 @@
     require_once '../../includes/DbConnect.php';
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
+    include('../../includes/layouts/public_layout_header.php');
     include '../../web/vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -993,11 +994,23 @@
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Region</label>
-                    <input type="text" class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Dar es Salaam</option>
+                       <option>Mwanza</option>
+                       <option>Arusha</option>
+                       <option>Dodoma</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">District</label>
-                    <input type="text" class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Kinondoni</option>
+                       <option>Ilala</option>
+                       <option>Temeke</option>
+                       <option>Ubungo</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">Address</label>
@@ -1412,7 +1425,9 @@
 
 <script>
 $(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
+	$('.datetimepicker').datetimepicker({
+    format:'L'
+  });
 
 });
 </script>

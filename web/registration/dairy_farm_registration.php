@@ -2,7 +2,7 @@
     //getting the dboperation class
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
-
+    include('../../includes/layouts/public_layout_header.php');
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -56,81 +56,45 @@
             $email = $_POST['contact_email'];
             $password = $_POST['password'];
             //TYPE OF HATCHING ACTIVITIES
-            $usertype = "Hatchery User";
+            $usertype = "Dairy milk User";
             $account_status = "pending approval";
             $phoneNumber = $_POST['phonenumbers'];
             $owners_full_name = $_POST['owners_full_name'];
 
 
-            $hatchery_name = $_POST['hatchery_name'];
+            $dairy_farm_name = $_POST['dairy_farm_name'];
             $type_of_ownership = $_POST['type_of_ownership'];
             $date_established = $_POST['date_established'];
-            $hatch_reg_number = $_POST['hatch_reg_number'];
+            $reg_number = $_POST['reg_number'];
             $owners_full_name = $_POST['owners_full_name'];
-            //$hatchery_affiliation[]
-            $hatchery_affiliation = $_POST['hatchery_affiliation'];
-            $hatchery_manager = $_POST['hatchery_manager'];
-            $hatchery_veterinarian = $_POST['hatchery_veterinarian'];
+            //$dairy_affiliation[]
+            $affiliation = $_POST['affiliation'];
+            $dairy_manager = $_POST['dairy_manager'];
+            $dairy_veterinarian = $_POST['dairy_veterinarian'];
             $vet_reg_number = $_POST['vet_reg_number'];
 
-            // hatching purposes
-            $utility_chicks = $_POST['utility_chicks'];
-            $grandparent_stock_chicks = $_POST['grandparent_stock_chicks'];
-            $parent_stock_chicks = $_POST['parent_stock_chicks'];
-
-            //type of breed
-            $broiler = $_POST['broiler'];
-            $layers =  $_POST['layers'];
-            $dual_purpose = $_POST['dual_purpose'];
-
+          
               // Breed
-             $typeofbreeds = $_POST['typeofBreed'];
+            $typeofbreeds = $_POST['typeofBreed'];
 
-            //type of poultry hacthing
-            $hatching_fowls = $_POST['hatching_chicken'];
-            $hatching_turkey = $_POST['hatching_turkey'];
-            $hatching_ducks = $_POST['hatching_ducks'];
-            $hatching_geese = $_POST['hatching_geese'];
-            $hatching_guinea_fowls = $_POST['hatching_guinea_fowls'];
-            $hatching_quails = $_POST['hatching_quails'];
-            $hatching_ostrich = $_POST['hatching_ostrich'];
-
-            //source of eggs by the hatcher
-            $imported_eggs = $_POST['imported_eggs'];
-            $other_local_farms = $_POST['other_local_farms'];
-            $out_growers = $_POST['out_growers'];
-            $owns_breeder_farm = $_POST['owns_breeder_farm'];
-
-            //hatchery Capacity
-            $total_incubator_capacity = $_POST['total_incubator_capacity'];
-            $total_hatcher_capacity = $_POST['total_hatcher_capacity'];
+            //dairy Capacity
+            $total_litre_perday = $_POST['total_litre_perday'];
+            $maximum_flock_size = $_POST['maximum_flock_size'];
 
              //
-             $websiteurl = $_POST['websiteurl'];
-             $contact_person = $_POST['contact_person'];
-             $country = $_POST['country'];
-             $region = $_POST['region'];
-             $district = $_POST['district'];
-             $address = $_POST['address'];
-             $pobox = $_POST['pobox'];
-             $phonenumber = $_POST['phonenumber'];
+            $websiteurl = $_POST['websiteurl'];
+            $contact_person = $_POST['contact_person'];
+            $country = $_POST['country'];
+            $region = $_POST['region'];
+            $district = $_POST['district'];
+            $address = $_POST['address'];
+            $phonenumber = $_POST['phonenumber'];
 
 
 
 
 
-            if (isset($_POST['concerned'])) {
-                $type_consern = $_POST['concerned'];
-
-                echo "You chose the following color(s): <br>";
-                foreach ($type_consern as $concerned) {
-                    echo $concerned."<br />";
-                }
-            } // end brace for if(isset
-            else {
-                echo "You did not choose a color.";
-            }
-
+         
             // check if passwords match
             if ($password !=  $_POST['confirm_password']) {
                 $message = "<div class=\"alert alert-info\" role=\"alert\">
@@ -139,7 +103,7 @@
             }
 
             if (empty($errors)) {
-                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
+                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $dairy_veterinarian);
                 if ($db->doesUserEmailExist($email)) {
                     // user already existed
                     // $response["error"] = true;
@@ -149,18 +113,15 @@
            </div>";
                 // echo json_encode($response);
                 } else {
-                    $user = $db->registerHatcheryUser($fname, $lname, $email, $password, $usertype, $account_status);
+                    $user = $db->registerUser($fname, $lname, $email, $password, $usertype, $account_status);
 
                     if ($user) {
                         $response["error"] = false;
                         $response["uid"] = $user["user_unique_id"];
                         $response["user"]["user_id"] = $user["user_id"];
-                        $response["user"]["first_name"] = $user["first_name"];
-                        $response["user"]["last_name"] = $user["last_name"];
                         $response["user"]["email"] = $user["email"];
                         $response["user"]["usertype"] = $user["usertype"];
                         $response["user"]["encrypted_password"] = $user["encrypted_password"];
-                        $response["user"]["usertype"] = $user["usertype"];
                         $response["user"]["account_status"] = $user["account_status"];
                         $response["user"]["salt"] = $user["salt"];
                         $response["user"]["created_at"] = $user["created_at"];
@@ -171,60 +132,57 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $hatchery = $db->registerNewHatchery(
-                $user_id,
-                $hatchery_name,
-                $year_established,
-                $incorporation_number,
-                $business_permit_number,
-                $premise_certificate_number,
-                $gmp_certificate_number,
-                $hatcheries_owned,
-                $association_affiliation,
-                $country,
-                $region,
-                $district,
-                $pobox,
-                $websiteurl,
-                $address,
-                $contact_person,
-                $total_hatchery_capacity,
-                $total_incubation_capacity,
-                $num_breeds_hatched,
-                $total_man_power,
-                $plant_manager
+                    $dairy = $db->registerNewMilkDairy(
+                    $user_id,
+                    $dairy_farm_name,
+                    $year_established,
+                    $reg_number,
+                    $dairy_farm_owner,
+                    $affiliation,
+                    $country,
+                    $region,
+                    $district,
+                    $websiteurl,
+                    $address,
+                    $contact_person,
+                    $total_litre_perday ,
+                    $maximum_flock_size,
+                    $dairy_manager, 
+                    $dairy_veterinarian, 
+                    $vet_reg_number,
+                    $phone_Number,
+                    $typeofbreeds 
+        
                 );
                     // register new manufacturer
-                    if ($hatchery) {
+                    if ($dairy) {
                         // user stored successfully
                         $response["error"] = false;
-                        $response["htuid"] = $hatchery["hatchery_unique_id"];
-                        $response["hatchery"]["hatchery_id"] = $hatchery["hatchery_id"];
-                        $response["hatchery"]["user_id"] = $hatchery["user_id"];
-                        $response["hatchery"]["hatchery_name"] = $hatchery["hatchery_name"];
-                        $response["hatchery"]["year_established"] = $hatchery["year_established"];
-                        $response["hatchery"]["incorporation_number"] = $hatchery["incorporation_number"];
-                        $response["hatchery"]["business_permit_number"] = $hatchery["business_permit_number"];
-                        $response["hatchery"]["premise_certificate_number"] = $hatchery["premise_certificate_number"];
-                        $response["hatchery"]["gmp_certificate_number"] = $hatchery["gmp_certificate_number"];
-                        $response["hatchery"]["hatcheries_owned"] = $hatchery["hatcheries_owned"];
-                        $response["hatchery"]["association_affiliation"] = $hatchery["association_affiliation"];
-                        $response["hatchery"]["country"] = $hatchery["country"];
-                        $response["hatchery"]["region"] = $hatchery["region"];
-                        $response["hatchery"]["district"] = $hatchery["district"];
-                        $response["hatchery"]["pobox"] = $hatchery["pobox"];
-                        $response["hatchery"]["address"] = $hatchery["address"];
-                        $response["hatchery"]["contact_person"] = $hatchery["contact_person"];
-                        $response["hatchery"]["total_hatchery_capacity"] = $hatchery["total_hatchery_capacity"];
-                        $response["hatchery"]["total_incubation_capacity"] = $hatchery["total_incubation_capacity"];
-                        $response["hatchery"]["total_man_power"] = $hatchery["total_man_power"];
-                        $response["hatchery"]["plant_manager"] = $hatchery["plant_manager"];
-                        $response["hatchery"]["created_at"] = $hatchery["created_at"];
-                        $response["hatchery"]["updated_at"] = $hatchery["updated_at"];
+                        $response["htuid"] = $dairy["dairy_unique_id"];
+                        $response["dairy"]["dairy_id"] = $dairy["dairy_id"];
+                        $response["dairy"]["user_id"] = $dairy["user_id"];
+                        $response["dairy"]["dairy_farm_name"] = $dairy["dairy_farm_name"];
+                        $response["dairy"]["year_established"] = $dairy["year_established"];
+                        $response["dairy"]["reg_number"] = $dairy["reg_number"];
+                        $response["dairy"]["dairy_farm_owner"] = $dairy["dairy_farm_owner"];
+                        $response["dairy"]["affiliation"] = $dairy["affiliation"];
+                        $response["dairy"]["country"] = $dairy["country"];
+                        $response["dairy"]["region"] = $dairy["region"];
+                        $response["dairy"]["district"] = $dairy["district"];
+                        $response["dairy"]["address"] = $dairy["address"];
+                        $response["dairy"]["contact_person"] = $dairy["contact_person"];
+                        $response["dairy"]["total_litre_perday"] = $dairy["total_litre_perday"];
+                        $response["dairy"]["maximum_flock_size"] = $dairy["maximum_flock_size"];
+                        $response["dairy"]["dairy_manager"] = $dairy["dairy_manager"];
+                        $response["dairy"]["dairy_veterinarian"] = $dairy["dairy_veterinarian"];
+                        $response["dairy"]["vet_reg_number"] = $dairy["vet_reg_number"];
+                        $response["dairy"]["phone_number"] = $dairy["phone_number"];
+                        $response["dairy"]["created_at"] = $dairy["created_at"];
+                        $response["dairy"]["updated_at"] = $dairy["updated_at"];
 
 
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
-                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new hatchery</a>.
+                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new dairy</a>.
                 </div>";
                     }
                 }
@@ -492,7 +450,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="farm_name">Dairy Farm Name</label>
-                        <input type="text" class="form-control" id="hatchery_name" name="hatchery_name" value="<?= isset($_POST['hatchery_name']) ? $_POST['hatchery_name'] : ''; ?>" placeholder="">
+                        <input type="text" class="form-control" id="dairy_farm_name" name="dairy_farm_name" value="<?= isset($_POST['dairy_farm_name']) ? $_POST['dairy_farm_name'] : ''; ?>" placeholder="">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -526,7 +484,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="lblyear_established">Registration Number</label>
-                      <input type="text" class="form-control" id="hatch_reg_number" name="hatch_reg_number"  value="<?= isset($_POST['hatch_reg_number']) ? $_POST['hatch_reg_number'] : ''; ?>" placeholder="">
+                      <input type="text" class="form-control" id="reg_number" name="reg_number"  value="<?= isset($_POST['reg_number']) ? $_POST['reg_number'] : ''; ?>" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -535,31 +493,33 @@
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
                 <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group ">
                 <div class="form-group multiple-form-group" data-max=6>
-                  <label for="formGroupExampleInput2">Hatchery Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
+                  <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
-                    <input type="text" name="hatchery_affiliation[]" class="form-control">
+                    <input type="text" name="affiliation[]" class="form-control">
                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                       </button></span>
                   </div>
                 </div>
               </div>
-              </div>
+              
             </div>
             <!-- end of company information -->
               <!-- <hr> -->
             <br />
+            <div class="form-group">
+                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
+                
+                  </div>
+                  <hr>
             <!-- company information -->
             <div class="container">
               <div class="card">
                 <div class="card-body">
+                  
                   <div class="form-group">
-                    <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
-                  <hr>
-                  </div>
-                  <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country" class="control-label">Country</label>
                      <select class="form-control" id="country" name="country" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>">
                        <option>SELECT</option>
                        <option>Tanzania</option>
@@ -570,11 +530,23 @@
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">Region</label>
-                    <input type="text" class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Dar es Salaam</option>
+                       <option>Mwanza</option>
+                       <option>Arusha</option>
+                       <option>Dodoma</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="formGroupExampleInput2">District</label>
-                    <input type="text" class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <select class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
+                    <option>SELECT</option>
+                       <option>Kinondoni</option>
+                       <option>Ilala</option>
+                       <option>Temeke</option>
+                       <option>Ubungo</option>
+                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">Address</label>
@@ -583,9 +555,9 @@
 
               <div class="form-group col-md-6">
                       <div class="form-group multiple-form-group" data-max=6>
-                        <label for="formGroupExampleInput2">Office Phone Number:</label>
+                        <label for="formGroupExampleInput2"> Phone Numbers:</label>
                         <div class="form-group input-group">
-                          <input type="text" name="phonenumbers[]" class="form-control">
+                          <input type="text" name="phone_number[]" class="form-control">
                             <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
                             </button></span>
                         </div>
@@ -599,13 +571,13 @@
 
                 <div class="form-group col-md-6">
                   <label for="formGroupExampleInput2">Farm Manager:</label>
-                  <input type="text" class="form-control" id="hatchery_manager" name="hatchery_manager" value="<?= isset($_POST['hatchery_manager']) ? $_POST['hatchery_manager'] : ''; ?>" placeholder=" ">
+                  <input type="text" class="form-control" id="dairy_manager" name="dairy_manager" value="<?= isset($_POST['dairy_manager']) ? $_POST['dairy_manager'] : ''; ?>" placeholder=" ">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="hatchery_veterinarian">Farm Veterinarian:</label>
-                      <input type="text" class="form-control" id="hatchery_veterinarian" name="hatchery_veterinarian" value="<?= isset($_POST['hatchery_veterinarian']) ? $_POST['hatchery_veterinarian'] : ''; ?>" placeholder=" ">
+                      <label for="dairy_veterinarian">Farm Veterinarian:</label>
+                      <input type="text" class="form-control" id="dairy_veterinarian" name="dairy_veterinarian" value="<?= isset($_POST['dairy_veterinarian']) ? $_POST['dairy_veterinarian'] : ''; ?>" placeholder=" ">
                     </div>
                   </div>
 
@@ -623,59 +595,20 @@
                <br />
                 <br />
                 <!-- company information -->
-              <div class="container">
-                <div class="card">
-                  <div class="card-body">
+              
+               
+                  
                       <div class="form-group">
                         <label for="lblestablishment_activities"><strong>Establishment Activities</strong></label>
                         <hr>
                       </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p>Dairy Farm Activities.</p>
-                            <div class="form-check">
+      
+                   
 
-                                <label class="customcheck" style="font-size: 18px;"> Milk Production
-                                  <input type="checkbox" name="grandparent_stock_chicks" id="grandparent_stock_chicks" value="grandparent_stock_chicks">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Meat Processing
-                                  <input type="checkbox" name="parent_stock_chicks" id="parent_stock_chicks" value="parent_stock_chicks">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-                    <div class="form-group">
-                      <!-- <label for="formGroupExampleInput"><strong>Establishment Focus.</strong></label> -->
-                      <hr>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-6">
-                             <label for="formGroupExampleInput2">Breeding Purpose.<small>(*click to select)</small></label>
-                            <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;">Broilers
-                                  <input type="checkbox" checked="checked" name="broiler" id="broiler" value="broilers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Layers
-                                  <input type="checkbox" name="layers" id="layers" value="layers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Dual purpose
-                                  <input type="checkbox" name="dual_purpose" id="dual_purpose" value="dual purpose">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                       <div class="col-md-6">
-                         <div class="form-group col-md-6">
+                       
+                         <div class="form-group  ">
                                  <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2">Breed <small>(e.g. Cobb 500, Sasso, Kruoiler)</small></label>
+                                   <label for="formGroupExampleInput2" class="control-label">Breed <small>(e.g. haifer local hybrid)</small></label>
                                    <div class="form-group input-group">
                                      <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
                                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
@@ -683,115 +616,41 @@
                                    </div>
                                </div>
                              </div>
-                           </div>
-                         	</div>
-                         </div>
-                       </div>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-6">
-                             <label for="formGroupExampleInput2">Poultry Type(s) <small>(*click to select)</small></label>
-                          <div class="form-check">
-                              <label class="customcheck" style="font-size: 18px;"> Cows
-                                <input type="checkbox" checked="checked" name="hatching_chicken" id="hatching_chicken" value="chicken">
-                                <span class="checkmark"></span>
-                              </label>
-                              <label class="customcheck" style="font-size: 18px;"> Goats
-                                <input type="checkbox" name="hatching_turkey" id="hatching_turkey" value="turkey">
-                                <span class="checkmark"></span>
-                              </label>
-                              <label class="customcheck" style="font-size: 18px;">Sheep
-                                <input type="checkbox" name="hatching_ducks" id="hatching_ducks" value="ducks">
-                                <span class="checkmark"></span>
-                              </label>
-                          </div>
-                        </div>
+                           
+                         
+                      
+                    
+                    
+                  
+                    
 
-                        <div class="col-md-6">
-                          <div class="form-check" style="padding-top: 26px;">
-                          <label class="customcheck" style="font-size: 18px;">Geese
-                            <input type="checkbox" name="hatching_geese" id="hatching_geese" value="geese">
-                            <span class="checkmark"></span>
-                          </label>
-                          <label class="customcheck" style="font-size: 18px;">Guinea fowls
-                            <input type="checkbox" name="hatching_guinea_fowls" id="hatching_guinea_fowls" value="guinea_fowls">
-                            <span class="checkmark"></span>
-                          </label>
-                          </div>
+                        
+                     
+                     
 
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-check">
-                          <label class="customcheck" style="font-size: 18px;">Quails
-                            <input type="checkbox" name="hatching_quails" id="hatching_quails" value="quails">
-                            <span class="checkmark"></span>
-                          </label>
-                          <label class="customcheck" style="font-size: 18px;">Ostrich
-                            <input type="checkbox" name="hatching_ostrich" id="hatching_ostrich" value="ostrich">
-                            <span class="checkmark"></span>
-                          </label>
-                          </div>
-                        </div>
-
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                               <label for="formGroupExampleInput2">Source of hatching eggs <small>(*click to select)</small></label>
-                            <div class="form-check">
-                                <label class="customcheck" style="font-size: 18px;">Import
-                                  <input type="checkbox" checked="checked" name="imported_eggs" id="imported_eggs" value="import">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;"> Own Breeder flock farm
-                                  <input type="checkbox" name="owns_breeder_farm" id="owns_breeder_farm" value="owns_breeder_farm">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Out-growers
-                                  <input type="checkbox" name="out_growers" id="out_growers" value="out-growers">
-                                  <span class="checkmark"></span>
-                                </label>
-                                <label class="customcheck" style="font-size: 18px;">Other local farms
-                                  <input type="checkbox" name="other_local_farms" id="other_local_farms" value="Other_local_farms">
-                                  <span class="checkmark"></span>
-                                </label>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
+                      
+                        
+                        
                           <div class="form-group">
-                            <label for="formGroupExampleInput"><strong>Hatchery Capacity</strong></label>
-                            <hr>
-                          </div>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="form-group">
-                            <label for="lbl_total_incubator_capacity">Total Incubator Capacity</label>
-                            <input type="text" class="form-control" id="total_incubator_capacity" name="total_incubator_capacity" value="<?= isset($_POST['total_incubator_capacity']) ? $_POST['total_incubator_capacity'] : ''; ?>" placeholder=" ">
+                            <label for="total_farm_capacity">Total litre produced per day </label>
+                            <input type="text" class="form-control" id="total_litre_perday" name="total_litre_perday" value="<?= isset($_POST['total_litre_perday']) ? $_POST['total_litre_perday'] : ''; ?>" placeholder=" ">
                           </div>
                           <div class="form-group">
-                            <label for="lbltotal_hatcher_capacity">Total Hatcher Capacity</label>
-                            <input type="text" class="form-control" id="total_hatcher_capacity" name="total_hatcher_capacity" value="<?= isset($_POST['total_hatcher_capacity']) ? $_POST['total_hatcher_capacity'] : ''; ?>" placeholder=" ">
+                            <label for="lblmaximum_flock_size">Flock size</label>
+                            <input type="text" class="form-control" id="maximum_flock_size" name="maximum_flock_size" value="<?= isset($_POST['maximum_flock_size']) ? $_POST['maximum_flock_size'] : ''; ?>" placeholder=" ">
                           </div>
-                        </div>
-                      </div>
+                        
+                    
 
 
 
-                  <div class="row">
-                    <div class="col-md-12">
+                  
+                  
                       <div class="form-group">
                         <label for="lbl_contacts_title"><strong>Contacts</strong></label>
                         <hr>
-                      </div>
-                    </div>
+                     
+                   
 
                     <div class="form-group col-md-6">
                       <label for="formGroupExampleInput2">website</label>
@@ -800,35 +659,35 @@
                     <div class="form-group col-md-6">
                       <label for="lbl_contact_person">contact person</label>
                       <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?= isset($_POST['contact_person']) ? $_POST['contact_person'] : ''; ?>" placeholder=" ">
-                    </div>
-                     <div class="form-group col-md-6">
+                    </div></div>
+                     <div class="form-group ">
                        <label for="lbl_contact_email">Contact email</label>
                        <input type="email" class="form-control" id="contact_email" name="contact_email" value="<?= isset($_POST['contact_email']) ? $_POST['contact_email'] : ''; ?>" placeholder=" ">
                      </div>
-                   </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
+                   
+                     <div class="">
+                      
+                        <div class="form-group col-md-6">
                         <label for="exampleInputPassword1">Password</label>
                           <input type="password" class="form-control" id="password" name="password" value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
+                      
+                     
+                        <div class="form-group col-md-6">
                          <label for="exampleInputConfirmPassword2">Confirm Password</label>
                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                            <span id='message'></span>
                          </div>
                       </div>
-                    </div>
+                   
                       <div class="form-group">
                       <button type="submit"  name="submit" class="btn btn-primary btn-lg" value="Submit">Register</button>
-                          </div>
+                          </div></div>
                        </form>
-                  </div>
-                </div>
+                  
+               
                 <hr>
-               </div>
+              
       </section>
 
       <!--end of registeration section -->
@@ -977,11 +836,33 @@
         $(document).on('click', '.btn-remove', removeFormGroup);
 
     });
-})(jQuery);
+})
+
+$(document).ready(function(){
+function addtextbox()
+{
+  var html= '<div class="form-group">
+                    <label  class="control-label" for="formGroupExampleInput2">District</label>
+                    <input type="text" class="form-control" id="district" name="district" value=""
+                  </div>';
+
+$(html).appendTo((this).closest($(".add")));
+  
+}
+$(".add").click(addtexbox);
+
+});
+
+(jQuery);
 </script>
+<?php
+include('../../includes/layouts/public_ly_footer.php');
+?>
 <script>
 $(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
+	$('.datetimepicker').datetimepicker({
+    format:'L'
+  });
 
 });
 </script>
