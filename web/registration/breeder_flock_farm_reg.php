@@ -625,7 +625,7 @@
 
         <!-- Custom styles for this template -->
         <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../web/css/style2.css">
+        <!-- <link rel="stylesheet" href="../../web/css/style2.css"> -->
         <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
 
 
@@ -1384,9 +1384,7 @@ var addFormGroup1 = function (event) {
     });
 })(jQuery);
 </script>
-<?php
-include('../../includes/layouts/public_ly_footer.php');
-?>
+
 <script>
 $(document).ready(function (){
 	$('.datetimepicker').datetimepicker({
@@ -1395,6 +1393,6 @@ $(document).ready(function (){
 
 });
 </script>
-
-  </body>
-</html>
+<?php
+include('../../includes/layouts/public_ly_footer.php');
+?>
