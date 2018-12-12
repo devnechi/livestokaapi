@@ -799,6 +799,88 @@
            }
             break;
 
+           // hatchery details
+           case 'gethatcherydetails':
+
+           $db = new DbOperation();
+           // json response array
+           $response = array("error" => false);
+           if (isset($_POST['user_id'])) {
+               // receiving the post params
+               $user_id = $_POST['user_id'];
+
+               $hatchery = $db->getHatcheryMainDetails($user_id);
+               if ($hatchery != false) {
+                   // use is found
+                   $response["error"] = false;
+                   $response["hatuid"] = $hatchery["hatchery_unique_id"];
+                   $response["hatchery"]["hatchery_id"] = $hatchery["hatchery_id"];
+                   $response["hatchery"]["user_id"] = $hatchery["user_id"];
+                   $response["hatchery"]["hatchery_name"] = $hatchery["hatchery_name"];
+                   $response["hatchery"]["date_established"] = $hatchery["date_established"];
+                   $response["hatchery"]["type_of_ownership"] = $hatchery["type_of_ownership"];
+                   $response["hatchery"]["contact_person"] = $hatchery["contact_person"];
+                   $response["hatchery"]["phone_number"] = $hatchery["phone_number"];
+                   $response["hatchery"]["created_at"] = $hatchery["created_at"];
+                   $response["hatchery"]["updated_at"] = $hatchery["updated_at"];
+
+                   //echo json_encode($response);
+               } else {
+                   // user is not found with the credentials
+                   $response["error"] = true;
+                   $response["error_msg"] = "Can not find user. Please try again later!";
+                   //echo json_encode($response);
+               }
+           } else {
+               // required post params is missing
+               $response["error"] = true;
+               $response["error_msg"] = "Required user ID is missing!";
+               //echo json_encode($response);
+           }
+           break;
+
+
+           // hatchery gets batch details
+           case 'gethatcherybatchdetails':
+
+           $db = new DbOperation();
+           // json response array
+           $response = array("error" => false);
+           if (isset($_POST['public_batch_id'])) {
+               // receiving the post params
+               $public_batch_id = $_POST['public_batch_id'];
+
+               $batchdetails = $db->getBatchDetails($public_batch_id);
+               if ($batchdetails != false) {
+                   // use is found
+
+                   $response["error"] = false;
+                   $response["hatbuid"] = $batchdetails["unique_ongoing_batches"];
+                   $response["batchdetails"]["ongoing_batches_id"] = $batchdetails["ongoing_batches_id"];
+                   $response["batchdetails"]["creator_id"] = $batchdetails["creator_id"];
+                   $response["batchdetails"]["hatchery_id"] = $batchdetails["hatchery_id"];
+                   $response["batchdetails"]["public_batch_id"] = $batchdetails["public_batch_id"];
+                   $response["batchdetails"]["created_batch_id"] = $batchdetails["created_batch_id"];
+                   $response["batchdetails"]["batch_status"] = $batchdetails["batch_current_stage"];
+                   $response["batchdetails"]["date_created"] = $batchdetails["date_created"];
+                   $response["batchdetails"]["date_updated"] = $batchdetails["date_updated"];
+
+                   //echo json_encode($response);
+               } else {
+                   // user is not found with the credentials
+                   $response["error"] = true;
+                   $response["error_msg"] = "Can not find user. Please try again later!";
+                   //echo json_encode($response);
+               }
+           } else {
+               // required post params is missing
+               $response["error"] = true;
+               $response["error_msg"] = "Required user ID is missing!";
+               //echo json_encode($response);
+           }
+           break;
+
+
 
           //the delete operation
             case 'deleteuseraccount':

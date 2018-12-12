@@ -1134,6 +1134,196 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 
           }
 
+
+      /**
+       * get hatchery details
+       */
+      public function getHatcheryMainDetails($user_id){
+        $stmt = $this->con->prepare("SELECT
+            hatchery_id, hatchery_unique_id,
+            user_id, hatchery_name,
+            date_established, type_of_ownership,
+            contact_person,
+            phone_number,
+            created_at,
+            updated_at FROM hatcheries_tbl WHERE user_id = ?");
+        //$stmt = $this->con->prepare("SELECT * FROM businessDetails WHERE user_id = ?");
+        $stmt->bind_param("s", $user_id);
+        if ($stmt->execute()) {
+            // $user = $stmt->get_result()->fetch_assoc();
+            $hatchery = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $hatchery;
+        } else {
+            return null;
+        }
+
+      }
+
+
+  /**
+   * create a new batch
+   */
+   public function hatcheryCreateNewBatch($hatchery_id, $creator_id, $public_batch_id, $quantity_of_eggs, $date_recorded, $egg_source_name, $eggs_age, $number_of_breaks,
+    $number_of_eggs_set, $date_set, $number_of_setters, $setting_temperature, $setting_humidity, $next_upcoming_update, $stage_one){
+     $nbuid = uniqid('', true);
+     $stmt = $this->con->prepare("INSERT INTO all_created_hatch_batches (batch_unique_id, hatchery_id, creator_id, public_batch_id,
+ quantity_of_eggs, date_recorded, egg_source, age_of_eggs, number_of_breaks, number_of_eggs_on_setter,
+ date_set, number_of_setters, setting_temperature, setting_humidity, stage_two_next_update, stage_one, date_created)
+ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+     $stmt->bind_param("ssssssssssssssss", $nbuid, $hatchery_id, $creator_id, $public_batch_id, $quantity_of_eggs, $date_recorded, $egg_source_name, $eggs_age, $number_of_breaks, $number_of_eggs_set, $date_set, $number_of_setters, $setting_temperature, $setting_humidity, $next_upcoming_update, $stage_one);
+     $result = $stmt->execute();
+     $stmt->close();
+
+     // check for successful store
+     if ($result) {
+         $stmt = $this->con->prepare("SELECT * FROM all_created_hatch_batches WHERE public_batch_id = ?");
+         $stmt->bind_param("s", $public_batch_id);
+         $stmt->execute();
+         $new_batch = $stmt->get_result()->fetch_assoc();
+         $stmt->close();
+
+         return $new_batch;
+     } else {
+         return false;
+     }
+
+   }
+
+   /**
+    * update created batch
+    * hatchery
+    * when batch is at stage 2
+    */
+     public function updateCreatedBatch(){
+       $stmt = $this->con->prepare("UPDATE lvusers_tb SET account_status = ? WHERE user_id = ?");
+       $stmt->bind_param("si", $account_status, $user_id);
+       if ($stmt->execute()) {
+           return true;
+       }
+       return false;
+
+     }
+
+     /**
+      * create a new on-going batch
+      *
+      */
+    public function createOngoingBatch($ongoing_creator_id, $ongoing_hatchery_id, $ongoing_public_batch,
+$created_batch_id,  $ongoing_batch_current_stage, $ongoing_batch_status){
+      $ogbuid = uniqid('', true);
+      $stmt = $this->con->prepare("INSERT INTO ongoing_hatching_batches (unique_ongoing_batches, creator_id, hatchery_id, public_batch_id,
+ created_batch_id, batch_current_stage, batch_status, date_created) VALUES(?, ?, ?, ?, ?, ?, ?, NOW())");
+      $stmt->bind_param("sssssss", $ogbuid, $ongoing_creator_id, $ongoing_hatchery_id, $ongoing_public_batch, $created_batch_id,  $ongoing_batch_current_stage, $ongoing_batch_status);
+      $result = $stmt->execute();
+      $stmt->close();
+
+      // check for successful store
+      if ($result) {
+          $stmt = $this->con->prepare("SELECT * FROM ongoing_hatching_batches WHERE creator_id = ?");
+          $stmt->bind_param("s", $created_batch_id);
+          $stmt->execute();
+          $new_batch = $stmt->get_result()->fetch_assoc();
+          $stmt->close();
+
+          return $new_batch;
+      } else {
+          return false;
+      }
+    }
+
+
+    /*
+    * hatchery
+    * gets all hatchery batches
+    */
+    public function getAllHatcheryBatches($hatchery_id)
+    {
+        $stmt = $this->con->prepare("SELECT ongoing_batches_id, unique_ongoing_batches,
+creator_id, hatchery_id, public_batch_id, created_batch_id,
+ batch_current_stage, batch_status, date_created, date_updated FROM  ongoing_hatching_batches WHERE hatchery_id = ?");
+        //$stmt = $this->con->prepare("SELECT * FROM businessDetails WHERE user_id = ?");
+        $stmt->bind_param("s", $hatchery_id);
+        $stmt->execute();
+        $stmt->bind_result($ongoing_batches_id, $unique_ongoing_batches,
+$creator_id, $hatchery_id, $public_batch_id, $created_batch_id,
+ $batch_current_stage, $batch_status, $date_created, $date_updated);
+
+        $allbatches = array();
+        while ($stmt->fetch()) {
+            $batch  = array();
+            $batch['ongoing_batches_id'] = $ongoing_batches_id;
+            $batch['unique_ongoing_batches'] = $unique_ongoing_batches;
+            $batch['creator_id'] = $creator_id;
+            $batch['hatchery_id'] = $hatchery_id;
+            $batch['public_batch_id'] = $public_batch_id;
+            $batch['created_batch_id'] = $created_batch_id;
+            $batch['batch_current_stage'] = $batch_current_stage;
+            $batch['batch_status'] = $batch_status;
+            $batch['date_created'] = $date_created;
+            $batch['date_updated'] = $date_updated;
+
+            array_push($allbatches, $batch);
+        }
+        return $allbatches;
+    }
+
+    /*
+    * hatchery
+    * gets all hatchery specific batch details
+    */
+    public function getBatchDetails($public_batch_id)
+    {
+        $stmt = $this->con->prepare("SELECT ongoing_batches_id, unique_ongoing_batches,
+creator_id, hatchery_id, public_batch_id, created_batch_id,
+ batch_current_stage, batch_status, date_created, date_updated FROM  ongoing_hatching_batches WHERE public_batch_id = ?");
+
+ $stmt->bind_param("s", $public_batch_id);
+ if ($stmt->execute()) {
+     // $user = $stmt->get_result()->fetch_assoc();
+     $batchdetails = $stmt->get_result()->fetch_assoc();
+     $stmt->close();
+     return $batchdetails;
+ } else {
+     return null;
+ }
+    }
+
+
+        /*
+        *Hatchery; GETs all hatchery breeds produced
+        *
+        */
+        public function getallHatcheryBreeds($hatchery_id)
+        {
+            $stmt = $this->con->prepare("SELECT hatchery_breed_id, breed_unique_id, user_id, hatchery_id, breed_title, created_at, updated_at FROM livestoka.hatchery_breeds WHERE hatchery_id = $hatchery_id");
+            $stmt->execute();
+            $stmt->bind_result(
+          $hatchery_breed_id,
+          $breed_unique_id,
+          $user_id,
+          $hatchery_id,
+          $breed_title,
+          $created_at,
+          $updated_at
+      );
+
+            $breeds = array();
+
+            while ($stmt->fetch()) {
+                $breed  = array();
+                $breed['hatchery_breed_id'] = $hatchery_breed_id;
+                $breed['breed_unique_id'] = $breed_unique_id;
+                $breed['user_id'] = $user_id;
+                $breed['hatchery_id'] = $hatchery_id;
+                $breed['breed_title'] = $breed_title;
+                $breed['created_at'] = $created_at;
+                $breed['updated_at'] = $updated_at;
+                array_push($breeds, $breed);
+            }
+            return $breeds;
+        }
+
     /**
      * Check user is existed or not
      */
@@ -1285,23 +1475,23 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         // $mail->Body = $body;
         // $mail->AddAddress($to);
         $mail->SMTPDebug = 4;                               // Enable verbose debug output
-   $mail->isSMTP();                                    // Set mailer to use SMTP
-   $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
-   $mail->SMTPAuth = true;                             // Enable SMTP authentication
-   $mail->Username =  $to;    //'kijanamwizi@gmail.com';           // SMTP username
-   $mail->Password = '';                       // SMTP password
-   $mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
-   $mail->Port = 587;                                  // TCP port to connect, tls=587, ssl=465
-   $mail->From = 'info@livestoka.com';
-   $mail->FromName = 'Please Verify Account';
-   $mail->addAddress($to);     // Add a recipient
-   $mail->addReplyTo('info@livestoka.com', 'future basics');
-   $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-   $mail->isHTML(false);                                  // Set email format to HTML
-   $mail->Subject = $subject;
-   $mail->Body    = $body;
-   $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-       // if( mail($recipient_email, $subject, $body, $headers) ){
+         $mail->isSMTP();                                    // Set mailer to use SMTP
+         $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+         $mail->SMTPAuth = true;                             // Enable SMTP authentication
+         $mail->Username =  $to;    //'kijanamwizi@gmail.com';           // SMTP username
+         $mail->Password = '';                       // SMTP password
+         $mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
+         $mail->Port = 587;                                  // TCP port to connect, tls=587, ssl=465
+         $mail->From = 'info@livestoka.com';
+         $mail->FromName = 'Please Verify Account';
+         $mail->addAddress($to);     // Add a recipient
+         $mail->addReplyTo('info@livestoka.com', 'future basics');
+         $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+         $mail->isHTML(false);                                  // Set email format to HTML
+         $mail->Subject = $subject;
+         $mail->Body    = $body;
+         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+             // if( mail($recipient_email, $subject, $body, $headers) ){
         if($mail->send()){
 
             $message = "<div class=\"alert alert-success\" role=\"alert\">

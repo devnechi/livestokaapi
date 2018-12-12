@@ -83,7 +83,98 @@
              });
              chart.render();
 
+             //pie chart
+             //hatching purpose pie chart
+                    var chart = new CanvasJS.Chart("chartPieHatchingPurpose", {
+                     animationEnabled: true,
+                     exportEnabled: true,
+                     title:{
+                       text: "Industry Hatching Purpose"
+                     },
+                     subtitles: [{
+                       text: "Measurements Used: Mil(฿)"
+                     }],
+                     data: [{
+                       type: "pie",
+                       showInLegend: "true",
+                       legendText: "{label}",
+                       indexLabelFontSize: 16,
+                       indexLabel: "{label} - #percent Mil",
+                       yValueFormatString: "฿#,##0",
+                       dataPoints: <?php echo json_encode($dataPointsPieHatchingPurpose, JSON_NUMERIC_CHECK); ?>
+                     }]
+                    });
+                    chart.render();
 
+
+                    //hatching purpose pie chart
+                           var chart = new CanvasJS.Chart("chartPieBreedingPurpose", {
+                            animationEnabled: true,
+                            exportEnabled: true,
+                            title:{
+                              text: "Industry Breed Purpose"
+                            },
+                            subtitles: [{
+                              text: "Measurements Used: Mil(฿)"
+                            }],
+                            data: [{
+                              type: "pie",
+                              showInLegend: "true",
+                              legendText: "{label}",
+                              indexLabelFontSize: 16,
+                              indexLabel: "{label} - #percent Mil",
+                              yValueFormatString: "฿#,##0",
+                              dataPoints: <?php echo json_encode($dataPointsPieBreedingPurpose, JSON_NUMERIC_CHECK); ?>
+                            }]
+                           });
+                           chart.render();
+
+
+                           // poultry Types
+                          //  $dataPointsHatcheryPoultryTypes
+
+                          var chart = new CanvasJS.Chart("chartPiePoultrytypes", {
+                           animationEnabled: true,
+                           exportEnabled: true,
+                           title:{
+                             text: "Industry Poultry Types"
+                           },
+                           subtitles: [{
+                             text: "Measurements Used: Mil(฿)"
+                           }],
+                           data: [{
+                             type: "pie",
+                             showInLegend: "true",
+                             legendText: "{label}",
+                             indexLabelFontSize: 16,
+                             indexLabel: "{label} - #percent Mil",
+                             yValueFormatString: "฿#,##0",
+                             dataPoints: <?php echo json_encode($dataPointsHatcheryPoultryTypes, JSON_NUMERIC_CHECK); ?>
+                           }]
+                          });
+                          chart.render();
+
+           // source of hatching eggs
+           var chart = new CanvasJS.Chart("chartPieHatchingEggsSources", {
+            animationEnabled: true,
+            exportEnabled: true,
+            title:{
+              text: "Hatching Egg Sources"
+            },
+            subtitles: [{
+              text: "Measurements Used: Mil(฿)"
+            }],
+            data: [{
+              type: "pie",
+              showInLegend: "true",
+              legendText: "{label}",
+              indexLabelFontSize: 16,
+              indexLabel: "{label} - #percent Mil",
+              yValueFormatString: "฿#,##0",
+              dataPoints: <?php echo json_encode($dataPointsPieSourceOfHatchingEggs, JSON_NUMERIC_CHECK); ?>
+            }]
+           });
+           chart.render();
 
       //two lines
              var chart = new CanvasJS.Chart("chartContainerTwoLines", {
@@ -131,6 +222,101 @@
              });
              chart.render();
 
+             //egg prices lines
+             var chart = new CanvasJS.Chart("chartContainerChickPrices", {
+              animationEnabled: true,
+              theme: "light2",
+              title:{
+                text: "Average Price per chick"
+              },
+              axisY:{
+                title: "Chick Prices (in TZS)",
+                logarithmic: true,
+                titleFontColor: "#6D78AD",
+                gridColor: "#6D78AD",
+                labelFormatter: addSymbols
+              },
+              axisY2:{
+                title: "Average Egg Prices (in TZS)",
+                titleFontColor: "#51CDA0",
+                tickLength: 0,
+                labelFormatter: addSymbols
+              },
+              legend: {
+                cursor: "pointer",
+                verticalAlign: "top",
+                fontSize: 16,
+                itemclick: toggleDataSeries
+              },
+              data: [{
+                type: "line",
+                markerSize: 0,
+                showInLegend: true,
+                name: "Chick Prices",
+                yValueFormatString: "#,##0 MW",
+                dataPoints: <?php echo json_encode($dataPointsChickVsEggsprices, JSON_NUMERIC_CHECK); ?>
+              },
+              {
+                type: "line",
+                markerSize: 0,
+                axisYType: "secondary",
+                showInLegend: true,
+                name: "Eggs Prices",
+                yValueFormatString: "#,##0 MW",
+                dataPoints: <?php echo json_encode($dataPointsChickVsEggsprices, JSON_NUMERIC_CHECK); ?>
+              }]
+             });
+             chart.render();
+
+
+
+             //growht vs number of eggs two lines
+             var chart = new CanvasJS.Chart("chartContainerGrowthVsNumOfEggs", {
+              animationEnabled: true,
+              theme: "light2",
+              title:{
+                text: "Growth of industry and input Comparison"
+              },
+              axisY:{
+                title: "Hatching Capacity (in Mil)",
+                logarithmic: true,
+                titleFontColor: "#6D78AD",
+                gridColor: "#6D78AD",
+                labelFormatter: addSymbols
+              },
+              axisY2:{
+                title: "Number of Eggs (in Mil)",
+                titleFontColor: "#51CDA0",
+                tickLength: 0,
+                labelFormatter: addSymbols
+              },
+              legend: {
+                cursor: "pointer",
+                verticalAlign: "top",
+                fontSize: 16,
+                itemclick: toggleDataSeries
+              },
+              data: [{
+                type: "line",
+                markerSize: 0,
+                showInLegend: true,
+                name: "Hatching Capacity",
+                yValueFormatString: "#,##0 MW",
+                dataPoints: <?php echo json_encode($dataPointsGrowthVsNUmEggs, JSON_NUMERIC_CHECK); ?>
+              },
+              {
+                type: "line",
+                markerSize: 0,
+                axisYType: "secondary",
+                showInLegend: true,
+                name: "Number of Eggs",
+                yValueFormatString: "#,##0 MW",
+                dataPoints: <?php echo json_encode($dataPointsGrowthVsNUmEggs, JSON_NUMERIC_CHECK); ?>
+              }]
+             });
+             chart.render();
+
+
              function addSymbols(e){
              	var suffixes = ["", "K", "M", "B"];
 
@@ -155,5 +341,45 @@
 
       <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+      <script>
+          $(document).ready(function(){
+              $('#selectedBatch').on('change', function() {
+                if ( this.value == 'stage 1')
+                {
+                  $("#pnl_candling_report").show();
+                     // $('#contact').text("Email Address");
+                     // $('#selected_batch_id').text("'
+                        //  alert($(this).find("option:selected").text());
+                           document.getElementById("selected_batch_id").innerHTML = $(this).find("option:selected").text();
+
+                  $("#pnl_hatching_report").hide();
+                  $("#pnl_sales_report").hide();
+                }else if (this.value == 'stage 2') {
+                    $("#pnl_hatching_report").show();
+
+                    $("#pnl_candling_report").hide();
+                    $("#pnl_sales_report").hide();
+                }
+                else if (this.value == 'stage 3') {
+                    $("#pnl_sales_report").show();
+
+                    $("#pnl_candling_report").hide();
+                     $("#pnl_hatching_report").hide();
+                }else if (this.value == 'stage 4') {
+                    $("#pnl_sales_report").show();
+
+                    $("#pnl_candling_report").hide();
+                     $("#pnl_hatching_report").hide();
+                }
+                else
+                {
+                    $("#pnl_candling_report").hide();
+                     $("#pnl_hatching_report").hide();
+                     $("#pnl_sales_report").hide();
+                }
+              });
+              //console.log("hellow");
+          });
+          </script>
   </body>
 </html>

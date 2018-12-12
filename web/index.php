@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/util.css">
         <!-- Slick CSS -->
         <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/animate.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,6 +25,13 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <style>
+
+        .ourgoalcard{
+         box-shadow: none;
+        }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -36,24 +44,24 @@
                     <li class="nav-item"><a href="#services" class="nav-link">services </a></li>
                     <li class="nav-item"><a href="#contacts" class="nav-link">contact us </a></li>
                     <li class="nav-item"><a href="login_area.php" class="nav-link">login </a></li>
+                    <li class="nav-item">
+                      <div class="dropdown" style="padding-top: 5px;">
+                       <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">register as </button>
+                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           <a class="dropdown-item" href="registration/breeder_flock_farm_reg.php">Breeder Flock Farm</a>
+                           <a class="dropdown-item" href="registration/hatchery_registration.php">Hatchery</a>
+                           <a class="dropdown-item" href="registration/register_feeds_manufacturers.php">Feed Manufacturers</a>
+                           <a class="dropdown-item" href="registration/select_type_of_dairy.php">Dairy</a>
+                           <div class="dropdown-divider"></div>
+                           <a class="dropdown-item disabled" href="#">Association</a>
+                       </div>
+                      </div>
+                 </li>
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                     <button type="submit" class="btn menu-right-button"  onclick="ogin_area.php">login</button>
                 </form> -->
-                <form class="form-inline my-2 my-lg-0">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle menu-right-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">register as </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="registration/breeder_flock_farm_reg.php">Breeder Flock Farm</a>
-                            <a class="dropdown-item" href="registration/hatchery_registration.php">Hatchery</a>
-                            <a class="dropdown-item" href="registration/register_feeds_manufacturers.php">Feed Manufacturers</a>
-                            <a class="dropdown-item" href="registration/select_type_of_dairy.php">Dairy</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item disabled" href="#">Association</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
+           </div>
         </nav>
         <main>
             <!-- Carousel Section -->
@@ -67,19 +75,22 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="images/slider/cock.jpg" alt="First slide">
+                        <img class="d-block w-100" src="images/slider/cowb.jpeg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider/cowa.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="images/slider/reports.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider/ducks.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="images/slider/cows.jpg" alt="Third slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider/animals.jpg" alt="Fourth slide">
+                        <img class="d-block w-100" src="images/slider/analysis.jpg" alt="Third slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider/grainz.jpeg" alt="Fifth slide">
+                        <img class="d-block w-100" src="images/slider/crhatchery.jpg" alt="Fourth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="images/slider/growth.jpg" alt="Fifth slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -116,7 +127,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/card/busrep.jpg" alt="" class="card-img-top">
+                            <img src="images/card/busi.png" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">Industry Reports </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
@@ -170,11 +181,11 @@
                                 <div class="carousel-item">
                                     <img src="images/about/cod.jpg" alt="Second slide" class="img-thumb img-fluid">
                                 </div>
+                                <!-- <div class="carousel-item">
+                                    <img src="images/about/cns.jpg" alt="Third slide" class="img-thumb img-fluid">
+                                </div> -->
                                 <div class="carousel-item">
                                     <img src="images/about/stat.png" alt="Third slide" class="img-thumb img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="images/about/dev.jpg" alt="Third slide" class="img-thumb img-fluid">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
@@ -186,68 +197,76 @@
                 </div>
             </div>
             <!-- What's our goal? -->
-            <div class="container-fluid" id="services">
-                <div class="row">
-                    <!-- Carousel start -->
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div id="carousel-our-services" class="carouselsrv slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-our-services" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-our-services" data-slide-to="1"></li>
-                                <li data-target="#carousel-our-services" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="images/goal/inv.jpg" alt="First slide" class="img-thumb img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="images/goal/center.jpg" alt="Second slide" class="img-thumb img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="images/goal/prop.jpg" alt="Third slide" class="img-thumb img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="images/goal/inv.jpg" alt="Third slide" class="img-thumb img-fluid">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-our-services" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                            href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                            </span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <h3 class="heading-1">What are Our Goal? <small>A data center</small></h3>
-                        <p  class="paragraph-1">
-                          Create an interactive platform, data warehouse and  Data Center that would be used to manage industry data.
-                          The data collected could be used by individual companies to make business decision using up-to-date data, take advantage of available reports and statistics.
-                        </p>
-                        <p  class="paragraph-1">
-                          <strong>Data Center and Source</strong>
-                          With our technology tools offered on our platform they enable stakeholders to collect and manage big data for mining purposes, which can be accessed and analyzed by its members in the platform.
-                        </p>
+            <section id="ourgoals">
+                <div class="container">
+                  <h3 class="heading-1">What are Our Goal? <small>A data center</small></h3>
 
-                        <p  class="paragraph-1">
-                          <strong>Research Hub For Agri-businesses</strong>
-                          Livestoka wants to be on the fore-front on research and technology advancement in the industry by constantly iterating and observing trends in our industry data and lead research opportunities.
-                        </p>
-
-                        <p  class="paragraph-1">
-                          <strong>Tracking and Monitoring Industry Growth</strong>
-                        With us being a data center for the industry we want to be able to be make predictive and calculated decisions, so as to ensure stakeholders take calculated risks, use data gathered and analyze to predict and determine the growth of the industry.</p>
+                  <div class="row">
+                    <div class="col-md-4 fadeInLeft">
+                      <div class="card ourgoalcard">
+                          <img src="images/goal/pie.jpg" alt="" class="card-img-top">
                     </div>
+                    </div>
+                    <div class="col-md-8">
+                      <br>
+                      <p  class="paragraph-1">
+                        Create an interactive platform, data warehouse and  Data Center that would be used to manage industry data.
+                        The data collected could be used by individual companies to make business decision using up-to-date data, take advantage of available reports and statistics.
+                      </p>
+                    </div>
+                    <hr>
+                  <!-- end of row 1 -->
+                  <div class="row">
+                    <div class="col-md-8">
+                      <br>
+                      <br>
+                      <br>
+                      <p  class="paragraph-1">
+                        <strong>Data Center and Source</strong>
+                        With our technology tools offered on our platform they enable stakeholders to collect and manage big data for mining purposes, which can be accessed and analyzed by its members in the platform.
+                      </p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card ourgoalcard">
+                          <img src="images/goal/ly.png" alt="" style="height: 300px;" class="card-img-top">
+                    </div>
+                  </div>
+                  <hr />
+                  <!-- end of raw 2 -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card ourgoalcard">
+                          <img src="images/goal/insight.png" alt="" style="height: 200px;" class="card-img-top">
+                    </div>
+                    </div>
+                    <div class="col-md-8">
+                      <br>
+                      <br>
+                      <br>
+                      <p  class="paragraph-1">
+                        <strong>Research Hub For Agri-businesses</strong>
+                        Livestoka wants to be on the fore-front on research and technology advancement in the industry by constantly iterating and observing trends in our industry data and lead research opportunities.
+                      </p>
+                      <p  class="paragraph-1">
+                        <strong>Tracking and Monitoring Industry Growth</strong>
+                      With us being a data center for the industry we want to be able to be make predictive and calculated decisions, so as to ensure stakeholders take calculated risks, use data gathered and analyze to predict and determine the growth of the industry.</p>
+
+                    </div>
+                     <hr>
+                  <!-- end of row 3 -->
                 </div>
-            </div>
+            </section>
+
             <!-- Who are we working -->
-            <section id="whoweworkwith" style="background-color:#74f5e3;padding-bottom:5%;">
+            <section id="whoweworkwith" style="background-color:#74f5e3;">
             <div class="container-fluid">
-                <h1 class="heading-1">Who we work with</h1>
-                <p class="paragraph-1 text-center">agriculture stackeholders who benefit from our platform tools</p>
+                <h1 class="heading-1" style="padding-top: 30px;">Who we work with</h1>
+                <p class="paragraph-1 text-center" style="text-size:16px;">agriculture stackeholders who benefit from our platform tools</p>
                 <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/dealers/hatchery.jpg" alt="" class="card-img-top">
+                            <img src="images/stake/hatchery.jpg" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">Hatchery Owners </h4>
                                 <p class="card-text">assists members and industry staleholders to track productivity.</p>
@@ -257,7 +276,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/dealers/breeders.jpg" alt="" class="card-img-top">
+                            <img src="images/stake/breeders.jpg" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title"> Breeder Flock Farms </h4>
                                 <p class="card-text">Record keeping, information management and data processing</p>
@@ -267,7 +286,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/dealers/feeders.jpg" alt="" class="card-img-top">
+                            <img src="images/stake/feeders.jpg" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">Feed Manufactures </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
@@ -277,21 +296,19 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
+                            <img src="images/stake/cows.jpg" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title"> Dairy producers</h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
-                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="card">
                             <img src="images/dealers/farmers.jpg" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">Beef Processors </h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
-                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -301,7 +318,6 @@
                             <div class="card-body">
                                 <h4 class="card-title"> Feed Manufactures </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
-                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -311,7 +327,6 @@
                             <div class="card-body">
                                 <h4 class="card-title">Traders </h4>
                                 <p class="card-text">Access to analysis and industry reports and monitoring growth.</p>
-                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
                     </div>
@@ -321,10 +336,9 @@
                             <div class="card-body">
                                 <h4 class="card-title">Reasearchers </h4>
                                 <p class="card-text">industry stakeholderes will always have access to real time data.</p>
-                                <!-- <a href="#" class="btn btn-outline-read-more">Read More</a> -->
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
               </div>
             </div>

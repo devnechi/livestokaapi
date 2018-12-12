@@ -45,7 +45,7 @@
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Our Custom CSS-->
-        <link rel="stylesheet" href="../../web/css/style2.css">
+        <!-- <link rel="stylesheet" href="../../web/css/style2.css"> -->
         <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
