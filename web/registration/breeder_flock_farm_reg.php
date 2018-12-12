@@ -1387,7 +1387,9 @@ var addFormGroup1 = function (event) {
 
 <script>
 $(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
+	$('.datetimepicker').datetimepicker({
+    format:'L'
+  });
 
 });
 </script>

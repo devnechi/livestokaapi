@@ -75,6 +75,7 @@ require_once '../../includes/validations_functions.php';
 
             //echo json_encode($response);
 
+            $feed_manufacturer_id = $manufacturer["feed_manufactures_id"];
             $feed_manufacture_name = $manufacturer["companyname"];
         } else {
             // user is not found with the credentials
@@ -112,6 +113,11 @@ $dataPointshist = array(
 	array("x"=> 130, "y"=> 41)
 );
 
+$dataPointsPiepp  = array(
+	array("label"=> "Mash", "y"=> 590),
+	array("label"=> "Pellet", "y"=> 126)
+);
+
 
 $dataPointsPie = array(
 	array("label"=> "Broiler Starter", "y"=> 590),
@@ -123,6 +129,15 @@ $dataPointsPie = array(
 	array("label"=> "Pig Feed", "y"=> 126)
 );
 
+
+$dataPointsPieRawMaterialCon = array(
+	array("label"=> "Maize", "y"=> 590),
+	array("label"=> "Cassava", "y"=> 261),
+	array("label"=> "Soya", "y"=> 158),
+	array("label"=> "Beans", "y"=> 72),
+	array("label"=> "Magadi", "y"=> 191),
+
+);
 
 $dataPointsTwoLines = array(
 	array("label"=> 1992, "y"=>105),
@@ -179,7 +194,7 @@ $dataPointsTwoLines = array(
 										</div>
 									</div>
 									</div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     		<div class="card">
                       <div class="panel-heading card-header">
                         <h3 class="panel-title title">Current Feed Manufacturer Products</h3>
@@ -219,7 +234,7 @@ $dataPointsTwoLines = array(
                       </div>
 
                   </div>
-                  </div>
+                  </div> -->
 									<div class="col-md-6">
 										<div class="card">
 											<div class="card-header" data-background-color="orange">
@@ -227,11 +242,96 @@ $dataPointsTwoLines = array(
 													<p class="category">As of Last Month February, 2018</p>
 											</div>
 											<div class="card-content table-responsive">
-													<p>This data is of the previous month, its shared in an aggregated form of the entire cummunity on livestoka.</p>
-												</div>
+
+                      <?php
+
+                      // $creator_id  = $_POST['user_id'];
+                        $db = new DbOperation();
+                        if ($feed_manufacturer_id) {
+                            $feeds_manufacturer_id = $feed_manufacturer_id;
+                            // feed manufacturer adds new product
+                            // $manufacturer_id = $_POST['manufacturer_id'];
+                            $response['error'] = false;
+                            $response['message'] = 'Request successfully completed';
+                            $response['indsum'] = $db->getManufactureringIndustrySummations($feeds_manufacturer_id);
+                            // echo json_encode($response['rawmaterials']);
+
+                            $industrydata = json_encode($response['indsum']);
+                            $indstryObj = json_decode($industrydata);
+                            foreach ($indstryObj as $key => $value) {
+                                //
+                                // echo "<ul class=\"list-group\">
+                                //       <li class=\"list-group-item\">Total Production" . $value->total_products_produced ."</li>
+                                //       <li class=\"list-group-item\">" . $value->current_stock_instorage ."</li>
+                                //       <li class=\"list-group-item\">" . $value->raw_materials_consumed ."</li>
+                                //       <li class=\"list-group-item\">" . $value->current_raw_materials_instorage ."</li>
+                                //       <li class=\"list-group-item\">" . $value->total_man_power ."</li>
+                                //     </ul>";
+
+
+                                 echo "<h4> Total Industry Production: <span  class=\"badge badge-secondary\" style=\"font-size: 34px;\">".$value->total_products_produced ."</span><strong> TONS</strong></h4>
+                                     <h4> Total Quantity instorage: <span class=\"badge badge-secondary\" style=\"font-size: 34px;\"> ".$value->current_stock_instorage ."</span><strong> TONS</strong></h4>
+                                     <h4> Total Raw Materials Consumed:<span class=\"badge badge-secondary\" style=\"font-size: 34px;\"> ".$value->raw_materials_consumed ."</span><strong> TONS</strong></h4>
+                                     <h4> Total Raw Materials in storage:<span class=\"badge badge-secondary\" style=\"font-size: 34px;\"> ".$value->current_raw_materials_instorage ."</span><strong> TONS</strong></h4>
+                                     <h4> Total Raw Materials used:<span class=\"badge badge-secondary\" style=\"font-size: 34px;\"> ".$value->raw_materials_consumed ."</span> <strong> TONS</strong></h4>";
+
+                                //$selectedpyp = $value->feed_product_id;
+                                // echo $selectedpp;
+                            }
+                        } else {
+                            // user failed to store
+                            $response["error"] = true;
+                            $response["error_msg"] = "Your Data does not exist!";
+                            // echo json_encode($response);
+
+                            $ppmessage = "<div class=\"alert alert-danger\" role=\"alert\">
+                           <strong>Ops!</strong> <a href=\"update_overall_data.php\" class=\"alert-link\">Seems like you dont have data yet?</a> Update now.
+                         </div>";
+                        }
+
+
+                       ?>
+                     	</div>
 											</div>
 											</div>
 								</div>
+                <div class="row">
+                      <div class="col-md-6">
+                          <div class="card">
+                              <div class="card-header" data-background-color="orange">
+                                  <h4 class="title">Industry Feeds Production</h4>
+                                  <p class="category">As of Last Month February, 2018</p>
+                              </div>
+
+                              <div class="card-content table-responsive">
+                                  <p>This pie chart shows the products manufactured in TONS at any given moment.</p>
+
+
+                          <div id="chartContainerPiePP" style="height: 370px; width: 100%;"></div>
+
+                              </div>
+
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="card">
+                              <div class="card-header" data-background-color="orange">
+                                  <h4 class="title">Industry Feed Raw Materials Consumption</h4>
+                                  <p class="category">As of Last Month February, 2018</p>
+                              </div>
+
+                              <div class="card-content table-responsive">
+                                  <p>This pie chart shows the Raw materials in TONS at any given moment.</p>
+
+
+                          <div id="chartContainerPierawcon" style="height: 370px; width: 100%;"></div>
+
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
 
               <div class="row">
                 <div class="col-md-6">
@@ -419,6 +519,30 @@ $("#menu-toggle").click(function (e) {
        });
        chart.render();
 
+       //pie chart
+              var chart = new CanvasJS.Chart("chartContainerPiePP", {
+              	animationEnabled: true,
+              	exportEnabled: true,
+              	title:{
+              		text: "Feeds Production distribution  in Tanzania"
+              	},
+              	subtitles: [{
+              		text: "Measurements Used: TONS (฿)"
+              	}],
+              	data: [{
+              		type: "pie",
+              		showInLegend: "true",
+              		legendText: "{label}",
+              		indexLabelFontSize: 16,
+              		indexLabel: "{label} - #percent TONS",
+              		yValueFormatString: "฿#,##0",
+              		dataPoints: <?php echo json_encode($dataPointsPiepp, JSON_NUMERIC_CHECK); ?>
+              	}]
+              });
+              chart.render();
+
+
+
 //pie chart
        var chart = new CanvasJS.Chart("chartContainerPie", {
        	animationEnabled: true,
@@ -441,6 +565,28 @@ $("#menu-toggle").click(function (e) {
        });
        chart.render();
 
+//chartContainerPierawcon
+//raw materials consumption
+var chart = new CanvasJS.Chart("chartContainerPierawcon", {
+ animationEnabled: true,
+ exportEnabled: true,
+ title:{
+   text: "Average Feed Manufacturer Raw Material consumption  in Tanzania"
+ },
+ subtitles: [{
+   text: "Measurements Used: TONS (฿)"
+ }],
+ data: [{
+   type: "pie",
+   showInLegend: "true",
+   legendText: "{label}",
+   indexLabelFontSize: 16,
+   indexLabel: "{label} - #percent TONS",
+   yValueFormatString: "฿#,##0",
+   dataPoints: <?php echo json_encode($dataPointsPieRawMaterialCon, JSON_NUMERIC_CHECK); ?>
+ }]
+});
+chart.render();
 
 
 //two lines

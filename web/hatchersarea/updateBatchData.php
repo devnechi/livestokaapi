@@ -78,6 +78,7 @@ require_once '../../includes/validations_functions.php';
 
  ?>
 
+<<<<<<< HEAD
  <?php
     $next_day_update = date("d-m-Y", strtotime(" +1 months"));
  $errors = array();
@@ -452,6 +453,37 @@ require_once '../../includes/validations_functions.php';
                   </div>
 
 
+=======
+<div class="container-fluid">
+	<div class="row">
+
+									<div class="col-md-12">
+										<div class="card">
+											<div class="card-header" data-background-color="orange">
+													<h4 class="title">Update Batch Data</h4>
+													<p class="category">As of Last week, 2018</p>
+											</div>
+											<div class="card-content table-responsive spcbelow"  >
+													<p>Select a batch to update.</p>
+
+                          <div class="row">
+                            <div class="form-group col-lg-offset-2 col-md-6 input-group-lg">
+                                 <label for="exampleFormControlSelect1" class="control-label">select below:</label>
+                                 <select class="form-control" aria-label="Large"  id="exampleFormControlSelect1" aria-describedby="inputGroup-sizing-sm">
+                                   <option>Select</option>
+                                   <option>Service</option>
+                                   <option>Training</option>
+                                    <option>Seminar</option>
+                                    <option>Other</option>
+                                 </select>
+                               </div>
+
+                          </div>
+												</div>
+											</div>
+											</div>
+								</div>
+>>>>>>> 4a8f0d9ca6f3aa5df9ea03232b6c7b40ff724fda
                 <?php
                 include("../../includes/layouts/hatchery_main_footer.php");
 

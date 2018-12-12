@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+<?php 
+   include('../../includes/layouts/public_layout_header.php');
+   ?>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+}
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+=======
 <?php
     //getting the dboperation class
     require_once '../../includes/DbOperation.php';
@@ -311,656 +334,337 @@
 .customcheck input:checked ~ .checkmark {
     background-color: #02cf32;
     border-radius: 5px;
+>>>>>>> 8551d076b3db7c31eb5b07a3fdd8f2c4a670c1d3
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+    margin: 0 2px;
+    background-color: #f39c12;
+    border-color: #f39c12;
+    opacity: .7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
     position: absolute;
-    display: none;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+.hero h1 {
+    font-size: 6em;    
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
 }
 
-/* Show the checkmark when checked */
-.customcheck input:checked ~ .checkmark:after {
-    display: block;
+.fade-carousel .carousel-inner .item .hero {
+    opacity: 0;
+    -webkit-transition: 4s all ease-in-out .2s;
+       -moz-transition: 4s all ease-in-out .2s; 
+        -ms-transition: 4s all ease-in-out .2s; 
+         -o-transition: 4s all ease-in-out .2s; 
+            transition: 4s all ease-in-out .2s; 
+}
+.fade-carousel .carousel-inner .item.active .hero {
+    opacity: 1;
+    -webkit-transition: 4s all ease-in-out .2s;
+       -moz-transition: 4s all ease-in-out .2s; 
+        -ms-transition: 4s all ease-in-out .2s; 
+         -o-transition: 4s all ease-in-out .2s; 
+            transition: 4s all ease-in-out .2s;    
 }
 
-/* Style the checkmark/indicator */
-.customcheck .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-
-@import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css')
-
-.funkyradio div {
-  clear: both;
-  overflow: hidden;
-}
-
-.funkyradio label {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4;
-  font-weight: normal;
-}
-
-.funkyradio input[type="radio"]:empty,
-.funkyradio input[type="checkbox"]:empty {
-  display: none;
-}
-
-.funkyradio input[type="radio"]:empty ~ label,
-.funkyradio input[type="checkbox"]:empty ~ label {
-  position: relative;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 2em;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.funkyradio input[type="radio"]:empty ~ label:before,
-.funkyradio input[type="checkbox"]:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #D1D3D4;
-  border-radius: 3px 0 0 3px;
-}
-
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-  color: #888;
-}
-
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2;
-}
-
-.funkyradio input[type="radio"]:checked ~ label,
-.funkyradio input[type="checkbox"]:checked ~ label {
-  color: #777;
-}
-
-.funkyradio input[type="radio"]:checked ~ label:before,
-.funkyradio input[type="checkbox"]:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #333;
-  background-color: #ccc;
-}
-
-.funkyradio input[type="radio"]:focus ~ label:before,
-.funkyradio input[type="checkbox"]:focus ~ label:before {
-  box-shadow: 0 0 0 3px #999;
-}
-
-.funkyradio-default input[type="radio"]:checked ~ label:before,
-.funkyradio-default input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #ccc;
-}
-
-.funkyradio-primary input[type="radio"]:checked ~ label:before,
-.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #337ab7;
-}
-
-.funkyradio-success input[type="radio"]:checked ~ label:before,
-.funkyradio-success input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5cb85c;
-}
-
-.funkyradio-danger input[type="radio"]:checked ~ label:before,
-.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #d9534f;
-}
-
-.funkyradio-warning input[type="radio"]:checked ~ label:before,
-.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #f0ad4e;
-}
-
-.funkyradio-info input[type="radio"]:checked ~ label:before,
-.funkyradio-info input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5bc0de;
-}
-.entry:not(:first-of-type)
-{
-    margin-top: 10px;
-}
-
-.glyphicon
-{
-    font-size: 12px;
-}
-
-.card {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    margin: 25px 0;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-    border-radius: 3px;
-    color: rgba(0,0,0, 0.87);
-    background: #fff;
-}
-.card .card-height-indicator {
-    margin-top: 100%;
-}
-.card .title {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.card .card-image {
-    height: 60%;
-    position: relative;
-    overflow: hidden;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: -30px;
-    border-radius: 6px;
-}
-.card .card-image img {
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+    position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 6px;
-    pointer-events: none;
+    z-index: 2;
+  
 }
-.card .card-image .card-title {
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {padding: 10px 40px;}
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+}
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1, 
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3,
+.fade-carousel .slides .slide-4,
+.fade-carousel .slides .slide-5 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.fade-carousel .slides .slide-1 {
+  background-image: url(../../web/images/dairy/meat-1030729_1920.jpg); 
+}
+.fade-carousel .slides .slide-2 {
+  background-image: url(../../web/images/dairy/cows-2641195_1920.jpg);
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url(../../web/images/dairy/milk-3518891_1920.jpg);
+}
+.fade-carousel .slides .slide-4 {
+  background-image: url(../../web/images/dairy/cow-2790134_1920.jpg);
+}
+.fade-carousel .slides .slide-5 {
+  background-image: url(../../web/images/dairy/meat-3195334_1920.jpg);
+}
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px){
+    .hero { width: 980px; }    
+}
+@media screen and (max-width: 640px){
+    .hero h1 { font-size: 4em; }    
+}
+
+.navbar{
+
+      background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
-    bottom: 15px;
-    left: 15px;
+    width: 100%;
+    z-index: 2;
+    border:none;
+    color:white;
+}
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
     color: #fff;
-    font-size: 1.3em;
-    text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+    background-color:#3b5998;
 }
-.card .category:not([class*="text-"]) {
-    color: #999999;
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
 }
-.card .card-content {
-    padding: 15px 20px;
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
 }
-.card .card-content .category {
-    margin-bottom: 0;
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
 }
-.card .card-header {
-    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-    margin: -20px 15px 0;
-    border-radius: 3px;
-    padding: 15px;
-    background-color: #999999;
-}
-.card .card-header .title {
-    color: #FFFFFF;
-}
-.card .card-header .category {
-    margin-bottom: 0;
-    color: rgba(255, 255, 255, 0.62);
-}
-.card .card-header.card-chart {
-    padding: 0;
-    min-height: 160px;
-}
-.card .card-header.card-chart + .content h4 {
-    margin-top: 0;
-}
-.card .card-header .ct-label {
-    color: rgba(255, 255, 255, 0.7);
-}
-.card .card-header .ct-grid {
-    stroke: rgba(255, 255, 255, 0.2);
-}
-.card .card-header .ct-series-a .ct-point, .card .card-header .ct-series-a .ct-line, .card .card-header .ct-series-a .ct-bar, .card .card-header .ct-series-a .ct-slice-donut {
-    stroke: rgba(255, 255, 255, 0.8);
-}
-.card .card-header .ct-series-a .ct-slice-pie, .card .card-header .ct-series-a .ct-area {
-    fill: rgba(255, 255, 255, 0.4);
-}
-.card .chart-title {
-    position: absolute;
-    top: 25px;
-    width: 100%;
-    text-align: center;
-}
-.card .chart-title h3 {
-    margin: 0;
-    color: #FFFFFF;
-}
-.card .chart-title h6 {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.4);
-}
-.card .card-footer {
-    margin: 0 20px 10px;
-    padding-top: 10px;
-    border-top: 1px solid #eeeeee;
-}
-.card .card-footer .content {
-    display: block;
-}
-.card .card-footer div {
-    display: inline-block;
-}
-.card .card-footer .author {
-    color: #999999;
-}
-.card .card-footer .stats {
-    line-height: 22px;
-    color: #999999;
-    font-size: 12px;
-}
-.card .card-footer .stats .material-icons {
-    position: relative;
-    top: 4px;
-    font-size: 16px;
-}
-.card .card-footer h6 {
-    color: #999999;
-}
-.card img {
-    width: 100%;
-    height: auto;
-}
-.card .category .material-icons {
-    position: relative;
-    top: 6px;
-    line-height: 0;
-}
-.card .category-social .fa {
-    font-size: 24px;
-    position: relative;
-    margin-top: -4px;
-    top: 2px;
-    margin-right: 5px;
-}
-.card .author .avatar {
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-right: 5px;
-}
-.card .author a {
-    color: #3C4858;
-    text-decoration: none;
-}
-.card .author a .ripple-container {
-    display: none;
-}
-.card .table {
-    margin-bottom: 0;
-}
-.card .table tr:first-child td {
-    border-top: none;
-}
-.card [data-background-color="orange"] {
-    background: linear-gradient(60deg, #0e6155, #74f5e3);
-   /*box-shadow: 0 12px 20px -5px #bfeaf6, 0 4px 20px 0px #bfeaf6, 0 7px 8px -5px #bfeaf6;
-   */
-}
-.card [data-background-color] {
-    color: #FFFFFF;
-}
-.card [data-background-color] a {
-    color: #FFFFFF;
-}
-.card-stats .title {
-    margin: 0;
-}
-.card-stats .card-header {
-    float: left;
-    text-align: center;
-}
-.card-stats .card-header i {
-    font-size: 36px;
-    line-height: 56px;
-    width: 56px;
-    height: 56px;
-}
-.card-stats .card-content {
-    text-align: right;
-    padding-top: 10px;
-}
-.card-nav-tabs .header-raised {
-    margin-top: -30px;
-}
-.card-nav-tabs .nav-tabs {
-    background: transparent;
-    padding: 0;
-}
-.card-nav-tabs .nav-tabs-title {
-    float: left;
-    padding: 10px 10px 10px 0;
-    line-height: 24px;
-}
-.card-plain {
-    background: transparent;
-    box-shadow: none;
-}
-.card-plain .card-header {
-    margin-left: 0;
-    margin-right: 0;
-}
-.card-plain .content {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.card-plain .card-image {
-    margin: 0;
-    border-radius: 3px;
-}
-.card-plain .card-image img {
-    border-radius: 3px;
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
 }
 
-.navdropdown{
- background-color: #0488ae;
+nav a{
+  color:white;
+}
+.icon-bar{
+  background-color:black;
 }
 
-/* meant for the updateBatchData */
-.spcbelow{
- padding-top: 50;
-}
-    </style>
-  </head>
-  <body>
 
-    <nav class="navbar navbar-default navbar-static-top">
-      <a href="../index.php" class="navbar-brand">Back To Livestoka</a>
-    </nav>
+</style>
 
+<nav class="navbar navbar-top fixed-top  " role="navigation" style="background-color:rgba(255,255,255,0.1);  position:absolute;">
+  <div class="container-fluid" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Login dropdown</a>
+    </div>
 
-    <div class="container">
-      <div class="starter-template">
-        <h1>Select Type of Dairy</h1>
-        <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">Already have an account</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+			<ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+							
+								<div class="social-buttons">
+									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                  <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Google</a>
+								</div>
+                                Enter
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+										</div>
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputPassword2">Password</label>
+											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+										</div>
+										<div class="form-group">
+											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+										</div>
+										<div class="checkbox">
+											 <label>
+											 <input type="checkbox"> keep me logged-in
+											 </label>
+										</div>
+								 </form>
+							</div>
+							<div class="bottom text-center">
+								New here ? <a href="#"><b>Join Us</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="carousel fade-carousel carousel-fade slide" style="top:0%;" data-ride="carousel" data-interval="8000" id="bs-carousel">
+   
+  <div class="overlay">   <div class="hero">        
+        <hgroup>
+            <h1>Get Started</h1>        
+            <h3>Get start by registering  your  field</h3>
+        </hgroup>
+        <span > <select class=" btn btn-hero btn-lg "  id="register" >
+                    <option>Register As</option>
+                    <option value="1">Milk processor Unit</option>
+                       <option value="2">Beef Cattle Farm</option>
+                     <option value="3">Meat Processor</option>
+                       <option value="4">Cattle Traders</option>
+                     
+                     
+                     </select></span>
       </div>
-      <!--register section -->
-      <section id="manufacturersReg">
-        <!-- <form action="dairy_farm_registration.php" method="post"> -->
-            <div class="container">
-              <div class="row">
-                    <div class="col-lg-3">
-                      <div class="card">
-                        <!-- <div class="card-header" data-background-color="orange">
-                          <h4>Dairy Type</h4>
-                            <p class="category">deals with dairy and milk products</p>
-                        </div> -->
-                        <div class="card-content table-responsive">
-                               <div class="row">
-                                 <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Dairy Breeding Farm</h3>
-                                   </div>
-                                 </div>
-                                 <!-- <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Dairy Farm</h3>
-                                   </div>
-                                 </div>
-                                 <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Milk Collection Center</h3>
-                                   </div>
-                                 </div> -->
-                               </div>
+                     </div>
 
-                               <!-- <div class="row">
-                                 <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                      <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Milk Processor</h3>
-                                   </div>
-                                 </div>
-                                 <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Fodder Supplier</h3>
-                                   </div>
-                                 </div>
-                                 <div class="col-xs-3">
-                                   <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                                      <h3>Milk Trader</h3>
-                                   </div>
-                                 </div>
-                               </div> -->
-                           </div>
-                        </div>
-                    </div>
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#bs-carousel" data-slide-to="1"></li>
+    <li data-target="#bs-carousel" data-slide-to="2"></li>
+    <li data-target="#bs-carousel" data-slide-to="4"></li>
+    <li data-target="#bs-carousel" data-slide-to="5"></li>
+  </ol>
+  
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item slides active">
+      <div class="slide-1"></div>
+    
+    </div>
+    <div class="item slides">
+      <div class="slide-2"></div>
 
-                <div class="col-lg-12">
-                  <div class="card">
-                    <div class="card-header" data-background-color="orange">
-                      <h4>Beef Type</h4>
-                        <p class="category">deals with meat products</p>
-                    </div>
-                    <div class="card-content table-responsive">
-                      <div class="row">
-                        <div class="col-xs-3">
-                          <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                             <h3>Multiplication Unit</h3>
-                          </div>
-                        </div>
-                        <div class="col-xs-3">
-                          <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                             <h3>Beef Cattle Farm</h3>
-                          </div>
-                        </div>
-                        <div class="col-xs-3">
-                          <div class="card-content table-responsive">
-                                     <img src="../images/dealers/hatchery.jpg">
-                             <h3>Meat Processor</h3>
-                          </div>
-                        </div>
-                      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-3"></div>
+    
+    </div>
+    <div class="item slides">
+      <div class="slide-4"></div>
+      
+    </div>
+    <div class="item slides">
+      <div class="slide-5"></div>
+      
+    </div>
+  </div> 
+</div>
 
-                      <div class="row">
-                        <div class="col-xs-3">
-                          <div class="card-content table-responsive">
-                           <img src="../images/dealers/hatchery.jpg">
-                             <h3>Cattle Trader</h3>
-                          </div>
-                        </div>
+ <!-- <script>
 
-                      </div
-                       </div>
-                    </div>
-                </div>
-                <!-- end of beef types card -->
-              </div>
-              <!-- end of row -->
-            </div>
-                 <!-- end of container -->
-            </section>
-          </div>
-        <!-- </div>
-      <hr>
-   </div> -->
-      <!--end of registeration section -->
+$("#register").on('change', function() {
+  window.location=$(this).val()
+  //set isopen to opposite so next  time  when use clicked select  box
+  //it wont trigger this event
 
-    </div> <!-- /.container-->
-
-    <!--scripts -->
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
-    function yearValidation(year,ev) {
-
-  var text = /^[0-9]+$/;
-  if(ev.type=="blur" || year.length==4 && ev.keyCode!=8 && ev.keyCode!=46) {
-    if (year != 0) {
-        if ((year != "") && (!text.test(year))) {
-
-            alert("Please Enter Numeric Values Only");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-        }
-
-        if (year.length != 4) {
-            alert("Year is not proper. Please check");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-
-        }
-        var current_year=new Date().getFullYear();
-        if((year < 1920) || (year > current_year))
-            {
-            alert("Year should be in range 1920 to current year");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-
-            }
-        return true;
-    } }
-  }
-
-
-  var check = function() {
-       if (document.getElementById('password').value ==
-           document.getElementById('confirm_password').value) {
-           document.getElementById('message').style.color = 'green';
-           document.getElementById('message').innerHTML = 'matching';
-       } else {
-       		document.getElementById('message').style.color = 'red';
-           document.getElementById('message').innerHTML = 'not matching';
-       }
-   }
-
-    </script>
-<!-- para_utilitygrandpastock -->
-    <script>
-  $(document).ready(function(){
-      $('#hatching_activity').on('change', function() {
-        if ( this.value == '1')
-        {
-          $("#para_utilitya").show();
-          $("#para_utilityb").show();
-          $("#para_utilityc").show();
-
-          $("#para_utility_parentstock").hide();
-          $("#para_utilitygrandpastock").hide();
-
-           }else if (this.value == '2') {
-                   $("#para_utilitygrandpastock").show();
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utility_parentstock").hide();
-
-
-          }else if (this.value == '3') {
-                   $("#para_utility_parentstock").show();
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utilitygrandpastock").hide();
-
-           }else {
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utility_parentstock").hide();
-                   $("#para_utilitygrandpastock").hide();
-
-          }
-        });
-        console.log("hellow");
-    });
-    </script>
-<script>
-(function ($) {
-    $(function () {
-
-        var addFormGroup = function (event) {
-            event.preventDefault();
-
-            var $formGroup = $(this).closest('.form-group');
-            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-            var $formGroupClone = $formGroup.clone();
-
-            $(this)
-                .toggleClass('btn-default btn-add btn-danger btn-remove')
-                .html('–');
-
-            $formGroupClone.find('input').val('');
-            $formGroupClone.insertAfter($formGroup);
-
-            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-            if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
-                $lastFormGroupLast.find('.btn-add').attr('disabled', true);
-            }
-        };
-
-        var removeFormGroup = function (event) {
-            event.preventDefault();
-
-            var $formGroup = $(this).closest('.form-group');
-            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-
-            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-            if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
-                $lastFormGroupLast.find('.btn-add').attr('disabled', false);
-            }
-
-            $formGroup.remove();
-        };
-
-        var countFormGroup = function ($form) {
-            return $form.find('.form-group').length;
-        };
-
-        $(document).on('click', '.btn-add', addFormGroup);
-        $(document).on('click', '.btn-remove', removeFormGroup);
-
-    });
-})(jQuery);
-</script>
-<script>
-$(document).ready(function (){
-	$('.datetimepicker').datetimepicker();
 
 });
-</script>
+</script> -->
+ 
 
-  </body>
-</html>
+<?php
+
+include('../../includes/layouts/public_ly_footer.php');?>

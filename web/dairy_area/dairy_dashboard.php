@@ -1,9 +1,53 @@
 <?php
-include("../../includes/layouts/breeder_header_layout.php");
+include("../../includes/layouts/dairy_header_layout.php");
 ?>
 
+<?php
+$dataPointshist = array(
+	array("x"=> 10, "y"=> 41),
+	array("x"=> 20, "y"=> 35, "indexLabel"=> "Lowest"),
+	array("x"=> 30, "y"=> 50),
+	array("x"=> 40, "y"=> 45),
+	array("x"=> 50, "y"=> 52),
+	array("x"=> 60, "y"=> 68),
+	array("x"=> 70, "y"=> 38),
+	array("x"=> 80, "y"=> 71, "indexLabel"=> "Highest"),
+	array("x"=> 90, "y"=> 52),
+	array("x"=> 100, "y"=> 60),
+	array("x"=> 110, "y"=> 36),
+	array("x"=> 120, "y"=> 49),
+	array("x"=> 130, "y"=> 41)
+);
 
 
+$dataPointsPie = array(
+	
+	array("label"=> "Beef", "y"=> 261),
+	array("label"=> "Turkey", "y"=> 24),
+	array("label"=> "Dairy Milk", "y"=> 280),
+	array("label"=> "Chicken", "y"=> 191),
+	array("label"=> "Pork", "y"=> 80),
+	array("label"=> "Others", "y"=> 12),
+);
+
+
+$dataPointsTwoLines = array(
+	array("label"=> "January", "y"=>105),
+	array("label"=> "February", "y"=>130),
+	array("label"=> "March", "y"=>158),
+	array("label"=> "April", "y"=>192),
+	array("label"=> "May", "y"=>309),
+	array("label"=> "June", "y"=>422),
+	array("label"=> "July", "y"=>566),
+	array("label"=> "August", "y"=>807),
+	array("label"=> "September", "y"=>1250),
+	array("label"=> "October", "y"=>1615),
+	array("label"=> "November", "y"=>2069),
+	array("label"=> "December", "y"=>2635)
+	
+);
+
+?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -11,11 +55,11 @@ include("../../includes/layouts/breeder_header_layout.php");
 								<div class="card">
 									<div class="card-header" data-background-color="orange">
 											<h4 class="title">Current User Details</h4>
-											<p class="category">As of Last Month February, 2018</p>
+											<p class="category">As of Last Month  2018</p>
 									</div>
 									<div class="card-content table-responsive">
 											<!-- <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-											<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
+											<p>Make sure to keep all page content within the </p> -->
 
 
 												 <h2> Welcome back, </h2>
@@ -28,11 +72,11 @@ include("../../includes/layouts/breeder_header_layout.php");
 										<div class="card">
 											<div class="card-header" data-background-color="orange">
 													<h4 class="title">Recent industry updates and Trends</h4>
-													<p class="category">As of Last Month February, 2018</p>
+													<p class="category">As of Last Month , 2018</p>
 											</div>
 											<div class="card-content table-responsive">
 													<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-													<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+													<p>Make sure to keep all page content within the </p>
 												</div>
 											</div>
 											
@@ -43,13 +87,13 @@ include("../../includes/layouts/breeder_header_layout.php");
     
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
-                            <h4 class="title">Popular Breeds Breeded in Pie Chart</h4>
-                            <p class="category">As of Last Month February, 2018</p>
+                            <h4 class="title">Meat Consuption in Pie Chart</h4>
+                            <p class="category">As of Last Month  2018</p>
                         </div>
 
                         <div class="card-content table-responsive">
                             <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                            <p>Make sure to keep all page content within the </p>
 
 
                     <div id="chartContainerPie" style="height: 370px; width: 100%;"></div>
@@ -64,12 +108,12 @@ include("../../includes/layouts/breeder_header_layout.php");
                           
                                     <div class="card">
                                       <div class="card-header" data-background-color="orange">
-                                          <h4 class="title">Breeder Production Capacity Monthly Comparison</h4>
-                                          <p class="category">As of Last Month February, 2018</p>
+                                          <h4 class="title"> Production Capacity Monthly Comparison</h4>
+                                          <p class="category">As of Last Month 2018</p>
                                        </div>
                                        <div class="card-content table-responsive">
                                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                                      <p>Make sure to keep all page content within the </p>
 
 
                                    <div id="chartContainerTwoLines" style="height: 370px; width: 100%;"></div>
@@ -83,12 +127,12 @@ include("../../includes/layouts/breeder_header_layout.php");
             
               <div class="card">
                   <div class="card-header" data-background-color="orange">
-                      <h4 class="title">Breeder Production Capacity Monthly Comparison</h4>
-                      <p class="category">As of Last Month February, 2018</p>
+                      <h4 class="title"> Production Capacity Monthly Comparison</h4>
+                      <p class="category">As of Last Month  2018</p>
                   </div>
                   <div class="card-content table-responsive">
                       <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                      <p>Make sure to keep all page content within the </p>
 
 
                    <div id="chartContainerhist" style="height: 370px; width: 100%;"></div>
@@ -101,12 +145,12 @@ include("../../includes/layouts/breeder_header_layout.php");
             
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Breeder Information</h4>
-                        <p class="category">As of Last Month February, 2018</p>
+                        <h4 class="title">Information</h4>
+                        <p class="category">As of Last Month  2018</p>
                     </div>
                     <div class="card-content table-responsive">
                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <p>Make sure to keep all page content within the </p>
 
                     </div>
                 </div>
@@ -117,11 +161,11 @@ include("../../includes/layouts/breeder_header_layout.php");
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
                         <h4 class="title">Simple Sidebar</h4>
-                        <p class="category">As of Last Month February, 2018</p>
+                        <p class="category">As of Last Month  2018</p>
                     </div>
                     <div class="card-content table-responsive">
                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <p>Make sure to keep all page content within the </p>
 
                     </div>
               
@@ -129,7 +173,7 @@ include("../../includes/layouts/breeder_header_layout.php");
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
                         <h4 class="title">Breeds produced By Breeder</h4>
-                        <p class="category">As of Last Month February, 2018</p>
+                        <p class="category">As of Last Month  2018</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table table-hover">
@@ -144,27 +188,27 @@ include("../../includes/layouts/breeder_header_layout.php");
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>broiler starter</td>
-                                    <td>pellet</td>
-                                    <td>200 TONS</td>
+                                    <td>Haifer</td>
+                                    <td>Cow</td>
+                                    <td>200 </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Broiler Finisher</td>
-                                    <td>mash</td>
-                                    <td>500 TONS</td>
+                                    <td>Hybrid</td>
+                                    <td>cow</td>
+                                    <td>500 </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>Growers</td>
-                                    <td>mash</td>
-                                    <td>200 TONS</td>
+                                    <td>Local</td>
+                                    <td>Cow</td>
+                                    <td>200 </td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
-                                    <td>layer</td>
-                                    <td>pellet</td>
-                                    <td>200 TONS</td>
+                                    <td>Imported</td>
+                                    <td>cow</td>
+                                    <td>200 </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -178,8 +222,12 @@ include("../../includes/layouts/breeder_header_layout.php");
             </div>
             <!-- /#page-content-wrapper -->
        
-
+<?php
+include("../../includes/layouts/public_ly_footer.php");
+?>
 <script>
+
+console.log("found yoo");
 $("#menu-toggle").click(function (e) {
            e.preventDefault();
            $("#wrapper").toggleClass("toggled");
@@ -201,7 +249,7 @@ $("#menu-toggle").click(function (e) {
        	exportEnabled: true,
        	theme: "light1", // "light1", "light2", "dark1", "dark2"
        	title:{
-       		text: "Annual Hatching Chart Summary"
+       		text: "Annual Dairy Chart Summary"
        	},
        	data: [{
        		type: "column", //change type to bar, line, area, pie, etc
@@ -218,7 +266,7 @@ $("#menu-toggle").click(function (e) {
        	animationEnabled: true,
        	exportEnabled: true,
        	title:{
-       		text: "Average Breeds Breeded Per Month  in Tanzania"
+       		text: "Average Yield Per Month  in Tanzania"
        	},
        	subtitles: [{
        		text: "Measurements Used: Mil(฿)"
@@ -242,17 +290,17 @@ $("#menu-toggle").click(function (e) {
        	animationEnabled: true,
        	theme: "light2",
        	title:{
-       		text: "Demand between Breed A and Breed B "
+       		text: "Demand between Milk and Beef "
        	},
        	axisY:{
-       		title: "Breed Hatching (in Mil)",
+       		title: "Dairy Milk (in Litre)",
        		logarithmic: true,
        		titleFontColor: "#6D78AD",
        		gridColor: "#6D78AD",
        		labelFormatter: addSymbols
        	},
        	axisY2:{
-       		title: "Breed Hatching (in Mil)",
+       		title: "Dairy Beef (in Kgs)",
        		titleFontColor: "#51CDA0",
        		tickLength: 0,
        		labelFormatter: addSymbols
@@ -305,6 +353,30 @@ $("#menu-toggle").click(function (e) {
       }}
 </script>
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

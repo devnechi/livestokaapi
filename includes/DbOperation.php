@@ -617,6 +617,175 @@ INNER JOIN  raw_materials
 
 
 
+
+
+
+
+    /* 
+add new beef farm
+*/
+public function registerNewMilkDairy(
+    $user_id,
+                    $dairy_farm_name,
+                    $year_established,
+                    $reg_number,
+                    $dairy_farm_owner,
+                    $affiliation,
+                    $country,
+                    $region,
+                    $district,
+                    $websiteurl,
+                    $address,
+                    $contact_person,
+                    $total_litre_perday ,
+                    $maximum_flock_size,
+                    $dairy_manager, 
+                    $dairy_veterinarian, 
+                    $vet_reg_number,
+                    $phone_Number,
+                    $typeofbreeds 
+) {
+        $dfuid = uniqid('', true);
+
+        $stmt = $this->con->prepare("INSERT INTO dairy_tbl
+            (       dairy_unique_id,
+                    dfuid,
+                    user_id,
+                    dairy_farm_name,
+                    year_established,
+                    reg_number,
+                    dairy_farm_owner,
+                   
+                    country,
+                    region,
+                    district,
+                    websiteurl,
+                    address,
+                    contact_person,
+                    total_litre_perday ,
+                    maximum_flock_size,
+                    dairy_manager, 
+                    dairy_veterinarian, 
+                    vet_reg_number,
+                    phone_Number,
+                    typeofbreeds )
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,NOW()");
+        $stmt->bind_param(
+                "sssssssssssssssssss",
+                    $dfuid,
+                    $user_id,
+                    $dairy_farm_name,
+                    $year_established,
+                    $reg_number,
+                    $dairy_farm_owner,
+                    $affiliation,
+                    $country,
+                    $region,
+                    $district,
+                    $websiteurl,
+                    $address,
+                    $contact_person,
+                    $total_litre_perday ,
+                    $maximum_flock_size,
+                    $dairy_manager, 
+                    $dairy_veterinarian, 
+                    $vet_reg_number,
+                    $typeofbreeds,
+                    $phone_Number, 
+                    $created_at
+            );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->con->prepare("SELECT * FROM beef_tbl WHERE user_id = ?");
+            $stmt->bind_param("s", $user_id);
+            $stmt->execute();
+            $beef = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $beef;
+        } else {
+            return false;
+        }
+        Affiliations($user_id, $bfuid, $affiliation);
+        TypeOfBeef($user_id, $bfuid, $typeofbreeds);
+        PhoneNumbers($user_id, $breeder_id, $phone_Number);
+    }
+
+/* 
+add new beef farm
+*/
+public function registerNewBeefFarm(
+                $user_id,
+                $beef_farm_name,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,
+                $affiliation,
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address,
+                $typeofbeef
+) {
+        $bfuid = uniqid('', true);
+
+        $stmt = $this->con->prepare("INSERT INTO beef_tbl
+            (   $breeder_unique_id,
+                $bfuid,
+                $user_id,
+                $beef_farm_name,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address, 
+                $created_at)
+VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
+        $stmt->bind_param(
+                "sssssssssssssssssss",
+                $bfuid,
+                $user_id,
+                $beef_farm_name,
+                $year_established,                
+                $reg_number,                
+                $owners_full_name,
+                $country,
+                $region,
+                $district,
+                $pobox,
+                $websiteurl,
+                $address,
+                $created_at
+            );
+        $result = $stmt->execute();
+        $stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->con->prepare("SELECT * FROM beef_tbl WHERE user_id = ?");
+            $stmt->bind_param("s", $user_id);
+            $stmt->execute();
+            $beef = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $beef;
+        } else {
+            return false;
+        }
+        Affiliations($user_id, $bfuid, $affiliation);
+        TypeOfBeef($user_id, $bfuid, $typeofbeef);
+        
+    }
+
     /*
     *add new breeder
     */
@@ -722,6 +891,7 @@ INNER JOIN  raw_materials
             } else {
                 return false;
             }
+          
         }
      /*
        *insert multiple parent stock
@@ -858,6 +1028,24 @@ INNER JOIN  raw_materials
          /*
          *insert multiple typeofBreed
          */
+          public function TypeOfBeef($user_id, $bfuid, $typeofbeef){
+            //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+            //mysql_query($sql1);
+            foreach($typeofbeef as $a => $B){
+            $tpuid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO  TypeOfDairyproduct (breed_unique_id, user_id,
+     bfuid, breed_title, created_at)VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $tpuid, $user_id, $bfuid, $typeofbeef[$a]);
+            $result = $stmt->execute();
+            $stmt->close();
+
+             // if ($result){
+             //   echo "Breed Type insert success";
+             // }
+              }
+            // check for successful store
+          }
+
           public function TypeOfBreedProduced($user_id, $breeder_id, $typeofbreed){
             //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
             //mysql_query($sql1);
@@ -875,8 +1063,6 @@ INNER JOIN  raw_materials
               }
             // check for successful store
           }
-
-
 
           /*
           *insert multiple breeder products
