@@ -375,11 +375,13 @@
               $value = trim($_POST[$field]);
               if(!has_presence($value)){
 
-                $message = "<div class=\"alert alert-danger\" role=\"alert\">
-                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
-                </div>";
+                // $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+                // </div>";
 
-                 $errors[$field] = ucfirst($field) . " can't be blank";
+                 $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                   <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is not blank </a> and try submitting again.
+                 </div>";
 
               }
             }
@@ -390,11 +392,13 @@
               $value = trim($_POST[$field]);
               if(!is_numeric($value)){
 
-                $message = "<div class=\"alert alert-info\" role=\"alert\">
-                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
-                </div>";
+                // $message = "<div class=\"alert alert-info\" role=\"alert\">
+                //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
+                // </div>";
 
-                 $errors[$field] = ucfirst($field) . " should be numeric";
+                 $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                   <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is numeric </a> and try submitting again.
+                 </div>";
 
               }
             }
@@ -407,7 +411,7 @@
                     // $response["error"] = true;
                     // $response["error_msg"] = "User already exists with " . $email;
                     $message = "<div class=\"alert alert-info\" role=\"alert\">
-             <strong>User Exists!</strong> <a href=\"#\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
+             <strong>User Exists!</strong> <a href=\"../login_area.php\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
            </div>";
                 // echo json_encode($response);
                 } else {
@@ -431,7 +435,8 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $breeder = $db->registerNewbreeder($user_id,
+                    $breeder = $db->registerNewbreeder(
+                       $user_id,
                         $owners_full_name,
                         $farm_name,
                         $type_of_ownership,
@@ -453,12 +458,12 @@
                         // user stored successfully
                            $response["error"] = false;
                            $response["htuid"] = $breeder["breeder_unique_id"];
-                           $response["breeder"]["breeder_id"] = $breeder["breeder_id"];
+                           $response["breeder"]["breeders_id"] = $breeder["breeders_id"];
                            $response["breeder"]["user_id"] = $breeder["user_id"];
                            $response["breeder"]["farm_name"] = $breeder["farm_name"];
                            $response["breeder"]["date_established"] = $breeder["date_established"];
                            $response["breeder"]["type_of_ownership"] = $breeder["type_of_ownership"];
-                           $response["breeder"]["breed_reg_number"] = $breeder["breed_reg_number"];
+                           $response["breeder"]["breeder_reg_number"] = $breeder["breeder_reg_number"];
                            $response["breeder"]["breeder_manager"] = $breeder["breeder_manager"];
                            $response["breeder"]["breeder_veterinarian"] = $breeder["breeder_veterinarian"];
                            $response["breeder"]["vet_reg_number"] = $breeder["vet_reg_number"];
@@ -475,14 +480,14 @@
                            $response["breeder"]["updated_at"] = $breeder["updated_at"];
 
 
-                           $breeder_id = $breeder["breeder_id"];
+                           $breeder_id = $breeder["breeders_id"];
                           //insert the dynamic Fields
                           //breeder Affiliation
                           $affiliation = $_POST['affiliation'];
 
-                          $newaffiliation = $db->multipleAffiliations($user_id, $breeder_id, $affiliation);
-                          $newphonenumber = $db->multiplePhoneNumber($user_id, $breeder_id, $phoneNumber);
-                          $newtypeofbreed = $db->multipleTypeOfBreedProduced($user_id, $breeder_id, $typeofbreeds);
+                          $newaffiliation = $db->multipleBreederAffiliations($user_id, $breeder_id, $affiliation);
+                          $newphonenumber = $db->multipleBreederPhoneNumber($user_id, $breeder_id, $phoneNumber);
+                          $newtypeofbreed = $db->multipleBreederTypeOfBreedProduced($user_id, $breeder_id, $typeofbreeds);
 
 
 
@@ -490,34 +495,34 @@
                          //$utility_chicks
                          if(!empty($utility_chicks)){
                            $breeded_products = $utility_chicks;
-                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                                $newbreederproduct = $db->breederProducts($user_id, $breeder_id, $hatched_products);
                          }
                           //insert $grandparent_stock_chicks
                          if(!empty($grandparent_stock_chicks)){
                            $breeded_products = $grandparent_stock_chicks;
-                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                                $newbreederproduct = $db->breederProducts($user_id, $breeder_id, $hatched_products);
                          }
 
                          if(!empty($parent_stock_chicks)){
                            $breeded_products = $parent_stock_chicks;
-                           $newbreederproduct = $db->multiplebreederProducts($user_id, $breeder_id, $breeded_products);
+                           $newbreederproduct = $db->breederProducts($user_id, $breeder_id, $hatched_products);
                          }
 
                      // breeder breeding purposes
                      //$utility_chicks
                      if(!empty($broiler)){
                        $breed_purpose = $broiler;
-                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                        $newbreederpurpose = $db->breederPurpose($user_id, $breeder_id, $breed_purpose);
                      }
                       //insert $grandparent_stock_chicks
                      if(!empty($layers)){
                        $breed_purpose = $layers;
-                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                        $newbreederpurpose = $db->breederPurpose($user_id, $breeder_id, $breed_purpose);
                      }
 
                      if(!empty($dual_purpose)){
                        $breed_purpose = $dual_purpose;
-                       $newbreederproduct = $db->multiplebreederBreedPurpose($user_id, $breeder_id, $breed_purpose);
+                       $newbreederpurpose = $db->breederPurpose($user_id, $breeder_id, $breed_purpose);
                      }
 
                      // breeding poultry TYPES
@@ -551,7 +556,7 @@
                      // insert $breeding_quails
                      if(!empty($breeding_quails)){
                        $poultry_type = $breeding_quails;
-                       $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
+                      $newpoultry_type = $db->regbreederPoultryTypes($user_id, $breeder_id, $poultry_type);
                      }
                      // insert $breeding_ostrich
                      if(!empty($breeding_ostrich)){
@@ -563,25 +568,25 @@
                      // breeding eggs sources
                      //$import_source_parent_stock
                      if(!empty($import_source_parent_stock)){
-                       $egg_sources = $import_source_parent_stock;
-                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                       $flock_sources = $import_source_parent_stock;
+                       $newflocksource = $db->regbreederFlockSources($user_id, $breeder_id, $flock_sources);
                      }
                       //insert $local_source_grandparent_stock
                      if(!empty($local_source_grandparent_stock)){
-                       $egg_sources = $local_source_grandparent_stock;
-                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                       $flock_sources = $local_source_grandparent_stock;
+                       $newflocksource = $db->regbreederFlockSources($user_id, $breeder_id, $flock_sources);
                      }
 
                       //insert $import_source_grandparent_stock
                      if(!empty($import_source_grandparent_stock)){
-                       $egg_sources = $import_source_grandparent_stock;
-                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                       $flock_sources = $import_source_grandparent_stock;
+                       $newflocksource = $db->regbreederFlockSources($user_id, $breeder_id, $flock_sources);
                      }
 
                       // insert $local_source_parent_stock
                      if(!empty($local_source_parent_stock)){
-                       $egg_sources = $local_source_parent_stock;
-                       $neweggsource = $db->regbreederEggSources($user_id, $breeder_id, $egg_sources);
+                       $flock_sources = $local_source_parent_stock;
+                       $newflocksource = $db->regbreederFlockSources($user_id, $breeder_id, $flock_sources);
                      }
 
                      // email verification link is sent here
@@ -821,6 +826,9 @@
     .glyphicon
     {
         font-size: 12px;
+    }
+    .badge-danger{
+      background-color: rgba(255,255,255,.5);
     }
         </style>
       </head>
@@ -1215,184 +1223,7 @@
 
     </div> <!-- /.container-->
 
-    <!--scripts -->
-    <!-- jQuery first, then Bootstrap JS. -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
-    function yearValidation(year,ev) {
-
-  var text = /^[0-9]+$/;
-  if(ev.type=="blur" || year.length==4 && ev.keyCode!=8 && ev.keyCode!=46) {
-    if (year != 0) {
-        if ((year != "") && (!text.test(year))) {
-
-            alert("Please Enter Numeric Values Only");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-        }
-
-        if (year.length != 4) {
-            alert("Year is not proper. Please check");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-
-        }
-        var current_year=new Date().getFullYear();
-        if((year < 1920) || (year > current_year))
-            {
-            alert("Year should be in range 1920 to current year");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-
-            }
-        return true;
-    } }
-  }
-
-
-  var check = function() {
-       if (document.getElementById('password').value ==
-           document.getElementById('confirm_password').value) {
-           document.getElementById('message').style.color = 'green';
-           document.getElementById('message').innerHTML = 'matching';
-       } else {
-       		document.getElementById('message').style.color = 'red';
-           document.getElementById('message').innerHTML = 'not matching';
-       }
-   }
-
-    </script>
-<!-- para_utilitygrandpastock -->
-    <script>
-  $(document).ready(function(){
-      $('#breeding_activity').on('change', function() {
-        if ( this.value == '1')
-        {
-          $("#para_utilitya").show();
-          $("#para_utilityb").show();
-          $("#para_utilityc").show();
-
-          $("#para_utility_parentstock").hide();
-          $("#para_utilitygrandpastock").hide();
-
-           }else if (this.value == '2') {
-                   $("#para_utilitygrandpastock").show();
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utility_parentstock").hide();
-
-
-          }else if (this.value == '3') {
-                   $("#para_utility_parentstock").show();
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utilitygrandpastock").hide();
-
-           }else {
-
-                   $("#para_utilitya").hide();
-                   $("#para_utilityb").hide();
-                   $("#para_utilityc").hide();
-                   $("#para_utility_parentstock").hide();
-                   $("#para_utilitygrandpastock").hide();
-
-          }
-        });
-        console.log("hellow");
-    });
-    </script>
-<script>
-(function ($) {
-    $(function () {
-
-        var addFormGroup = function (event) {
-            event.preventDefault();
-
-            var $formGroup = $(this).closest('.form-group');
-            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-            var $formGroupClone =  $formGroup.clone();
-
-            $(this)
-                .toggleClass('btn-default btn-add btn-danger btn-remove')
-                .html('–');
-
-            $formGroupClone.find('input').val('');
-            $formGroupClone.insertAfter($formGroup);
-
-            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-            if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
-                $lastFormGroupLast.find('.btn-add').attr('disabled', true);
-            }
-        };
-
-        var removeFormGroup = function (event) {
-            event.preventDefault();
-
-            var $formGroup = $(this).closest('.form-group');
-            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-
-            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-            if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
-                $lastFormGroupLast.find('.btn-add').attr('disabled', false);
-            }
-
-            $formGroup.remove();
-        };
-
-        var countFormGroup = function ($form) {
-            return $form.find('.form-group').length;
-        };
-
- $(function () {
-
-var addFormGroup1 = function (event) {
-    event.preventDefault();
-
-    var $formGroup = $(this).closest('.form-group');
-
-    var $formGroupClone =
-    "<div class="form-group">'+'
-                    <label for="exampleTextarea">'+'specify'+'</label>'+'
-                    '+' <input type="text" class="form-control" id="pobox" name="pobox" value="<?= isset($_POST['pobox']) ? $_POST['pobox'] : ''; ?>" placeholder="">
-                  </div>";
-    $(this)
-        .toggleClass('btn-default btn-add btn-danger btn-remove')
-        .html('–');
-
-    $formGroupClone.find('input').val('');
-    $formGroupClone.insertAfter($formGroup);
-
-    var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-    if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
-        $lastFormGroupLast.find('.btn-add').attr('disabled', true);
-    }
-};
-        $(document).on('click', '.btn-add', addFormGroup);
-        $(document).on('click', '.btn-remove', removeFormGroup);
-        $(document).on('click', '.add', addFormGroup1);
-    });
-})(jQuery);
-</script>
-
-<script>
-$(document).ready(function (){
-	$('.datetimepicker').datetimepicker({
-    format:'L'
-  });
-
-});
-</script>
 <?php
-include('../../includes/layouts/public_ly_footer.php');
+include('../../includes/layouts/breeder_footer_layout.php');
 ?>

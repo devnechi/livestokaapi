@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Lato|Lobster|Roboto+Condensed|Titan+One|Ubuntu+Condensed');
 
 body {
@@ -10,7 +9,8 @@ body {
     overflow-x: hidden;
 }
 .navbar {
-    background-color: #cbd4d3;
+    /* background-color: #cbd4d3; */
+    background-color: #f8f9fa;
 }
 #mainNav .navbar-brand img {
     height: 70px;
@@ -503,7 +503,7 @@ body {
     overflow-x: hidden;
 }
 .navbar {
-    background-color: #74f5e3;
+    /* background-color: #74f5e3; */
 }
 #mainNav .navbar-brand img {
     height: 70px;
@@ -984,4 +984,3 @@ a.back-to-top i {
 a.back-to-top:hover, a.back-to-top:focus {
     text-decoration: none;
 }
->>>>>>> 4a8f0d9ca6f3aa5df9ea03232b6c7b40ff724fda

@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 
-
 include("../../includes/layouts/main_hatchery_header.php");
 require_once '../../includes/DbOperation.php';
 require_once '../../includes/validations_functions.php';
@@ -272,7 +271,6 @@ $dataPointsChickVsEggsprices = array(
 										</div>
 									</div>
 									</div>
-<<<<<<< HEAD
                   <!-- end of shortcuts -->
                   <div class="col-lg-6 col-md-12">
                       <div class="card">
@@ -361,9 +359,9 @@ $dataPointsChickVsEggsprices = array(
                          <p class="category">all hatching activities as of Dec, 2018</p>
                      </div>
                      <div class="card-content table-responsive">
-                              <h1> Total Industry Hatcherybiltiy <small>at 100 %</small></h1>
-                              <h1> Total industry Capacity <small>at 25,000</small></h1>
-                              <h1> Total number of breeds <small> 6</small></h1>
+                              <h1> TIH <small>at 100 %</small></h1>
+                              <h1> TIC <small>at 25,000</small></h1>
+                              <h1> Total num of breeds <small> 6</small></h1>
 
                         </div>
                      </div>
@@ -376,9 +374,9 @@ $dataPointsChickVsEggsprices = array(
                          <p class="category">all hatching data as of Dec, 2018</p>
                      </div>
                      <div class="card-content table-responsive">
-                              <h1> Average chick prices <small>@150 TZS</small></h1>
-                              <h1> Average Egg prices <small>@ 100 TZS</small></h1>
-                              <h1> Most produced poultry <small> Chicken</small></h1>
+                              <h1> ACP <small>@150 TZS</small></h1>
+                              <h1> Avg. Eggs Price <small>@ 100 TZS</small></h1>
+                              <h1> Most Produced <small> Chicken</small></h1>
 
 
                         </div>
@@ -479,22 +477,6 @@ $dataPointsChickVsEggsprices = array(
                     </div>
                     </div>
                </div>
-=======
-									<div class="col-md-6">
-										<div class="card">
-											<div class="card-header" data-background-color="orange">
-													<h4 class="title">Recent industry updates and Trends</h4>
-													<p class="category">As of Last Month February, 2018</p>
-											</div>
-											<div class="card-content table-responsive">
-													<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-													<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-												</div>
-											</div>
-											</div>
-								</div>
-
->>>>>>> 4a8f0d9ca6f3aa5df9ea03232b6c7b40ff724fda
 
               <div class="row">
                 <div class="col-md-6">

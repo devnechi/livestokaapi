@@ -350,7 +350,11 @@
                      // $('#contact').text("Email Address");
                      // $('#selected_batch_id').text("'
                         //  alert($(this).find("option:selected").text());
-                           document.getElementById("selected_batch_id").innerHTML = $(this).find("option:selected").text();
+                        // batch_id
+                   document.getElementById("selected_batch_id").innerHTML = $(this).find("option:selected").text();
+                   //document.getElementById("batch_id").innerHTML = $(this).find("option:selected").text();
+
+
 
                   $("#pnl_hatching_report").hide();
                   $("#pnl_sales_report").hide();

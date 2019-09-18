@@ -42,10 +42,8 @@ ob_start();
     $email = "";
 if (isset($_POST['submit'])) {
     // process users entry on the form
-
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-
     //validations
     $fields_required= array("email", "password");
     foreach ($fields_required as $field) {
@@ -55,8 +53,9 @@ if (isset($_POST['submit'])) {
     <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
   </div>";
 
-            $errors[$field] = ucfirst($field) . " can't be blank";
-        }
+  $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                    <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is not blank </a> and try submitting again.
+                  </div>";        }
     }
 
     // if no errors detected
@@ -82,30 +81,57 @@ if (isset($_POST['submit'])) {
             // $_SESSION["email"] = user["email"];
             $_SESSION['loggedIn'] = TRUE;
 
-            if ($user["usertype"] == "Hatchery User") {
-              // code...
-              $_SESSION['user_log_id'] = $user["user_id"];
-              $_SESSION['user_log_email'] = $user["email"];
-              $_SESSION['user_log_usertype'] = $user["usertype"];
+             if ($user["account_status"] == "active") {
+               // code...
 
-                // redirect_to(hatchersarea/hatchers_dashboard.php);
-                 header('Location: ../web/hatchersarea/hatchers_dashboard.php');
-            } elseif ($user["usertype"] == "feed manufacturer") {
-              // code...
-              $_SESSION['user_log_id'] = $user["user_id"];
-              $_SESSION['user_log_email'] = $email;
-              $_SESSION['user_log_usertype'] = $user["usertype"];
-               // redirect_to(feedmanufacturerarea/feed_manufacturer_dashboard.php);
-                header('location: ../web/feedmanufacturerarea/feed_manufacturer_dashboard.php');
+                           if ($user["usertype"] == "Hatchery User") {
+                             // code...
+                             $_SESSION['user_log_id'] = $user["user_id"];
+                             $_SESSION['user_log_email'] = $user["email"];
+                             $_SESSION['user_log_usertype'] = $user["usertype"];
 
-            } else{
+                               // redirect_to(hatchersarea/hatchers_dashboard.php);
+                                header('Location: ../web/hatchersarea/hatchers_dashboard.php');
+                           } elseif ($user["usertype"] == "feed manufacturer") {
+                             // code...
+                             $_SESSION['user_log_id'] = $user["user_id"];
+                             $_SESSION['user_log_email'] = $email;
+                             $_SESSION['user_log_usertype'] = $user["usertype"];
+                              // redirect_to(feedmanufacturerarea/feed_manufacturer_dashboard.php);
+                               header('location: ../web/feedmanufacturerarea/feed_manufacturer_dashboard.php');
 
-               $_SESSION["message"] = "Username /password not found.";
-              $message = "<div class=\"alert alert-danger\" role=\"alert\">
-                <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
-              </div>";
+                           } elseif ($user["usertype"] == "breeder User") {
+                             // code...
+                             $_SESSION['user_log_id'] = $user["user_id"];
+                             $_SESSION['user_log_email'] = $email;
+                             $_SESSION['user_log_usertype'] = $user["usertype"];
+                              // redirect_to(feedmanufacturerarea/feed_manufacturer_dashboard.php);
+                               header('location: ../web/breeder/breeders_dashboard.php');
 
-            }
+                           } elseif ($user["usertype"] == "dairy farm user") {
+                             // code...
+                             $_SESSION['user_log_id'] = $user["user_id"];
+                             $_SESSION['user_log_email'] = $email;
+                             $_SESSION['user_log_usertype'] = $user["usertype"];
+                              // redirect_to(feedmanufacturerarea/feed_manufacturer_dashboard.php);
+                               header('location: ../web/dairy_area/dairy_dashboard.php');
+
+                           } else{
+
+                              $_SESSION["message"] = "Username /password not found.";
+                             $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                               <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Seems like we failed to authenticate you</a> Try login again.
+                             </div>";
+
+                           }
+             }else {
+               // code...
+               $message = "<div class=\"alert alert-info\" role=\"alert\">
+                 <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Seems like your account is not yet activated</a> check your emails.
+               </div>";
+
+             }
+
         //echo json_encode($response);
         } else {
             // user is not found with the credentials
@@ -201,6 +227,7 @@ hr{
     font-style: normal;
     font-weight: 100;
     color:#073f5a;
+    text-align: center;
     margin-bottom:25px;
     margin-top:50px;
 
@@ -209,6 +236,7 @@ hr{
 .login_title{
     font-family: "myriad-pro",sans-serif;
     font-style: normal;
+    text-align: center;
     font-weight: 100;
     color:#073f5a;
 }
@@ -384,6 +412,10 @@ hr{
 
         <form class="form-signin" action="login_area.php" method="post">
             <span id="reauth-email" class="reauth-email"></span>
+            <?php echo $message;?>
+            <?php
+             echo form_errors($errors);
+              ?>
             <p class="input_title">Email</p>
             <input type="text" id="email" class="login_box" name="email" value="<?php echo htmlentities($email);?>" placeholder="member@livestoka.com" required autofocus>
             <p class="input_title">Password</p>

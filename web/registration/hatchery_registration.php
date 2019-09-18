@@ -3,7 +3,7 @@
     require_once '../../includes/DbConnect.php';
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
-    include('../../includes/layouts/public_layout_header.php');
+
     include '../../web/vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -253,7 +253,6 @@
             $phoneNumber = $_POST['phonenumbers'];
             $owners_full_name = trim($_POST['owners_full_name']);
 
-
             $hatchery_name = trim($_POST['hatchery_name']);
             $type_of_ownership = trim($_POST['type_of_ownership']);
             $date_established = trim($_POST['date_established']);
@@ -424,12 +423,13 @@
               $value = trim($_POST[$field]);
               if(!has_presence($value)){
 
-                $message = "<div class=\"alert alert-danger\" role=\"alert\">
-                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
-                </div>";
+                // $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+                // </div>";
 
-                 $errors[$field] = ucfirst($field) . " can't be blank";
-
+                 $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                   <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is not blank </a> and try submitting again.
+                 </div>";
               }
             }
 
@@ -439,11 +439,13 @@
               $value = trim($_POST[$field]);
               if(!is_numeric($value)){
 
-                $message = "<div class=\"alert alert-info\" role=\"alert\">
-                  <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
-                </div>";
+                // $message = "<div class=\"alert alert-info\" role=\"alert\">
+                //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
+                // </div>";
 
-                 $errors[$field] = ucfirst($field) . " should be numeric";
+                 $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                   <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is numeric </a> and try submitting again.
+                 </div>";
 
               }
             }
@@ -456,7 +458,7 @@
                     // $response["error"] = true;
                     // $response["error_msg"] = "User already exists with " . $email;
                     $message = "<div class=\"alert alert-info\" role=\"alert\">
-             <strong>User Exists!</strong> <a href=\"#\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
+             <strong>User Exists!</strong> <a href=\"../login_area.php\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
            </div>";
                 // echo json_encode($response);
                 } else {
@@ -881,6 +883,10 @@
 .glyphicon
 {
     font-size: 12px;
+}
+
+.badge-danger{
+  background-color: rgba(255,255,255,.5);
 }
     </style>
   </head>

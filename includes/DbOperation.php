@@ -120,12 +120,13 @@ class DbOperation
     /*
     *add new manufacturer to the database
     */
-    public function registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager)
+    public function registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $country, $region, $district, $address, $pobox, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager)
     {
         $mfuid = uniqid('', true);
 
-        $stmt = $this->con->prepare("INSERT INTO feed_manufactures (feed_manufactures_unique_id, user_id, companyname, year_established, cert_of_incorporation_num, feedbussiness_permit_num, premise_cert_num, gmp_cert_num, association_affiliation, country, region, district, address, pobox, phonenumber, websiteurl, contact_person, production_capacity, storage_capacity, num_products_produced, man_power, plant_manager, created_at) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-        $stmt->bind_param("ssssssssssssssssssssss", $mfuid, $user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
+        $stmt = $this->con->prepare("INSERT INTO feed_manufactures (feed_manufactures_unique_id, user_id, companyname, year_established, cert_of_incorporation_num, feedbussiness_permit_num, premise_cert_num, gmp_cert_num, country, region, district, address, pobox, websiteurl, contact_person, production_capacity, storage_capacity, num_products_produced, man_power, plant_manager, created_at)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssssssssssssssssssss", $mfuid, $user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $country, $region, $district, $address, $pobox, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
         $result = $stmt->execute();
         $stmt->close();
 
@@ -621,11 +622,11 @@ INNER JOIN  raw_materials
 
 
 
-    /* 
+    /*
 add new beef farm
 */
 public function registerNewMilkDairy(
-    $user_id,
+                    $user_id,
                     $dairy_farm_name,
                     $year_established,
                     $reg_number,
@@ -639,23 +640,21 @@ public function registerNewMilkDairy(
                     $contact_person,
                     $total_litre_perday ,
                     $maximum_flock_size,
-                    $dairy_manager, 
-                    $dairy_veterinarian, 
+                    $dairy_manager,
+                    $dairy_veterinarian,
                     $vet_reg_number,
                     $phone_Number,
-                    $typeofbreeds 
+                    $typeofbreeds
 ) {
         $dfuid = uniqid('', true);
 
         $stmt = $this->con->prepare("INSERT INTO dairy_tbl
             (       dairy_unique_id,
-                    dfuid,
                     user_id,
                     dairy_farm_name,
                     year_established,
                     reg_number,
                     dairy_farm_owner,
-                   
                     country,
                     region,
                     district,
@@ -664,14 +663,13 @@ public function registerNewMilkDairy(
                     contact_person,
                     total_litre_perday ,
                     maximum_flock_size,
-                    dairy_manager, 
-                    dairy_veterinarian, 
+                    dairy_manager,
+                    dairy_veterinarian,
                     vet_reg_number,
                     phone_Number,
-                    typeofbreeds )
-VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,NOW()");
-        $stmt->bind_param(
-                "sssssssssssssssssss",
+                    typeofbreeds)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,NOW())");
+        $stmt->bind_param("sssssssssssssssssss",
                     $dfuid,
                     $user_id,
                     $dairy_farm_name,
@@ -687,11 +685,11 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,NOW()");
                     $contact_person,
                     $total_litre_perday ,
                     $maximum_flock_size,
-                    $dairy_manager, 
-                    $dairy_veterinarian, 
+                    $dairy_manager,
+                    $dairy_veterinarian,
                     $vet_reg_number,
                     $typeofbreeds,
-                    $phone_Number, 
+                    $phone_Number,
                     $created_at
             );
         $result = $stmt->execute();
@@ -709,19 +707,17 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,NOW()");
         } else {
             return false;
         }
-        Affiliations($user_id, $bfuid, $affiliation);
-        TypeOfBeef($user_id, $bfuid, $typeofbreeds);
-        PhoneNumbers($user_id, $breeder_id, $phone_Number);
+
     }
 
-/* 
+/*
 add new beef farm
 */
 public function registerNewBeefFarm(
                 $user_id,
                 $beef_farm_name,
-                $year_established,                
-                $reg_number,                
+                $year_established,
+                $reg_number,
                 $owners_full_name,
                 $affiliation,
                 $country,
@@ -735,28 +731,28 @@ public function registerNewBeefFarm(
         $bfuid = uniqid('', true);
 
         $stmt = $this->con->prepare("INSERT INTO beef_tbl
-            (   $breeder_unique_id,
-                $bfuid,
-                $user_id,
-                $beef_farm_name,
-                $year_established,                
-                $reg_number,                
-                $owners_full_name,
-                $country,
-                $region,
-                $district,
-                $pobox,
-                $websiteurl,
-                $address, 
-                $created_at)
-VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
+            (breeder_unique_id,
+                bfuid,
+                user_id,
+                beef_farm_name,
+                year_established,
+                reg_number,
+                owners_full_name,
+                country,
+                region,
+                district,
+                pobox,
+                websiteurl,
+                address,
+                created_at)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         $stmt->bind_param(
                 "sssssssssssssssssss",
                 $bfuid,
                 $user_id,
                 $beef_farm_name,
-                $year_established,                
-                $reg_number,                
+                $year_established,
+                $reg_number,
                 $owners_full_name,
                 $country,
                 $region,
@@ -764,8 +760,7 @@ VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
                 $pobox,
                 $websiteurl,
                 $address,
-                $created_at
-            );
+                $created_at);
         $result = $stmt->execute();
         $stmt->close();
 
@@ -781,108 +776,84 @@ VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
         } else {
             return false;
         }
-        Affiliations($user_id, $bfuid, $affiliation);
-        TypeOfBeef($user_id, $bfuid, $typeofbeef);
-        
+
     }
 
     /*
     *add new breeder
     */
     public function registerNewBreeder(
-        $user_id,
-        $owners_full_name,
-        $farm_name,
-        $type_of_ownership,
-        $date_established,
-        $breeder_reg_number,
-        $breeder_manager,
-        $breeder_veterinarian,
-        $vet_reg_number,
-        $total_incubator_capacity,
-        $total_hatcher_capacity,
-        $country,
-        $region,
-        $district,
-        $pobox,
-        $websiteurl,
-        $address,
-        $breeding_chicken,
-        $breeding_turkey,
-        $breeding_ducks,
-        $breeding_quails,
-        $breeding_ostrich,
-        $breeding_guinea_fowls,
-        $broiler,
-        $layers,
-        $dual_purpose
-    ) {
-            $htuid = uniqid('', true);
+      $user_id,
+       $owners_full_name,
+       $farm_name,
+       $type_of_ownership,
+       $date_established,
+       $breed_reg_number,
+       $breeder_manager,
+       $breeder_veterinarian,
+       $vet_reg_number,
+       $maximum_flock_size,
+       $total_peryear_capacity,
+       $contact_person,
+       $country,
+       $region,
+       $district,
+       $pobox,
+       $websiteurl,
+       $address
 
+    ) {
+            $bffuid = uniqid('', true);
             $stmt = $this->con->prepare("INSERT INTO breeders_tbl
                 (breeder_unique_id,
                 user_id,
                 owners_full_name,
+                farm_name,
                 type_of_ownership,
                 date_established,
                 breeder_reg_number,
                 breeder_manager,
-                breeding_chicken,
-                breeding_turkey,
-                breeding_ducks,
-                breeding_quails,
-                breeding_ostrich,
-                breeding_guinea_fowls,
-                broiler,
-                layers,
-                dual_purpose,
                 breeder_veterinarian,
                 vet_reg_number,
                 maximum_flock_size,
-                total_peryear_capacity,
+                  total_peryear_capacity,
+                  contact_person,
                 country,
                 region,
                 district,
+                pobox,
                 websiteurl,
-      address, created_at)
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW())");
-            $stmt->bind_param(
-                    "sssssssssssssssssss",
-                    $htuid,
+                address,
+                created_at)VALUES
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            $stmt->bind_param("sssssssssssssssssss",
+                    $bffuid,
                     $user_id,
-                    $owners_full_name,
-                    $breeder_name,
-                    $type_of_ownership,
-                    $date_established,
-                    $hatch_reg_number,
-                    $breeder_manager,
-                    $breeder_veterinarian,
-                    $vet_reg_number,
-                    $maximum_flock_size,
-                    $total_peryear_capacity,
-                    $country,
-                    $region,
-                    $district,
-                    $pobox,
-                    $websiteurl,
-                    $address,
-                    $breeding_chicken,
-                    $breeding_turkey,
-                    $breeding_ducks,
-                    $breeding_quails,
-                    $breeding_ostrich,
-                    $breeding_guinea_fowls,
-                    $broiler,
-                    $layers,
-                    $dual_purpose
+                     $owners_full_name,
+                     $farm_name,
+                     $type_of_ownership,
+                     $date_established,
+                     $breed_reg_number,
+                     $breeder_manager,
+                     $breeder_veterinarian,
+                     $vet_reg_number,
+                     $maximum_flock_size,
+                     $total_peryear_capacity,
+                     $contact_person,
+                     $country,
+                     $region,
+                     $district,
+                     $pobox,
+                     $websiteurl,
+                     $address
                 );
             $result = $stmt->execute();
             $stmt->close();
 
             // check for successful store
             if ($result) {
-                $stmt = $this->con->prepare("SELECT * FROM breeder_tbl WHERE user_id = ?");
-                $stmt->bind_param("s", $user_id);
+                $stmt = $this->con->prepare("SELECT * FROM breeders_tbl WHERE breeder_unique_id = ?");
+                $stmt->bind_param("s", $bffuid);
                 $stmt->execute();
                 $breeder = $stmt->get_result()->fetch_assoc();
                 $stmt->close();
@@ -891,8 +862,41 @@ VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
             } else {
                 return false;
             }
-          
+
         }
+
+
+
+
+              /**
+               * get breeder farm details
+               */
+              public function getBreederFarmMainDetails($user_id){
+                $stmt = $this->con->prepare("SELECT
+                     breeders_id, breeder_unique_id,
+                    user_id, farm_name,
+                    date_established, type_of_ownership,
+                    maximum_flock_size,
+                    total_peryear_capacity,
+                    contact_person,
+                    created_at,
+                    updated_at FROM breeders_tbl WHERE user_id = ?");
+                //$stmt = $this->con->prepare("SELECT * FROM businessDetails WHERE user_id = ?");
+                $stmt->bind_param("s", $user_id);
+                if ($stmt->execute()) {
+                    // $user = $stmt->get_result()->fetch_assoc();
+                    $breeder_farm = $stmt->get_result()->fetch_assoc();
+                    $stmt->close();
+                    return $breeder_farm;
+                } else {
+                    return null;
+                }
+
+              }
+
+
+
+
      /*
        *insert multiple parent stock
        */
@@ -1070,7 +1074,7 @@ VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
            public function breederProducts($user_id, $breeder_id, $hatched_products){
 
              $hpuid = uniqid('', true);
-             $stmt = $this->con->prepare("INSERT INTO breeder_products (breeder_product_unique_id, user_id,
+             $stmt = $this->con->prepare("INSERT INTO hatchery_products (breeder_product_unique_id, user_id,
       breeder_id, breeder_products, created_at)VALUES(?, ?, ?, ?, NOW())");
              $stmt->bind_param("ssss", $hpuid, $user_id, $breeder_id, $hatched_products);
              $result = $stmt->execute();
@@ -1099,29 +1103,28 @@ VALUES(  ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,NOW()");
             /*
             *insert multiple breeder poultry types
             */
-             public function regbreederTypes($user_id, $breeder_id, $poultry_type){
+             public function regbreederPoultryTypes($user_id, $breeder_id, $poultry_type){
                $hptuid = uniqid('', true);
                $stmt = $this->con->prepare("INSERT INTO hatching_poultry_types (poultry_types_unique_id, user_id,
-      breeder_id,  breeder_poultry_type, created_at)VALUES(?, ?, ?, ?, NOW())");
+      breeder_id,  hatchery_poultry_type, created_at)VALUES(?, ?, ?, ?, NOW())");
                $stmt->bind_param("ssss", $hptuid, $user_id, $breeder_id, $poultry_type);
                $result = $stmt->execute();
                $stmt->close();
 
              }
 
+              /*
+              *insert multiple flock sources types
+              */
+               public function regbreederFlockSources($user_id, $breeder_id, $flock_sources){
+                 $eguid = uniqid('', true);
+                 $stmt = $this->con->prepare("INSERT INTO  breeder_flock_source (source_unique_id, user_id,
+       breeder_id,  breeder_flock_source, date_created)VALUES(?, ?, ?, ?, NOW())");
+                 $stmt->bind_param("ssss", $eguid, $user_id, $breeder_id, $flock_sources);
+                 $result = $stmt->execute();
+                 $stmt->close();
 
-             /*
-             *insert multiple egg sources types
-             */
-              public function regbreederSources($user_id, $breeder_id, $egg_sources){
-                $eguid = uniqid('', true);
-                $stmt = $this->con->prepare("INSERT INTO breeder_egg_sources (source_unique_id, user_id,
-      breeder_id,  eggs_source, date_created)VALUES(?, ?, ?, ?, NOW())");
-                $stmt->bind_param("ssss", $eguid, $user_id, $breeder_id, $egg_sources);
-                $result = $stmt->execute();
-                $stmt->close();
-
-              }
+               }
 
 
 
@@ -1219,6 +1222,80 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
       // check for successful store
     }
 
+
+
+    /*
+    *breeeder insert multiple Affiliations
+    */
+     public function multipleBreederAffiliations($user_id, $breeder_id, $affiliation){
+       //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+       //mysql_query($sql1);
+       foreach($affiliation as $a => $B){
+       $affuid = uniqid('', true);
+       $stmt = $this->con->prepare("INSERT INTO affiliation (aff_unique_id, user_id,
+                                  breeder_id, affiliation, created_at)
+                                  VALUES(?, ?, ?, ?, NOW())");
+       $stmt->bind_param("ssss", $affuid, $user_id,
+                                  $breeder_id, $affiliation[$a]);
+       $result = $stmt->execute();
+       $stmt->close();
+
+       // if ($result){
+       //   echo "affiliation insert success";
+       // }
+     }
+       // check for successful store
+     }
+
+
+        /*
+        *insert multiple Dairy Affiliations
+        */
+         public function multipleDairyffiliations($user_id, $dairy_farm_id, $affiliation){
+           //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+           //mysql_query($sql1);
+           foreach($affiliation as $a => $B){
+           $affuid = uniqid('', true);
+           $stmt = $this->con->prepare("INSERT INTO affiliation (aff_unique_id, user_id,
+                                       dairy_farm_id, affiliation, created_at)
+                                      VALUES(?, ?, ?, ?, NOW())");
+           $stmt->bind_param("ssss", $affuid, $user_id,
+                                      $dairy_farm_id, $affiliation[$a]);
+           $result = $stmt->execute();
+           $stmt->close();
+
+           // if ($result){
+           //   echo "affiliation insert success";
+           // }
+         }
+           // check for successful store
+         }
+
+         /*
+         *insert multiple Feed Manufacturers Affiliations
+         */
+          public function multipleFeedManufacturersffiliations($user_id, $feed_manufactures_id, $association_affiliation){
+            //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+            //mysql_query($sql1);
+            foreach($association_affiliation as $a => $B){
+            $affuid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO affiliation (aff_unique_id, user_id,
+                                        feed_manufacturers_id, affiliation, created_at)
+                                       VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $affuid, $user_id,
+                                       $feed_manufactures_id, $association_affiliation[$a]);
+            $result = $stmt->execute();
+            $stmt->close();
+
+            // if ($result){
+            //   echo "affiliation insert success";
+            // }
+          }
+            // check for successful store
+          }
+
+
+
     /*
     *insert multiple phonenumbers
     */
@@ -1236,6 +1313,87 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
       }
        // check for successful store
      }
+
+
+     /*
+     *insert multiple phonenumbers
+     */
+      public function multipleBreederPhoneNumber($user_id, $breeder_id, $phoneNumber){
+        foreach($phoneNumber as $a => $B){
+        $phnuid = uniqid('', true);
+        $stmt = $this->con->prepare("INSERT INTO phonenumbers (phonenum_unique_id, user_id,
+                                    breeder_id, phonenumber, created_at)VALUES(?, ?, ?, ?, NOW())");
+        $stmt->bind_param("ssss", $phnuid, $user_id, $breeder_id, $phoneNumber[$a]);
+        $result = $stmt->execute();
+        $stmt->close();
+      //   if ($result){
+      //     echo "phoneNumber insert success";
+      //   }
+       }
+        // check for successful store
+      }
+
+
+          /*
+          *insert multiple dairy phonenumbers
+          */
+           public function multipleFeedManufacturersPhoneNumbers($user_id, $feed_manufactures_id, $phonenumber){
+             foreach($phonenumber as $a => $B){
+             $phnuid = uniqid('', true);
+             $stmt = $this->con->prepare("INSERT INTO phonenumbers (phonenum_unique_id, user_id,
+                                         feed_manufactures_id, phonenumber, created_at)VALUES(?, ?, ?, ?, NOW())");
+             $stmt->bind_param("ssss", $phnuid, $user_id, $feed_manufactures_id, $phonenumber[$a]);
+             $result = $stmt->execute();
+             $stmt->close();
+           //   if ($result){
+           //     echo "phoneNumber insert success";
+           //   }
+            }
+             // check for successful store
+           }
+
+
+
+
+         /*
+         *insert multiple feed manufacturers phonenumbers
+         */
+          public function multipleDairyPhoneNumbers($user_id, $dairy_farm_id, $phoneNumber){
+            foreach($phoneNumber as $a => $B){
+            $phnuid = uniqid('', true);
+            $stmt = $this->con->prepare("INSERT INTO phonenumbers (phonenum_unique_id, user_id,
+                                        dairy_farm_id, phonenumber, created_at)VALUES(?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssss", $phnuid, $user_id, $dairy_farm_id, $phoneNumber[$a]);
+            $result = $stmt->execute();
+            $stmt->close();
+          //   if ($result){
+          //     echo "phoneNumber insert success";
+          //   }
+           }
+            // check for successful store
+          }
+
+      /*
+      *insert multiple typeofBreed
+      */
+       public function multipleBreederTypeOfBreedProduced($user_id, $breeder_id, $typeofbreeds){
+         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+         //mysql_query($sql1);
+         foreach($typeofbreeds as $a => $B){
+         $tpuid = uniqid('', true);
+         $stmt = $this->con->prepare("INSERT INTO hatchery_breeds (breed_unique_id, user_id,
+  breeder_id, breed_title, created_at)VALUES(?, ?, ?, ?, NOW())");
+         $stmt->bind_param("ssss", $tpuid, $user_id, $breeder_id, $typeofbreeds[$a]);
+         $result = $stmt->execute();
+         $stmt->close();
+
+          // if ($result){
+          //   echo "Breed Type insert success";
+          // }
+           }
+         // check for successful store
+       }
+
 
 
      /*
@@ -1259,6 +1417,28 @@ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         // check for successful store
       }
 
+
+
+      /*
+      *insert multiple typeofBreed
+      */
+       public function multipleDairyTypeOfBreeds($user_id, $dairy_farm_id, $typeofbreeds){
+         //$sql1 = "insert into $lastname(item,price)values('$items[$a]','$prices[$a]')";
+         //mysql_query($sql1);
+         foreach($typeofbreeds as $a => $B){
+         $tpuid = uniqid('', true);
+         $stmt = $this->con->prepare("INSERT INTO hatchery_breeds (breed_unique_id, user_id,
+     dairy_farm_id, breed_title, created_at)VALUES(?, ?, ?, ?, NOW())");
+         $stmt->bind_param("ssss", $tpuid, $user_id, $dairy_farm_id, $typeofbreeds[$a]);
+         $result = $stmt->execute();
+         $stmt->close();
+
+          // if ($result){
+          //   echo "Breed Type insert success";
+          // }
+           }
+         // check for successful store
+       }
 
 
       /*
@@ -1510,6 +1690,56 @@ creator_id, hatchery_id, public_batch_id, created_batch_id,
             return $breeds;
         }
 
+
+
+        /**
+         *DAIRY FARM ACTIVITIES
+         */
+
+   /**
+    * Register new dairy farm
+    */
+
+public function registerNewDairyFarm(
+                        $user_id, $dairy_farm_name, $date_established, $reg_number,
+                        $dairy_farm_owner, $country,
+                        $region, $district, $address, $contact_person, $total_litres_perday,
+                        $dairy_farm_size, $cattle_quantity, $dairy_manager, $dairy_veterinarian, $vet_reg_number
+                        ){
+    $dfuid = uniqid('', true);
+    $stmt = $this->con->prepare("
+ INSERT INTO dairy_farms
+    (dairy_farm_unique_id, user_id, dairy_farm_name, year_established, reg_number,
+    dairy_farm_owner, country,
+    region, district, address, contact_person, total_litres_perday,
+    dairy_farm_size, cattle_quantity, dairy_manager, dairy_veterinarian, vet_reg_number, created_at)
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param(
+            "sssssssssssssssss",
+            $dfuid,
+            $user_id, $dairy_farm_name, $date_established, $reg_number,
+            $dairy_farm_owner, $country,
+            $region, $district, $address, $contact_person, $total_litres_perday,
+            $dairy_farm_size, $cattle_quantity, $dairy_manager, $dairy_veterinarian, $vet_reg_number
+        );
+    $result = $stmt->execute();
+    $stmt->close();
+
+    // check for successful store
+    if ($result) {
+        $stmt = $this->con->prepare("SELECT * FROM dairy_farms WHERE user_id = ?");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $hatchery = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        return $hatchery;
+    } else {
+        return false;
+    }
+}
+
+
     /**
      * Check user is existed or not
      */
@@ -1631,9 +1861,8 @@ creator_id, hatchery_id, public_batch_id, created_batch_id,
     function smtpmailer($to,$id) {
         global $error;
         $mail = new PHPMailer\PHPMailer\PHPMailer();
-       define('GUSER', ''); // GMail username
-       define('GPWD', ''); // GMail password
-       define('SMTPSERVER', ''); // sec. smtp server
+        $mailFrom = "info@livestoka.com";
+        require '../vendor/autoload.php';
        $subject="Email Confirmation";
        $verificationLink = "http://livestoka.com/activate_page.php?id=". $id;
        $htmlStr = "";
@@ -1648,32 +1877,17 @@ creator_id, hatchery_id, public_batch_id, created_batch_id,
 
        $body=$htmlStr;
           // create a new object
-        //$mail->IsSMTP(); // enable SMTP
-        // $mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
-        // $mail->SMTPAuth = true;  // authentication enabled
-        // $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-        // $mail->Host = 'smtp.gmail.com';
-        // $mail->Port = 465;
-        // $mail->Username = GUSER;
-        // $mail->Password = GPWD;
-        // $mail->SetFrom(GUSER, "MANAGER");
-        // $mail->Subject = $subject;
-        // $mail->Body = $body;
-        // $mail->AddAddress($to);
-        $mail->SMTPDebug = 4;                               // Enable verbose debug output
-         $mail->isSMTP();                                    // Set mailer to use SMTP
-         $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+         $mail->isSMTP();
+         $mail->SMTPDebug = 4;                               // Enable verbose debug output                                 // Set mailer to use SMTP
+         $mail->Host = 'smtp.zoho.com'; // Specify main and backup SMTP servers
+         $mail->Port = 465;
          $mail->SMTPAuth = true;                             // Enable SMTP authentication
-         $mail->Username =  $to;    //'kijanamwizi@gmail.com';           // SMTP username
-         $mail->Password = '';                       // SMTP password
-         $mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
-         $mail->Port = 587;                                  // TCP port to connect, tls=587, ssl=465
-         $mail->From = 'info@livestoka.com';
+         $mail->Username =  $mailFrom;    //'info@livestoka.com';           // SMTP username
+         $mail->Password = 'dereckkev2bros';                       // SMTP password                                // TCP port to connect, tls=587, ssl=465
+         $mail->setFrom = 'info@livestoka.com';
          $mail->FromName = 'Please Verify Account';
-         $mail->addAddress($to);     // Add a recipient
          $mail->addReplyTo('info@livestoka.com', 'future basics');
-         $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-         $mail->isHTML(false);                                  // Set email format to HTML
+         $mail->addAddress($to);     // Add a recipient
          $mail->Subject = $subject;
          $mail->Body    = $body;
          $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

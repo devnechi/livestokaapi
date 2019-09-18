@@ -79,9 +79,8 @@ require_once '../../includes/validations_functions.php';
   }
  ?>
 <?php
-<<<<<<< HEAD
 $next_day_update = date("d-m-Y", strtotime(" +1 weeks"));
-=======
+
 $dataPointshist = array(
 	array("x"=> 10, "y"=> 41),
 	array("x"=> 20, "y"=> 35, "indexLabel"=> "Lowest"),
@@ -139,7 +138,6 @@ $dataPointsTwoLines = array(
 	array("label"=> 2017, "y"=>368000)
 );
 
->>>>>>> 4a8f0d9ca6f3aa5df9ea03232b6c7b40ff724fda
 ?>
 
  <!-- process to insert new batch on submit -->
@@ -330,7 +328,6 @@ $dataPointsTwoLines = array(
 										<div class="card">
 											<div class="card-header" data-background-color="orange">
 													<h4 class="title">New Batch to be Hatched</h4>
-<<<<<<< HEAD
 													<p class="category">your last batch was created on February, 2018</p>
                           <p class="category">
                             <?php echo $logged_hatchery_id; ?></p>

@@ -57,19 +57,15 @@
      $cert_of_incorporation_num = trim($_POST['cert_of_incorporation_num']);
      $feedbussiness_permit_num = trim($_POST['feedbussiness_permit_num']);
      $gmp_cert_num = trim($_POST['gmp_cert_num']);
-     $association_affiliation = trim($_POST['association_affiliation']);
+     $association_affiliation = $_POST['association_affiliation'];
      $country = trim($_POST['country']);
      $region = trim($_POST['region']);
      $district = trim($_POST['district']);
      $address = trim($_POST['address']);
      $pobox = trim($_POST['pobox']);
-     $phonenumber = trim($_POST['phonenumber']);
+     $phonenumber = $_POST['phonenumber'];
      $websiteurl = trim($_POST['websiteurl']);
-<<<<<<< HEAD
      $contact_person = $_POST['contact_person'];
-=======
-     $contact_person = trim($_POST['contact_person']);
->>>>>>> 8551d076b3db7c31eb5b07a3fdd8f2c4a670c1d3
      $production_capacity = trim($_POST['production_capacity']);
      $storage_capacity = trim($_POST['storage_capacity']);
      $num_products_produced = trim($_POST['num_products_produced']);
@@ -83,28 +79,31 @@
     $value = trim($_POST[$field]);
     if(!has_presence($value)){
 
-      $message = "<div class=\"alert alert-danger\" role=\"alert\">
-        <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+      // $message = "<div class=\"alert alert-danger\" role=\"alert\">
+      //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+      // </div>";
+
+      $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+        <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">  ".ucfirst($field)." can't be blank </a> and try submitting again.
       </div>";
-
-       $errors[$field] = ucfirst($field) . " can't be blank";
-
     }
   }
 
 
    //check if the values are numeric
-   $fields_required= array("gmp_cert_num", "feedbussiness_permit_num", "cert_of_incorporation_num", "premise_cert_num", "man_power", "num_products_produced", "storage_capacity", "production_capacity", "phonenumber");
+   $fields_required= array("gmp_cert_num", "feedbussiness_permit_num", "cert_of_incorporation_num", "premise_cert_num", "man_power", "num_products_produced", "storage_capacity", "production_capacity");
    foreach($fields_required as $field){
      $value = trim($_POST[$field]);
      if(!is_numeric($value)){
 
-       $message = "<div class=\"alert alert-info\" role=\"alert\">
-         <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
-       </div>";
+       // $message = "<div class=\"alert alert-info\" role=\"alert\">
+       //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">make sure values are numeric </a> and try submitting again.
+       // </div>";
 
-        $errors[$field] = ucfirst($field) . " should be numeric";
-
+        //$errors[$field] = ucfirst($field) . " should be numeric";
+        $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+          <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is numeric </a> and try submitting again.
+        </div>";
      }
    }
 
@@ -129,15 +128,13 @@
         // $response["error"] = true;
         // $response["error_msg"] = "User already exists with " . $email;
         $message = "<div class=\"alert alert-info\" role=\"alert\">
-     <strong>User Exists!</strong> <a href=\"#\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
+     <strong>User Exists!</strong> <a href=\"../login_area.php\" class=\"alert-link\">User with the email " .$email. " </a> Already exists.
    </div>";
         // echo json_encode($response);
     } else {
 
             $user = $db->registerUser($email, $password, $usertype, $account_status);
-
               if($user){
-
                 $response["error"] = false;
                 $response["uid"] = $user["user_unique_id"];
                 $response["user"]["user_id"] = $user["user_id"];
@@ -149,13 +146,9 @@
                 $response["user"]["salt"] = $user["salt"];
                 $response["user"]["created_at"] = $user["created_at"];
                 $response["user"]["updated_at"] = $user["updated_at"];
-
-
               }
-
-
             $user_id = $user["user_id"];
-          $feed_manufacturer = $db->registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $association_affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
+          $feed_manufacturer = $db->registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $country, $region, $district, $address, $pobox, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $plant_manager);
           // register new manufacturer
           if ($feed_manufacturer) {
               // user stored successfully
@@ -184,12 +177,18 @@
               $response["feed_manufacturer"]["created_at"] = $feed_manufacturer["created_at"];
               $response["feed_manufacturer"]["updated_at"] = $feed_manufacturer["updated_at"];
 
+
+
+              $feed_manufactures_id = $feed_manufacturer["feed_manufactures_id"];
+              $newaffiliation = $db->multipleFeedManufacturersffiliations($user_id, $feed_manufactures_id, $association_affiliation);
+              $newphonenumber = $db->multipleFeedManufacturersPhoneNumbers($user_id, $feed_manufactures_id, $phonenumber);
+
               //
-              // $message = "<div class=\"alert alert-success\" role=\"alert\">
-              //   <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new hatchery</a>.
-              // </div>";
+              $message = "<div class=\"alert alert-success\" role=\"alert\">
+                <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a feed manufacturer</a>.
+              </div>";
 
-
+                          //
               		        // $current_id = $feed_manufacturer["user_id"];
               		        // if(!empty($current_id)) {
               		        // $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."activate_account.php?id=" . $current_id;
@@ -315,44 +314,27 @@
     .card {
          border: transparent;
     }
+
+    .badge-danger{
+      background-color: rgba(255,255,255,.5);
+    }
     </style>
   </head>
   <body>
 
     <nav class="navbar navbar-default navbar-static-top">
       <a href="../index.php" class="navbar-brand">Back To Livestoka</a>
-      <!-- <ul class="nav nav-pills">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">FAQ's</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="registration/hatcher_registry.php">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-      </ul> -->
     </nav>
     <div class="container">
       <div class="starter-template">
         <h1>Feed Manufacturers Registration Area</h1>
-        <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p>
+        <!-- <p class="lead">Owner's and operators of Feed Manufactures can Register Below.<br> Please fill all the required Fields.</p> -->
       </div>
       <!--register section -->
       <section id="manufacturersReg">
-        <!-- <form action="feed_manufacture_registry.php" method="post"> -->
-
-   <?php echo $message; ?>
+       <?php echo $message; ?>
        <?php echo form_errors($errors); ?>
+
         <form action="register_feeds_manufacturers.php" method="post">
     <!-- company information -->
             <div class="card">
@@ -361,36 +343,54 @@
                   <label for="formGroupExampleInput"><strong>Company Institution/Manufactures Description</strong></label>
                    <hr>
                 </div>
+                <div class="row">
 
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="lblcompany_name">Company Name</label>
                         <input type="text" class="form-control" id="companyname" name="companyname" value="<?= isset($_POST['companyname']) ? $_POST['companyname'] : ''; ?>" placeholder="">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="lblyear_established">Year of Establishment</label>
-                        <input type="text" class="form-control" id="year_established" onblur="yearValidation(this.value,event)" onkeypress="yearValidation(this.value,event" name="year_established" value="<?= isset($_POST['year_established']) ? $_POST['year_established'] : ''; ?>" placeholder="">
+                        <!-- <input type="text" class="form-control" id="year_established" onblur="yearValidation(this.value,event)" onkeypress="yearValidation(this.value,event" name="year_established" value="<?= isset($_POST['year_established']) ? $_POST['year_established'] : ''; ?>" placeholder=""> -->
+                        <div class="form-group input-group datetimepicker">
+                            <input type="text" class="form-control"  id="year_established" name="year_established" placeholder="year established">
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="formGroupExampleInput2">Certificate of Incoporation Number</label>
                         <input type="text" class="form-control" id="cert_of_incorporation_num"  name="cert_of_incorporation_num" value="<?= isset($_POST['cert_of_incorporation_num']) ? $_POST['cert_of_incorporation_num'] : ''; ?>" placeholder="">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="formGroupExampleInput2">Feed Business Permit</label>
                         <input type="text" class="form-control" id="feedbussiness_permit_num" name="feedbussiness_permit_num" value="<?= isset($_POST['feedbussiness_permit_num']) ? $_POST['feedbussiness_permit_num'] : ''; ?>" placeholder="">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="formGroupExampleInput2">Premise Certificate Number</label>
                         <input type="text" class="form-control" id="premise_cert_number" name="premise_cert_num" value="<?= isset($_POST['premise_cert_number']) ? $_POST['confirm_password'] : ''; ?>" placeholder="">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-md-6">
                         <label for="formGroupExampleInput2">GMP certificate number</label>
                         <input type="text" class="form-control" id="gmp_cert_num" name="gmp_cert_num" value="<?= isset($_POST['gmp_cert_num']) ? $_POST['gmp_cert_num'] : ''; ?>" placeholder="">
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group col-md-6">
                         <label for="formGroupExampleInput2">Company Association Affiliation. <small>e.g TAFMA, TCPA or TPBA</small></label>
                         <input type="text" class="form-control" id="association_affiliation" name="association_affiliation" value="<?= isset($_POST['association_affiliation']) ? $_POST['association_affiliation'] : ''; ?>" placeholder="">
+                      </div> -->
+                      <div class="form-group col-md-6">
+                        <div class="form-group multiple-form-group" data-max=6>
+                          <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
+                          <div class="form-group input-group">
+                            <input type="text" name="association_affiliation[]" class="form-control">
+                              <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                              </button></span>
+                          </div>
+                        </div>
                       </div>
               </div>
+            </div>
             </div>
             <!-- end of company information -->
               <!-- <hr> -->
@@ -404,7 +404,9 @@
                           <label for="formGroupExampleInput"><strong>Company Address and Location</strong></label>
                         <hr>
                         </div>
-                        <div class="form-group">
+
+                        <div class="row">
+                        <div class="form-group col-md-6">
                           <label for="formGroupExampleInput2">Country</label>
                            <select class="form-control" id="country" name="country" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>">
                              <option>SELECT</option>
@@ -415,49 +417,48 @@
                            </select>
 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                           <label for="formGroupExampleInput2">Region</label>
                           <input type="text" class="form-control" id="region" name="region" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>" placeholder="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                           <label for="formGroupExampleInput2">District</label>
                           <input type="text" class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
                         </div>
-                        <div class="form-group">
-                          <label for="exampleTextarea">Address 1</label>
+                        <div class="form-group col-md-6">
+                          <label for="exampleTextarea">Address</label>
                           <textarea class="form-control" id="address" name="address" rows="3" value="<?= isset($_POST['address']) ? $_POST['address'] : ''; ?>"></textarea>
                         </div>
-                        <!-- <div class="form-group">
-                          <label for="exampleTextarea">Address 2</label>
-                          <textarea class="form-control" id="txt_address_two" name="" rows="3"></textarea>
-                        </div> -->
-                        <div class="form-group">
+
+                        <div class="form-group col-md-6">
                                 <label for="formGroupExampleInput2">P.O.Box</label>
                                 <input type="text" class="form-control" id="pobox" name="pobox" value="<?= isset($_POST['pobox']) ? $_POST['pobox'] : ''; ?>" placeholder="">
                               </div>
-                        <div class="form-group">
-                                <label for="formGroupExampleInput2">Office Phone Number 1:</label>
-                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<?= isset($_POST['phonenumber']) ? $_POST['phonenumber'] : ''; ?>" placeholder=" ">
-                              </div>
-                        <!-- <div class="form-group">
-                                <label for="formGroupExampleInput2">Office Phone Number 2</label>
-                                <input type="text" class="form-control" id="txt_office_num_two" name="" placeholder=" ">
-                              </div> -->
 
-
-                               <div class="form-group">
+                               <div class="form-group col-md-6">
                                  <label for="formGroupExampleInput2">website</label>
                                  <input type="text" class="form-control" id="websiteurl" name="websiteurl" value="<?= isset($_POST['websiteurl']) ? $_POST['websiteurl'] : ''; ?>" placeholder=" ">
                                </div>
 
-                               <div class="form-group">
+
+                           <div class="form-group col-md-6">
+                                   <div class="form-group multiple-form-group" data-max=6>
+                                     <label for="formGroupExampleInput2"> Phone Numbers:</label>
+                                     <div class="form-group input-group">
+                                       <input type="text" name="phonenumber[]" class="form-control">
+                                         <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                         </button></span>
+                                     </div>
+                                 </div>
+                               </div>
+
+                               <div class="form-group col-md-6">
                                  <label for="formGroupExampleInput2">Contact Person</label>
                                  <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?= isset($_POST['contact_person']) ? $_POST['contact_person'] : ''; ?>" placeholder=" ">
                                </div>
                          </div>
                       </div>
                     </div>
-                     <br />
                       <hr>
                       <br />
                             <!-- company information -->
@@ -469,43 +470,47 @@
                       <label for="formGroupExampleInput"><strong>Plant Production Information</strong></label>
                     <hr>
                     </div>
-                    <div class="form-group">
+
+                    <div class="row">
+                    <div class="form-group col-md-6">
                       <label for="formGroupExampleInput">Production Capacity</label>
                       <input type="text" class="form-control" id="production_capacity" name="production_capacity" value="<?= isset($_POST['production_capacity']) ? $_POST['production_capacity'] : ''; ?>" placeholder="">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                       <label for="formGroupExampleInput2">Storage Capacity</label>
                       <input type="text" class="form-control" id="storage_capacity" name="storage_capacity" value="<?= isset($_POST['storage_capacity']) ? $_POST['storage_capacity'] : ''; ?>" placeholder=" ">
                     </div>
-                     <div class="form-group">
+                     <div class="form-group col-md-6">
                           <label for="formGroupExampleInput2">Number of Products Produced</label>
                           <input type="text" class="form-control" id="num_products_produced" name="num_products_produced" value="<?= isset($_POST['num_products_produced']) ? $_POST['num_products_produced'] : ''; ?>" placeholder=" ">
-                          <p>*The number of products entered will be update once a user is succesfully register and logged in. </p>
+                          <p>*The number of products entered will be update once a user is succesfully registerED and logged in. </p>
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                              <label for="formGroupExampleInput2">Man Power.[Number of Employees] as of Today</label>
                              <input type="text" class="form-control" id="man_power" name="man_power" value="<?= isset($_POST['man_power']) ? $_POST['man_power'] : ''; ?>" placeholder=" ">
                            </div>
 
-                          <div class="form-group">
+                          <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Office Email Address</label>
-                               <input type="email" class="form-control" id="txt_office_email" name="email" aria-describedby="emailHelp" value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''; ?>" placeholder="Enter email">
+                               <input type="email" class="form-control" id="txt_office_email" name="email" aria-describedby="emailHelp" value="<?= isset($_POST['email']) ? $_POST['email'] : ''; ?>" placeholder="Enter email">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                               </div>
-                           <div class="form-group">
+                           <div class="form-group col-md-6">
                                 <label for="formGroupExampleInput2">Plant Manager</label>
                                 <input type="text" class="form-control" id="plant_manager" name="plant_manager" value="<?= isset($_POST['plant_manager']) ? $_POST['plant_manager'] : ''; ?>" placeholder=" ">
-
+                             </div>
+                             <div class="form-group col-md-6">
                               <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
-
+                              </div>
+                              <div class="form-group col-md-6">
                                 <label for="exampleInputConfirmPassword2">Confirm Password</label>
                                   <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''; ?>" placeholder="Confirm Password" onkeyup='check();'>
                                  <span id='message'></span>
                               </div>
-
+                              </div>
                               <button type="submit"  name="submit" class="btn btn-primary btn-lg" value="Submit">Register</button>
 
                          </form>
@@ -519,56 +524,160 @@
 
     </div> <!-- /.container-->
 
-    <!-- jQuery first, then Bootstrap JS. -->
-    <!--scripts -->
-    <script>
-    function yearValidation(year,ev) {
 
-  var text = /^[0-9]+$/;
-  if(ev.type=="blur" || year.length==4 && ev.keyCode!=8 && ev.keyCode!=46) {
-    if (year != 0) {
-        if ((year != "") && (!text.test(year))) {
+        <!--scripts -->
+        <!-- jQuery first, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+        function yearValidation(year,ev) {
 
-            alert("Please Enter Numeric Values Only");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
-        }
+      var text = /^[0-9]+$/;
+      if(ev.type=="blur" || year.length==4 && ev.keyCode!=8 && ev.keyCode!=46) {
+        if (year != 0) {
+            if ((year != "") && (!text.test(year))) {
 
-        if (year.length != 4) {
-            alert("Year is not proper. Please check");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
+                alert("Please Enter Numeric Values Only");
+                document.getElementById("year_established").focus();
+                document.getElementById('year_established').value = '';
+                return false;
+            }
 
-        }
-        var current_year=new Date().getFullYear();
-        if((year < 1920) || (year > current_year))
-            {
-            alert("Year should be in range 1920 to current year");
-            document.getElementById("year_established").focus();
-            document.getElementById('year_established').value = '';
-            return false;
+            if (year.length != 4) {
+                alert("Year is not proper. Please check");
+                document.getElementById("year_established").focus();
+                document.getElementById('year_established').value = '';
+                return false;
 
             }
-        return true;
-    } }
-  }
+            var current_year=new Date().getFullYear();
+            if((year < 1920) || (year > current_year))
+                {
+                alert("Year should be in range 1920 to current year");
+                document.getElementById("year_established").focus();
+                document.getElementById('year_established').value = '';
+                return false;
+
+                }
+            return true;
+        } }
+      }
 
 
-  var check = function() {
-       if (document.getElementById('password').value ==
-           document.getElementById('confirm_password').value) {
-           document.getElementById('message').style.color = 'green';
-           document.getElementById('message').innerHTML = 'matching';
-       } else {
-          document.getElementById('message').style.color = 'red';
-           document.getElementById('message').innerHTML = 'passwords dont match';
+      var check = function() {
+           if (document.getElementById('password').value ==
+               document.getElementById('confirm_password').value) {
+               document.getElementById('message').style.color = 'green';
+               document.getElementById('message').innerHTML = 'matching';
+           } else {
+           		document.getElementById('message').style.color = 'red';
+               document.getElementById('message').innerHTML = 'not matching';
+           }
        }
-   }
 
+        </script>
+    <!-- para_utilitygrandpastock -->
+        <script>
+      $(document).ready(function(){
+          $('#hatching_activity').on('change', function() {
+            if ( this.value == '1')
+            {
+              $("#para_utilitya").show();
+              $("#para_utilityb").show();
+              $("#para_utilityc").show();
+
+              $("#para_utility_parentstock").hide();
+              $("#para_utilitygrandpastock").hide();
+
+               }else if (this.value == '2') {
+                       $("#para_utilitygrandpastock").show();
+
+                       $("#para_utilitya").hide();
+                       $("#para_utilityb").hide();
+                       $("#para_utilityc").hide();
+                       $("#para_utility_parentstock").hide();
+
+
+              }else if (this.value == '3') {
+                       $("#para_utility_parentstock").show();
+
+                       $("#para_utilitya").hide();
+                       $("#para_utilityb").hide();
+                       $("#para_utilityc").hide();
+                       $("#para_utilitygrandpastock").hide();
+
+               }else {
+
+                       $("#para_utilitya").hide();
+                       $("#para_utilityb").hide();
+                       $("#para_utilityc").hide();
+                       $("#para_utility_parentstock").hide();
+                       $("#para_utilitygrandpastock").hide();
+
+              }
+            });
+            console.log("hellow");
+        });
+        </script>
+    <script>
+    (function ($) {
+        $(function () {
+
+            var addFormGroup = function (event) {
+                event.preventDefault();
+
+                var $formGroup = $(this).closest('.form-group');
+                var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+                var $formGroupClone = $formGroup.clone();
+
+                $(this)
+                    .toggleClass('btn-default btn-add btn-danger btn-remove')
+                    .html('–');
+
+                $formGroupClone.find('input').val('');
+                $formGroupClone.insertAfter($formGroup);
+
+                var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+                if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
+                    $lastFormGroupLast.find('.btn-add').attr('disabled', true);
+                }
+            };
+
+            var removeFormGroup = function (event) {
+                event.preventDefault();
+
+                var $formGroup = $(this).closest('.form-group');
+                var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+
+                var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+                if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
+                    $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+                }
+
+                $formGroup.remove();
+            };
+
+            var countFormGroup = function ($form) {
+                return $form.find('.form-group').length;
+            };
+
+            $(document).on('click', '.btn-add', addFormGroup);
+            $(document).on('click', '.btn-remove', removeFormGroup);
+
+        });
+    })(jQuery);
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-  </body>
-</html>
+
+    <script>
+    $(document).ready(function (){
+    	$('.datetimepicker').datetimepicker({
+        format:'L'
+      });
+
+    });
+    </script>
+    <?php
+    include('../../includes/layouts/public_ly_footer.php');
+    ?>

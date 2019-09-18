@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-<?php 
+
+<?php
    include('../../includes/layouts/public_layout_header.php');
    ?>
 <!------ Include the above in your HEAD tag ---------->
@@ -20,7 +20,7 @@
   left: 0;
   opacity: 0;
   z-index: 1;
-=======
+
 <?php
     //getting the dboperation class
     require_once '../../includes/DbOperation.php';
@@ -381,7 +381,7 @@
               transform: translate3d(-50%,-50%,0);
 }
 .hero h1 {
-    font-size: 6em;    
+    font-size: 6em;
     font-weight: bold;
     margin: 0;
     padding: 0;
@@ -390,18 +390,18 @@
 .fade-carousel .carousel-inner .item .hero {
     opacity: 0;
     -webkit-transition: 4s all ease-in-out .2s;
-       -moz-transition: 4s all ease-in-out .2s; 
-        -ms-transition: 4s all ease-in-out .2s; 
-         -o-transition: 4s all ease-in-out .2s; 
-            transition: 4s all ease-in-out .2s; 
+       -moz-transition: 4s all ease-in-out .2s;
+        -ms-transition: 4s all ease-in-out .2s;
+         -o-transition: 4s all ease-in-out .2s;
+            transition: 4s all ease-in-out .2s;
 }
 .fade-carousel .carousel-inner .item.active .hero {
     opacity: 1;
     -webkit-transition: 4s all ease-in-out .2s;
-       -moz-transition: 4s all ease-in-out .2s; 
-        -ms-transition: 4s all ease-in-out .2s; 
-         -o-transition: 4s all ease-in-out .2s; 
-            transition: 4s all ease-in-out .2s;    
+       -moz-transition: 4s all ease-in-out .2s;
+        -ms-transition: 4s all ease-in-out .2s;
+         -o-transition: 4s all ease-in-out .2s;
+            transition: 4s all ease-in-out .2s;
 }
 
 /********************************/
@@ -412,7 +412,7 @@
     width: 100%;
     height: 100%;
     z-index: 2;
-  
+
 }
 
 /********************************/
@@ -432,7 +432,7 @@
 /********************************/
 /*       Slides backgrounds     */
 /********************************/
-.fade-carousel .slides .slide-1, 
+.fade-carousel .slides .slide-1,
 .fade-carousel .slides .slide-2,
 .fade-carousel .slides .slide-3,
 .fade-carousel .slides .slide-4,
@@ -443,7 +443,7 @@
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url(../../web/images/dairy/meat-1030729_1920.jpg); 
+  background-image: url(../../web/images/dairy/meat-1030729_1920.jpg);
 }
 .fade-carousel .slides .slide-2 {
   background-image: url(../../web/images/dairy/cows-2641195_1920.jpg);
@@ -461,10 +461,10 @@
 /*          Media Queries       */
 /********************************/
 @media screen and (min-width: 980px){
-    .hero { width: 980px; }    
+    .hero { width: 980px; }
 }
 @media screen and (max-width: 640px){
-    .hero h1 { font-size: 4em; }    
+    .hero h1 { font-size: 4em; }
 }
 
 .navbar{
@@ -483,7 +483,7 @@
     background-color:rgba(255,255,255,.8);
 }
 #login-dp .help-block{
-    font-size:12px    
+    font-size:12px
 }
 #login-dp .bottom{
     background-color:rgba(255,255,255,.8);
@@ -492,7 +492,7 @@
     padding:14px;
 }
 #login-dp .social-buttons{
-    margin:12px 0    
+    margin:12px 0
 }
 #login-dp .social-buttons a{
     width: 49%;
@@ -506,7 +506,7 @@
 }
 .btn-fb:hover{
     color: #fff;
-    background-color:#496ebc 
+    background-color:#496ebc
 }
 .btn-tw{
     color: #fff;
@@ -552,8 +552,8 @@ nav a{
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    
-      
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Already have an account</p></li>
         <li class="dropdown">
@@ -562,7 +562,7 @@ nav a{
 				<li>
 					 <div class="row">
 							<div class="col-md-12">
-							
+
 								<div class="social-buttons">
 									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
 									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
@@ -601,10 +601,10 @@ nav a{
   </div><!-- /.container-fluid -->
 </nav>
 <div class="carousel fade-carousel carousel-fade slide" style="top:0%;" data-ride="carousel" data-interval="8000" id="bs-carousel">
-   
-  <div class="overlay">   <div class="hero">        
+
+  <div class="overlay">   <div class="hero">
         <hgroup>
-            <h1>Get Started</h1>        
+            <h1>Get Started</h1>
             <h3>Get start by registering  your  field</h3>
         </hgroup>
         <span > <select class=" btn btn-hero btn-lg "  id="register" >
@@ -613,8 +613,8 @@ nav a{
                        <option value="2">Beef Cattle Farm</option>
                      <option value="3">Meat Processor</option>
                        <option value="4">Cattle Traders</option>
-                     
-                     
+
+
                      </select></span>
       </div>
                      </div>
@@ -627,12 +627,12 @@ nav a{
     <li data-target="#bs-carousel" data-slide-to="4"></li>
     <li data-target="#bs-carousel" data-slide-to="5"></li>
   </ol>
-  
+
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item slides active">
       <div class="slide-1"></div>
-    
+
     </div>
     <div class="item slides">
       <div class="slide-2"></div>
@@ -640,17 +640,17 @@ nav a{
     </div>
     <div class="item slides">
       <div class="slide-3"></div>
-    
+
     </div>
     <div class="item slides">
       <div class="slide-4"></div>
-      
+
     </div>
     <div class="item slides">
       <div class="slide-5"></div>
-      
+
     </div>
-  </div> 
+  </div>
 </div>
 
  <!-- <script>
@@ -663,7 +663,7 @@ $("#register").on('change', function() {
 
 });
 </script> -->
- 
+
 
 <?php
 

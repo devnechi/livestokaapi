@@ -78,7 +78,6 @@ require_once '../../includes/validations_functions.php';
 
  ?>
 
-<<<<<<< HEAD
  <?php
     $next_day_update = date("d-m-Y", strtotime(" +1 months"));
  $errors = array();
@@ -182,15 +181,25 @@ require_once '../../includes/validations_functions.php';
                    <label id="selected_batch_id" name="selected_batch_id" for="exampleFormControlSelect1" class="control-label">batchid:</label>
                     <?php
                     if(isset($_GET["selected_batch_id"])){
-
                        echo $_GET["selected_batch_id"];
                      }
                      ?>
-                    <!-- <label for="exampleFormControlSelect1" class="control-label">SOMETHING</label>
-                     <label for="exampleFormControlSelect1" class="control-label">date created:</label>
-                      <label for="exampleFormControlSelect1" class="control-label">other info:</label> -->
-
             </div>
+            <!-- <div class="form-group col-lg-offset-2 col-md-6 input-group-lg">
+                 <label id="batch_id" name="batch_id" for="exampleFormControlSelect1" class="control-label">batchid: </label>
+
+
+                  <?php
+                //  if(isset($_GET["batch_id"])){
+
+                  //   echo $_GET["batch_id"];
+                //   }
+                   ?>
+                  <label for="exampleFormControlSelect1" class="control-label">SOMETHING</label>
+                   <label for="exampleFormControlSelect1" class="control-label">date created:</label>
+                    <label for="exampleFormControlSelect1" class="control-label">other info:</label>
+
+          </div> -->
 					</div>
 				</div>
 				</div>
@@ -220,16 +229,15 @@ require_once '../../includes/validations_functions.php';
                                 <div class="col-sm-3">
                                   <h4 class="title" style="font-size: 70px;">2</h4>
                                   <!-- <p class="category">going to stage 3 </p> -->
-
                                 </div>
                               </div>
       										</div>
       										<div class="card-content table-responsive spcbelow"  >
       												<p>Candling Report.</p>
-
                                <hr>
-                                <p class="category">Clear Eggs</p>
-                                <form>
+                                <form method="post">
+                                  <p class="category">Clear Eggs</p>
+                                  <input type="hidden" name="candlingreportsubmit" value="yes" >
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                       <label for="formGroupProductName">Number of clear eggs</label>
@@ -452,9 +460,7 @@ require_once '../../includes/validations_functions.php';
                     </div>
                   </div>
 
-
-=======
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 	<div class="row">
 
 									<div class="col-md-12">
@@ -482,8 +488,7 @@ require_once '../../includes/validations_functions.php';
 												</div>
 											</div>
 											</div>
-								</div>
->>>>>>> 4a8f0d9ca6f3aa5df9ea03232b6c7b40ff724fda
+								</div> -->
                 <?php
                 include("../../includes/layouts/hatchery_main_footer.php");
 

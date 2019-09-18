@@ -2,7 +2,7 @@
     //getting the dboperation class
     require_once '../../includes/DbOperation.php';
     require_once '../../includes/validations_functions.php';
-    include('../../includes/layouts/public_layout_header.php');
+    // include('../../includes/layouts/public_layout_header.php');
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -53,67 +53,88 @@
             //$lname = $_POST['last_name'];
 
             //user details
-            $email = $_POST['contact_email'];
-            $password = $_POST['password'];
+            $email = trim($_POST['contact_email']);
+            $password = trim($_POST['password']);
             //TYPE OF HATCHING ACTIVITIES
-            $usertype = "Dairy milk User";
+            $usertype = "dairy farm user";
             $account_status = "pending approval";
-            $phoneNumber = $_POST['phonenumbers'];
-            $owners_full_name = $_POST['owners_full_name'];
+            $phoneNumber = $_POST['phone_number'];
+            $dairy_farm_owner = trim($_POST['owners_full_name']);
 
 
-            $dairy_farm_name = $_POST['dairy_farm_name'];
-            $type_of_ownership = $_POST['type_of_ownership'];
-            $date_established = $_POST['date_established'];
-            $reg_number = $_POST['reg_number'];
-            $owners_full_name = $_POST['owners_full_name'];
+            $dairy_farm_name = trim($_POST['dairy_farm_name']);
+            $type_of_ownership = trim($_POST['type_of_ownership']);
+            $year_established = trim($_POST['year_established']);
+            $reg_number = trim($_POST['reg_number']);
+            $owners_full_name = trim($_POST['owners_full_name']);
             //$dairy_affiliation[]
             $affiliation = $_POST['affiliation'];
-            $dairy_manager = $_POST['dairy_manager'];
-            $dairy_veterinarian = $_POST['dairy_veterinarian'];
-            $vet_reg_number = $_POST['vet_reg_number'];
+            $dairy_manager = trim($_POST['dairy_manager']);
+            $dairy_veterinarian = trim($_POST['dairy_veterinarian']);
+            $vet_reg_number = trim($_POST['vet_reg_number']);
 
-          
+
               // Breed
             $typeofbreeds = $_POST['typeofBreed'];
 
             //dairy Capacity
-            $total_litre_perday = $_POST['total_litre_perday'];
-            $maximum_flock_size = $_POST['maximum_flock_size'];
+            $total_litres_perday = trim($_POST['total_litres_perday']);
+            $dairy_farm_size = trim($_POST['dairy_farm_size']);
+            $cattle_quantity = trim($_POST['cattle_quantity']);
 
              //
-            $websiteurl = $_POST['websiteurl'];
-            $contact_person = $_POST['contact_person'];
-            $country = $_POST['country'];
-            $region = $_POST['region'];
-            $district = $_POST['district'];
-            $address = $_POST['address'];
-            $phonenumber = $_POST['phonenumber'];
+            $websiteurl = trim($_POST['websiteurl']);
+            $contact_person = trim($_POST['contact_person']);
+            $country = trim($_POST['country']);
+            $region = trim($_POST['region']);
+            $district = trim($_POST['district']);
+            $address = trim($_POST['address']);
+            $phonenumber = $_POST['phone_number'];
 
-
-
-
-
-         
             // check if passwords match
             if ($password !=  $_POST['confirm_password']) {
                 $message = "<div class=\"alert alert-info\" role=\"alert\">
         <strong>Match problem!</strong> <a href=\"#\" class=\"alert-link\">passwords don't match </a> and try submitting again.
       </div>";
             }
+            //validations
+            $fields_required= array("owners_full_name", "dairy_farm_name", "password", "contact_email", "contact_person");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!has_presence($value)){
+
+                // $message = "<div class=\"alert alert-danger\" role=\"alert\">
+                //   <strong>Oh snap!</strong> <a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.
+                // </div>";
+
+                 $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                   <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is not blank </a> and try submitting again.
+                 </div>";
+              }
+            }
+
+            //check if the values are numeric
+            $fields_required= array("cattle_quantity", "dairy_farm_size", "total_litres_perday", "vet_reg_number", "reg_number");
+            foreach($fields_required as $field){
+              $value = trim($_POST[$field]);
+              if(!is_numeric($value)){
+
+                $errors[$field] = "<div class=\"alert alert-danger\" role=\"alert\">
+                  <strong>Invalid input!</strong> <a href=\"#\" class=\"alert-link\">make sure ".ucfirst($field)." is numeric </a> and try submitting again.
+                </div>";
+
+
+              }
+            }
+
 
             if (empty($errors)) {
-                // registerFeedManufacturers($user_id, $companyname, $year_established, $cert_of_incorporation_num, $feedbussiness_permit_num, $premise_cert_num, $gmp_cert_num, $affiliation, $country, $region, $district, $address, $pobox, $phonenumber, $websiteurl, $contact_person, $production_capacity, $storage_capacity, $num_products_produced, $man_power, $dairy_veterinarian);
                 if ($db->doesUserEmailExist($email)) {
-                    // user already existed
-                    // $response["error"] = true;
-                    // $response["error_msg"] = "User already exists with " . $email;
                     $message = "<div class=\"alert alert-info\" role=\"alert\">
-             <strong>User Exists!</strong> <a href=\"#\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
+             <strong>User Exists!</strong> <a href=\"../login_area.php\" class=\"alert-link\">User with the " .$email. " </a> Already exists.
            </div>";
-                // echo json_encode($response);
                 } else {
-                    $user = $db->registerUser($fname, $lname, $email, $password, $usertype, $account_status);
+                    $user = $db->registerUser($email, $password, $usertype, $account_status);
 
                     if ($user) {
                         $response["error"] = false;
@@ -132,54 +153,41 @@
                     $user_id = $user["user_id"];
 
                     // create a new user
-                    $dairy = $db->registerNewMilkDairy(
-                    $user_id,
-                    $dairy_farm_name,
-                    $year_established,
-                    $reg_number,
-                    $dairy_farm_owner,
-                    $affiliation,
-                    $country,
-                    $region,
-                    $district,
-                    $websiteurl,
-                    $address,
-                    $contact_person,
-                    $total_litre_perday ,
-                    $maximum_flock_size,
-                    $dairy_manager, 
-                    $dairy_veterinarian, 
-                    $vet_reg_number,
-                    $phone_Number,
-                    $typeofbreeds 
-        
-                );
+                    $dairy = $db->registerNewDairyFarm(
+                                            $user_id, $dairy_farm_name, $year_established, $reg_number,
+                                            $dairy_farm_owner, $country,
+                                            $region, $district, $address, $contact_person, $total_litres_perday,
+                                            $dairy_farm_size, $cattle_quantity, $dairy_manager, $dairy_veterinarian, $vet_reg_number
+                                          );
                     // register new manufacturer
                     if ($dairy) {
                         // user stored successfully
                         $response["error"] = false;
-                        $response["htuid"] = $dairy["dairy_unique_id"];
-                        $response["dairy"]["dairy_id"] = $dairy["dairy_id"];
+                        $response["htuid"] = $dairy["dairy_farm_unique_id"];
+                        $response["dairy"]["dairy_farm_id"] = $dairy["dairy_farm_id"];
                         $response["dairy"]["user_id"] = $dairy["user_id"];
                         $response["dairy"]["dairy_farm_name"] = $dairy["dairy_farm_name"];
                         $response["dairy"]["year_established"] = $dairy["year_established"];
                         $response["dairy"]["reg_number"] = $dairy["reg_number"];
                         $response["dairy"]["dairy_farm_owner"] = $dairy["dairy_farm_owner"];
-                        $response["dairy"]["affiliation"] = $dairy["affiliation"];
                         $response["dairy"]["country"] = $dairy["country"];
                         $response["dairy"]["region"] = $dairy["region"];
                         $response["dairy"]["district"] = $dairy["district"];
                         $response["dairy"]["address"] = $dairy["address"];
                         $response["dairy"]["contact_person"] = $dairy["contact_person"];
-                        $response["dairy"]["total_litre_perday"] = $dairy["total_litre_perday"];
-                        $response["dairy"]["maximum_flock_size"] = $dairy["maximum_flock_size"];
+                        $response["dairy"]["total_litres_perday"] = $dairy["total_litres_perday"];
+                        $response["dairy"]["dairy_farm_size"] = $dairy["dairy_farm_size"];
+                        $response["dairy"]["cattle_quantity"] = $dairy["cattle_quantity"];
                         $response["dairy"]["dairy_manager"] = $dairy["dairy_manager"];
                         $response["dairy"]["dairy_veterinarian"] = $dairy["dairy_veterinarian"];
                         $response["dairy"]["vet_reg_number"] = $dairy["vet_reg_number"];
-                        $response["dairy"]["phone_number"] = $dairy["phone_number"];
                         $response["dairy"]["created_at"] = $dairy["created_at"];
                         $response["dairy"]["updated_at"] = $dairy["updated_at"];
 
+                        $dairy_farm_id = $dairy["dairy_farm_id"];
+                        $newaffiliation = $db->multipleDairyffiliations($user_id, $dairy_farm_id, $affiliation);
+                        $newphonenumber = $db->multipleDairyPhoneNumbers($user_id, $dairy_farm_id, $phoneNumber);
+                        $newtypeofbreed = $db->multipleDairyTypeOfBreeds($user_id, $dairy_farm_id, $typeofbreeds);
 
                         $message = "<div class=\"alert alert-success\" role=\"alert\">
                 <strong>Well done!</strong> You successfully registered <a href=\"#\" class=\"alert-link\">a new dairy</a>.
@@ -221,6 +229,7 @@
     <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="../../web/css/style2.css"> -->
     <link rel="stylesheet" href="../../web/css/bootstrap-datetimepicker.min.css">
+
 
 
     <style>
@@ -416,6 +425,10 @@
 {
     font-size: 12px;
 }
+
+.badge-danger{
+  background-color: rgba(255,255,255,.5);
+}
     </style>
   </head>
   <body>
@@ -434,9 +447,9 @@
       <section id="manufacturersReg">
         <!-- <form action="dairy_farm_registration.php" method="post"> -->
 
-   <?php //echo $message;?>
+   <?php echo $message;?>
        <?php
-        //echo form_errors($errors);
+        echo form_errors($errors);
          ?>
         <form action="dairy_farm_registration.php" method="post">
     <!-- company information -->
@@ -475,7 +488,7 @@
                     </div> -->
                     <label for="lblyear_established">Date of Establishment<small> (dd/mm/yy)</small></label>
                     <div class="form-group input-group datetimepicker">
-                        <input type="text" class="form-control"  id="date_established" placeholder="date established">
+                        <input type="text" class="form-control"  id="year_established" name="year_established" placeholder="year established">
                         <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                       </span>
@@ -489,11 +502,11 @@
                   </div>
                 </div>
 
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="lbl_owners_full_name">Owner's Full Name <small>(individual, corporate body, etc)</small></label>
                 <input type="text" class="form-control" id="owners_full_name"  name="owners_full_name"  value="<?= isset($_POST['owners_full_name']) ? $_POST['owners_full_name'] : ''; ?>" placeholder="">
               </div>
-              <div class="form-group ">
+              <div class="form-group col-md-6">
                 <div class="form-group multiple-form-group" data-max=6>
                   <label for="formGroupExampleInput2"> Affiliations. <small>(e.g TPBA, TCPA, CTA, CTI)</small></label>
                   <div class="form-group input-group">
@@ -503,22 +516,21 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
             <!-- end of company information -->
               <!-- <hr> -->
             <br />
             <div class="form-group">
                     <label for="formGroupExampleInput"><strong>Farm Address and Location</strong></label>
-                
+
                   </div>
                   <hr>
             <!-- company information -->
             <div class="container">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <div class="form-group">
+            <div class="row">
+
+                  <div class="form-group col-md-6">
                     <label for="country" class="control-label">Country</label>
                      <select class="form-control" id="country" name="country" value="<?= isset($_POST['country']) ? $_POST['country'] : ''; ?>">
                        <option>SELECT</option>
@@ -528,7 +540,7 @@
                        <option>Rwanda</option>
                      </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-md-6">
                     <label for="formGroupExampleInput2">Region</label>
                     <select class="form-control" id="region" name="region" value="<?= isset($_POST['region']) ? $_POST['region'] : ''; ?>" placeholder="">
                     <option>SELECT</option>
@@ -538,7 +550,7 @@
                        <option>Dodoma</option>
                      </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-md-6">
                     <label for="formGroupExampleInput2">District</label>
                     <select class="form-control" id="district" name="district" value="<?= isset($_POST['district']) ? $_POST['district'] : ''; ?>" placeholder="">
                     <option>SELECT</option>
@@ -548,7 +560,7 @@
                        <option>Ubungo</option>
                      </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-md-6">
                     <label for="exampleTextarea">Address</label>
                     <textarea class="form-control" id="address" name="address" rows="3" value="<?= isset($_POST['address']) ? $_POST['address'] : ''; ?>"></textarea>
                   </div>
@@ -563,6 +575,7 @@
                         </div>
                     </div>
                   </div>
+                 </div>
 
                 <div class="form-group">
                   <label for="formGroupExampleInput"><strong>Key Personnel</strong></label>
@@ -588,70 +601,48 @@
                       </div>
                     </div>
                 </div>
+               </div>
 
-               </div>
-               </div>
-               </div>
-               <br />
-                <br />
                 <!-- company information -->
-              
-               
-                  
-                      <div class="form-group">
+
+
+                    <div class="form-group">
                         <label for="lblestablishment_activities"><strong>Establishment Activities</strong></label>
                         <hr>
                       </div>
-      
-                   
-
-                       
-                         <div class="form-group  ">
-                                 <div class="form-group multiple-form-group" data-max=6>
-                                   <label for="formGroupExampleInput2" class="control-label">Breed <small>(e.g. haifer local hybrid)</small></label>
-                                   <div class="form-group input-group">
-                                     <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
-                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                       </button></span>
-                                   </div>
+                      <div class="row">
+                     <div class="form-group col-md-6 ">
+                             <div class="form-group multiple-form-group" data-max=6>
+                               <label for="formGroupExampleInput2" class="control-label">Breed <small>(e.g. haifer local hybrid)</small></label>
+                               <div class="form-group input-group">
+                                 <input type="text" name="typeofBreed[]" id="typeofBreed" class="form-control">
+                                   <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                   </button></span>
                                </div>
-                             </div>
-                           
-                         
-                      
-                    
-                    
-                  
-                    
+                           </div>
+                         </div>
 
-                        
-                     
-                     
-
-                      
-                        
-                        
-                          <div class="form-group">
-                            <label for="total_farm_capacity">Total litre produced per day </label>
-                            <input type="text" class="form-control" id="total_litre_perday" name="total_litre_perday" value="<?= isset($_POST['total_litre_perday']) ? $_POST['total_litre_perday'] : ''; ?>" placeholder=" ">
+                         <div class="form-group col-md-6">
+                           <label for="lblmaximum_flock_size">Farm size</label>
+                           <input type="text" class="form-control" id="dairy_farm_size" name="dairy_farm_size" value="<?= isset($_POST['dairy_farm_size']) ? $_POST['dairy_farm_size'] : ''; ?>" placeholder=" ">
+                         </div>
+                         <div class="form-group col-md-6">
+                           <label for="lbltotal_num_of_cattles">Total Number of Cattles</label>
+                           <input type="text" class="form-control" id="cattle_quantity" name="cattle_quantity" value="<?= isset($_POST['cattle_quantity']) ? $_POST['cattle_quantity'] : ''; ?>" placeholder=" ">
+                         </div>
+                          <div class="form-group col-md-6">
+                            <label for="total_litres_produced">Total litres produced per day </label>
+                            <input type="text" class="form-control" id="total_litres_perday" name="total_litres_perday" value="<?= isset($_POST['total_litres_perday']) ? $_POST['total_litres_perday'] : ''; ?>" placeholder=" ">
                           </div>
-                          <div class="form-group">
-                            <label for="lblmaximum_flock_size">Flock size</label>
-                            <input type="text" class="form-control" id="maximum_flock_size" name="maximum_flock_size" value="<?= isset($_POST['maximum_flock_size']) ? $_POST['maximum_flock_size'] : ''; ?>" placeholder=" ">
-                          </div>
-                        
-                    
+
+                        </div>
 
 
-
-                  
-                  
                       <div class="form-group">
                         <label for="lbl_contacts_title"><strong>Contacts</strong></label>
                         <hr>
-                     
-                   
-
+                    </div>
+                   <div class="row">
                     <div class="form-group col-md-6">
                       <label for="formGroupExampleInput2">website</label>
                       <input type="text" class="form-control" id="websiteurl" name="websiteurl" value="<?= isset($_POST['websiteurl']) ? $_POST['websiteurl'] : ''; ?>" placeholder=" ">
@@ -659,35 +650,32 @@
                     <div class="form-group col-md-6">
                       <label for="lbl_contact_person">contact person</label>
                       <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?= isset($_POST['contact_person']) ? $_POST['contact_person'] : ''; ?>" placeholder=" ">
-                    </div></div>
-                     <div class="form-group ">
+                    </div>
+                     <div class="form-group  col-md-6">
                        <label for="lbl_contact_email">Contact email</label>
                        <input type="email" class="form-control" id="contact_email" name="contact_email" value="<?= isset($_POST['contact_email']) ? $_POST['contact_email'] : ''; ?>" placeholder=" ">
                      </div>
-                   
-                     <div class="">
-                      
+                   </div>
+                   <div class="row">
                         <div class="form-group col-md-6">
                         <label for="exampleInputPassword1">Password</label>
                           <input type="password" class="form-control" id="password" name="password" value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                         </div>
-                      
-                     
                         <div class="form-group col-md-6">
                          <label for="exampleInputConfirmPassword2">Confirm Password</label>
                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''; ?>" placeholder="Password" onkeyup='check();'>
                            <span id='message'></span>
                          </div>
-                      </div>
-                   
-                      <div class="form-group">
-                      <button type="submit"  name="submit" class="btn btn-primary btn-lg" value="Submit">Register</button>
-                          </div></div>
+                            <div class="form-group col-md-6">
+                            <button type="submit"  name="submit" class="btn btn-primary btn-lg" value="Submit">Register</button>
+                          </div>
+                        </div>
+                        </div>
                        </form>
-                  
-               
+
+
                 <hr>
-              
+
       </section>
 
       <!--end of registeration section -->
@@ -836,28 +824,9 @@
         $(document).on('click', '.btn-remove', removeFormGroup);
 
     });
-})
-
-$(document).ready(function(){
-function addtextbox()
-{
-  var html= '<div class="form-group">
-                    <label  class="control-label" for="formGroupExampleInput2">District</label>
-                    <input type="text" class="form-control" id="district" name="district" value=""
-                  </div>';
-
-$(html).appendTo((this).closest($(".add")));
-  
-}
-$(".add").click(addtexbox);
-
-});
-
-(jQuery);
+})(jQuery);
 </script>
-<?php
-include('../../includes/layouts/public_ly_footer.php');
-?>
+
 <script>
 $(document).ready(function (){
 	$('.datetimepicker').datetimepicker({
@@ -866,6 +835,6 @@ $(document).ready(function (){
 
 });
 </script>
-
-  </body>
-</html>
+<?php
+include('../../includes/layouts/public_ly_footer.php');
+?>

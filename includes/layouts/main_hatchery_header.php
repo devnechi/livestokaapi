@@ -648,7 +648,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                     <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Batch</a>
                 <div class="dropdown-menu navdropdown">
-                  <a class="dropdown-item" href="../../web/donor_area/dn_add_beneficiary.php">create new batch</a>
+                  <a class="dropdown-item" href="new_batch.php">create new batch</a>
                   <a class="dropdown-item" href="#">all created batches</a>
                 </div>
               </li>
